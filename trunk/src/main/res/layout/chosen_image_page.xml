@@ -7,7 +7,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt; Back"
+        android:text="&lt; Scene select"
         android:id="@+id/back_btn"
         android:background="@android:color/transparent" />
 
@@ -25,7 +25,7 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="43dp"
+        android:layout_height="45dp"
         android:id="@+id/display_txt"
         android:background="@drawable/drawable_back"/>
 
@@ -36,16 +36,16 @@
         android:layout_gravity="center_horizontal">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:id="@+id/editText"
-            android:layout_weight="0.8"
+            android:layout_weight="0.92"
             android:text="Enter a phrase.."
             android:background="@drawable/drawable_back"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
             android:text="Send"
             android:id="@+id/send_btn"
             android:layout_weight="0.2" />
