@@ -2,6 +2,8 @@ package com.example.aaron.fit3036_project;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +12,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button scene_select;
     private ImageButton mic_btn;
     private TextView display_txt;
+    private ImageView img_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         scene_select = (Button) findViewById(R.id.back_btn);
         mic_btn = (ImageButton) findViewById(R.id.mic_btn);
         display_txt = (TextView) findViewById(R.id.display_txt);
+        img_view = (ImageView) findViewById(R.id.target_img);
 
         scene_select.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 listeningDialog();
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak");
+                intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
+                startActivityForResult(intent, 2);
+
             }
 
         });
@@ -63,5 +78,45 @@ public class MainActivity extends AppCompatActivity {
         aDialog.setView(promptView);
         aDialog.show();
         aDialog.getWindow().setAttributes(lp);
+    }
+
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     *
+     * When the an image is selected on the Scene Selection screen, this method invokes and take the data from the other activity.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (data != null) {
+            if (requestCode == 1) {
+                TextView selected = new TextView(this);
+                selected.setText(data.getStringExtra("scene"));
+                String scene_number = selected.getText().toString();
+
+                if (scene_number.equals("scene1")) {
+                    img_view.setImageResource(0);
+                    img_view.setImageResource(R.mipmap.scene1);
+                } else {
+                    if (scene_number.equals("scene2")) {
+                        img_view.setImageResource(0);
+                        img_view.setImageDrawable(getResources().getDrawable(R.mipmap.scene2));
+                    } else {
+                        if (scene_number.equals("scene3")) {
+                            img_view.setImageResource(0);
+                            img_view.setImageDrawable(getResources().getDrawable(R.mipmap.scene3));
+                        } else {
+                            if (scene_number.equals("scene4")) {
+                                img_view.setImageResource(0);
+                                img_view.setImageDrawable(getResources().getDrawable(R.mipmap.scene4));
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
