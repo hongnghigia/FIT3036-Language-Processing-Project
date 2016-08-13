@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         mic_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                listeningDialog();
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak");
                 intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
+
                 startActivityForResult(intent, 2);
 
             }
@@ -116,8 +116,11 @@ public class MainActivity extends AppCompatActivity {
             if (requestCode == 2){
                 ArrayList<String> results;
                 results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                float[] confidence = data.getFloatArrayExtra(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 
-                display_txt.setText(results.toString());
+                String tmp = results.toString() + " " + Math.round(confidence[0]*100) + "%";
+
+                display_txt.setText(tmp);
             }
         }
     }
