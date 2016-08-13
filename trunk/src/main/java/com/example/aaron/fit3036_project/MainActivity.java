@@ -1,11 +1,16 @@
 package com.example.aaron.fit3036_project;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +39,29 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        mic_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                listeningDialog();
+            }
+
+        });
     }
 
+    private void listeningDialog() {
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View promptView = layoutInflater.inflate(R.layout.listening_dialog, null);
+        final AlertDialog aDialog = new AlertDialog.Builder(this).create();
+        ImageButton mic = (ImageButton) promptView.findViewById(R.id.mic_btn_listening);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(aDialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = 1500;
+
+        aDialog.setView(promptView);
+        aDialog.show();
+        aDialog.getWindow().setAttributes(lp);
+    }
 }
