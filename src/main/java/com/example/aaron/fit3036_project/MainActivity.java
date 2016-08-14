@@ -1,22 +1,23 @@
 package com.example.aaron.fit3036_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img_view;
     private ObjectInputStream input;
     private ObjectOutputStream output;
-    private String serverIP = "192.168.0.20";
+    private String serverIP = "192.168.1.32";
     private Socket connection;
 
     @Override
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent i = new Intent(MainActivity.this, SceneSelect.class);
                 startActivityForResult(i, 1);
+
             }
 
         });
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 //                new Thread(new Runnable() {
 //                    public void run() {
 //                        try {
-//                            Socket socket = new Socket("192.168.0.20", 1234);
+//                            Socket socket = new Socket("192.168.1.32", 1234);
 //                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
 //                            DOS.writeUTF("HELLOOO");
 //                            socket.close();
@@ -86,21 +88,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-//    private void listeningDialog() {
-//        LayoutInflater layoutInflater = LayoutInflater.from(this);
-//        View promptView = layoutInflater.inflate(R.layout.listening_dialog, null);
-//        final AlertDialog aDialog = new AlertDialog.Builder(this).create();
-//        ImageButton mic = (ImageButton) promptView.findViewById(R.id.mic_btn_listening);
+//    private void serverDialog(String message) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(message);
+//        builder.create();
+//        builder.show();
 //
-//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//        lp.copyFrom(aDialog.getWindow().getAttributes());
-//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//        lp.height = 1500;
-//
-//        aDialog.setView(promptView);
-//        aDialog.show();
-//        aDialog.getWindow().setAttributes(lp);
 //    }
 
     /**
@@ -149,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 String tmp = results.toString() + " " + Math.round(confidence[0]*100) + "%";
                 final String strToServer = results.toString();
 
-                //display_txt.setText(tmp);
+                display_txt.setText(tmp);
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -158,8 +151,21 @@ public class MainActivity extends AppCompatActivity {
                             DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
                             DataInputStream DIS = new DataInputStream(socket.getInputStream());
                             DOS.writeUTF(strToServer);
-                            String strFromServer = DIS.readUTF();
-                            //display_txt.setText(strFromServer);
+                            final String strFromServer = DIS.readUTF();
+
+                            // Dialog alert showing the message from server
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setMessage(strFromServer);
+                                    builder.create();
+                                    builder.show();
+                                }
+                            });
+
+
+
                             System.out.println(strFromServer);
                             socket.close();
                         }
