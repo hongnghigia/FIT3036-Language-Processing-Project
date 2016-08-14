@@ -66,19 +66,19 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivityForResult(intent, 2);
 
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Socket socket = new Socket("192.168.0.20", 1234);
-                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-                            DOS.writeUTF("HELLOOO");
-                            socket.close();
-                        }
-                        catch (IOException io){
-                            io.printStackTrace();
-                        }
-                    }
-                }).start();
+//                new Thread(new Runnable() {
+//                    public void run() {
+//                        try {
+//                            Socket socket = new Socket("192.168.0.20", 1234);
+//                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+//                            DOS.writeUTF("HELLOOO");
+//                            socket.close();
+//                        }
+//                        catch (IOException io){
+//                            io.printStackTrace();
+//                        }
+//                    }
+//                }).start();
 
             }
 
@@ -147,8 +147,27 @@ public class MainActivity extends AppCompatActivity {
                 float[] confidence = data.getFloatArrayExtra(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 
                 String tmp = results.toString() + " " + Math.round(confidence[0]*100) + "%";
+                final String strToServer = results.toString();
 
-                display_txt.setText(tmp);
+                //display_txt.setText(tmp);
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Socket socket = new Socket(serverIP, 1234);
+                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                            DataInputStream DIS = new DataInputStream(socket.getInputStream());
+                            DOS.writeUTF(strToServer);
+                            String strFromServer = DIS.readUTF();
+                            //display_txt.setText(strFromServer);
+                            System.out.println(strFromServer);
+                            socket.close();
+                        }
+                        catch (IOException io){
+                            io.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         }
     }
