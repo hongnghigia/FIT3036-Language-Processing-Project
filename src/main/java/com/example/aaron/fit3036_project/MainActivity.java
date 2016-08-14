@@ -10,6 +10,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -20,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mic_btn;
     private TextView display_txt;
     private ImageView img_view;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
+    private String serverIP = "192.168.0.20";
+    private Socket connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +66,25 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivityForResult(intent, 2);
 
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Socket socket = new Socket("192.168.0.20", 1234);
+                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                            DOS.writeUTF("HELLOOO");
+                            socket.close();
+                        }
+                        catch (IOException io){
+                            io.printStackTrace();
+                        }
+                    }
+                }).start();
+
             }
 
         });
+
+
     }
 
 //    private void listeningDialog() {
@@ -83,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
      * When the an image is selected on the Scene Selection screen, this method invokes and take the data from the other activity.
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
