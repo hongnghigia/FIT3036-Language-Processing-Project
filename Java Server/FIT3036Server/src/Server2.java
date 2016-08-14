@@ -28,7 +28,7 @@ public class Server2 {
 			receivedFromClient = DIS.readUTF();
 			fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
 			System.out.println(fixedString);
-			DOS.writeUTF(fixedString);
+			DOS.writeUTF('"' + fixedString + '"' + " Received");
 			
 			// closes connections
 			clientSocket.close();
@@ -36,6 +36,6 @@ public class Server2 {
 		}
 		catch (IOException io) {
 			io.printStackTrace();
-		}
+		} 
 	}
 }
