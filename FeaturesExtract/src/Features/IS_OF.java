@@ -1,4 +1,8 @@
 package Features;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+
 import Main.Feature;
 
 public class IS_OF extends Feature{
@@ -11,10 +15,10 @@ public class IS_OF extends Feature{
 	public void execute(String aWord){
 		if(aWord.equals("of")){
 			// writes to textfile "yes-of"
-			System.out.println("HUE");
+			this.write("yes-of ");
 		} else {
 			// writes to textfile "no-of"
-			System.out.println("NO");
+			this.write("no-of ");
 		}
 	}
 }

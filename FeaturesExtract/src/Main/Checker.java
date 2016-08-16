@@ -11,8 +11,7 @@ public class Checker {
 	IS_STOP isStop = new IS_STOP();
 	IS_THAT isThat = new IS_THAT();
 	IS_THE isThe = new IS_THE();
-	
-	private String target;
+
 	public Checker(){
 		features.add(isOf);
 		features.add(isThe);
@@ -25,7 +24,10 @@ public class Checker {
 	public void check(String target){
 		for(int i = 0; i < this.features.size(); i++){
 			features.get(i).execute(target);
+	
 		}
+		Writer w = new Writer();
+		w.write("\n");
 	}
 	
 }

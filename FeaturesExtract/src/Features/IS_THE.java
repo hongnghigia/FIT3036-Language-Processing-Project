@@ -13,8 +13,10 @@ public class IS_THE extends Feature{
 	public void execute(String aWord){
 		if(aWord.equals("the")){
 			// write to textfile "yes-the"
+			this.write("yes-the ");
 		} else {
 			//write to textfile "no-the"
+			this.write("no-the ");
 		}
 	}
 	

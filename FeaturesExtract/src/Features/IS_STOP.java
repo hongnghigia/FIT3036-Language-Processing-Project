@@ -15,8 +15,10 @@ public class IS_STOP extends Feature{
 	public void execute(String aWord){
 		if(stopWords.contains(aWord)){
 			//writes to textfile "yes-stop"
+			this.write("yes-stop ");
 		} else {
 			//writes to textfile "no-stop"
+			this.write("no-stop ");
 		}
 	}
 }

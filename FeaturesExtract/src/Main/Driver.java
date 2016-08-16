@@ -1,34 +1,40 @@
 package Main;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Driver {
-	private static Scanner sc = null;
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private static String[] sc;
+	public static void main(String[] args) throws IOException{
+		// read textfile word by word and put it in the checker.
 		Checker c1 = new Checker();
 		String[] tags = {":O", ":P", ":L", ":S", ":A", ":N", ": O", ": P", ": L", ": S", ": A", ": N"};
 		
 		try {
-			//sc = new Scanner(new File("GIA NGHI.txt"));
 			String content = new Scanner(new File("All_tagged.txt")).useDelimiter("\\Z").next();
 			content = content.replace("|", "");
 			for (String s : tags) {
 				content = content.replace(s, "");
 			}
-			System.out.println(content);
+
+			sc = content.split("\\s+");
+
+			File f = new File("sample.txt");
+			f.delete();
+			
+			Writer w = new Writer();
+			w.writeAttributes();
+			
 		} catch (FileNotFoundException e){
 			e.printStackTrace();
-		} 
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 		
-//		while(sc.hasNext()){
-//			String word = sc.next();
-//			c1.check(word);
-//		}
+		for(int i=0; i < sc.length; i++){
+			String word = sc[i];
+			c1.check(word);
+		}
 	}
 }

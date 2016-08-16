@@ -13,8 +13,10 @@ public class IS_PP extends Feature{
 	public void execute(String aWord){
 		if(ppWords.contains(aWord)){
 			//writes to textfile "yes-pp"
+			this.write("yes-pp ");
 		} else {
 			//writes to textfile "no-pp"
+			this.write("no-pp ");
 		}
 	}
 }

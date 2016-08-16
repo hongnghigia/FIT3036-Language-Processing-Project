@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import Main.Feature;
 
 public class IS_PW extends Feature{
-	ArrayList<String> stopWords = new ArrayList<String>();
+	ArrayList<String> pwWords = new ArrayList<String>();
 
 	public IS_PW(){
 
@@ -12,10 +12,12 @@ public class IS_PW extends Feature{
 
 	@Override
 	public void execute(String aWord) {
-		if(stopWords.contains(aWord)){
-			//writes to textfile yes-stop
+		if(pwWords.contains(aWord)){
+			//writes to textfile yes-pw
+			this.write("yes-pw ");
 		} else {
-			//writes to textfile no-stop
+			//writes to textfile no-pw
+			this.write("no-pw ");
 		}
 		
 	}
