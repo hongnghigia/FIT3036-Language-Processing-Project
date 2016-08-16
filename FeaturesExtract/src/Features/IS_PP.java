@@ -2,6 +2,9 @@ package Features;
 import Main.Feature;
 import java.util.ArrayList;
 
+/*
+ * IS_PP feature
+ */
 public class IS_PP extends Feature{
 	ArrayList<String> ppWords = new ArrayList<String>();
 	

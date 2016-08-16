@@ -5,6 +5,9 @@ import java.io.IOException;
 
 import Main.Feature;
 
+/*
+ * IS_OF feature
+ */
 public class IS_OF extends Feature{
 	
 	public IS_OF(){

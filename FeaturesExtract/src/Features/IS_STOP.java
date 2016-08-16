@@ -3,7 +3,9 @@ import java.util.ArrayList;
 
 import Main.Feature;
 
-
+/*
+ * IS_STOP feature
+ */
 public class IS_STOP extends Feature{
 	ArrayList<String> stopWords = new ArrayList<String>();
 	

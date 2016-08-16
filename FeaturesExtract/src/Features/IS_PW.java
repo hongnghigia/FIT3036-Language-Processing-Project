@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 import Main.Feature;
 
+/*
+ * IS_PW feature
+ */
 public class IS_PW extends Feature{
 	ArrayList<String> pwWords = new ArrayList<String>();
 

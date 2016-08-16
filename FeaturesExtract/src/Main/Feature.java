@@ -8,6 +8,7 @@ public abstract class Feature {
 	
 	public abstract void execute(String aWord);
 	
+	// write to file the result of the check
 	public void write(String answer){
 		w.write(answer);
 	}

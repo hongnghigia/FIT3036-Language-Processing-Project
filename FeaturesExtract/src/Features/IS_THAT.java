@@ -1,6 +1,9 @@
 package Features;
 import Main.Feature;
 
+/*
+ * IS_THAT feature
+ */
 public class IS_THAT extends Feature{
 
 	public IS_THAT(){

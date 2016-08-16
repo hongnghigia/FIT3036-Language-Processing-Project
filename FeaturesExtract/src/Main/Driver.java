@@ -12,6 +12,8 @@ public class Driver {
 		String[] tags = {":O", ":P", ":L", ":S", ":A", ":N", ": O", ": P", ": L", ": S", ": A", ": N"};
 		
 		try {
+			
+			// removing | and :
 			String content = new Scanner(new File("All_tagged.txt")).useDelimiter("\\Z").next();
 			content = content.replace("|", "");
 			for (String s : tags) {
@@ -19,10 +21,12 @@ public class Driver {
 			}
 
 			sc = content.split("\\s+");
-
-			File f = new File("outputs.arff.txt");
+			
+			// deletes the file at the start of the program
+			File f = new File("outputs.arff");
 			f.delete();
 			
+			// writes attributes except data
 			Writer w = new Writer();
 			w.writeAttributes();
 			
@@ -32,6 +36,7 @@ public class Driver {
 			e.printStackTrace();
 		}
 		
+		// for each word in the list, loop through it
 		for(int i=0; i < sc.length; i++){
 			String word = sc[i];
 			c1.check(word);

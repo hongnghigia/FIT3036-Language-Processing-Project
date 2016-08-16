@@ -12,6 +12,7 @@ public class Checker {
 	IS_THAT isThat = new IS_THAT();
 	IS_THE isThe = new IS_THE();
 
+	// adding features to be checked
 	public Checker(){
 		features.add(isOf);
 		features.add(isThe);
@@ -22,10 +23,12 @@ public class Checker {
 	}
 	
 	public void check(String target){
+		// check the target against each features in the list
 		for(int i = 0; i < this.features.size(); i++){
 			features.get(i).execute(target);
 	
 		}
+		// add new line after every word
 		Writer w = new Writer();
 		w.write("\n");
 	}

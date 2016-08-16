@@ -18,12 +18,10 @@ public class Writer {
 			 "@DATA"};
 
 	public Writer(){
-		file = new File("sample.txt");
+		file = new File("outputs.arff");
 	}
 	
 	public void writeAttributes(){
-//		FileWriter fw = new FileWriter("output.txt");
-//		BufferedWriter out = new BufferedWriter(fw);
 		try{
 		PrintWriter out = new PrintWriter(new FileWriter(file,true));
 		out.append(attributes[0]);
@@ -52,7 +50,7 @@ public class Writer {
 	}
 
 	public void write(String answer) {
-		// TODO Auto-generated method stub
+		
 		try{
 			if(!file.exists()){
 				file.createNewFile();
