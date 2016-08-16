@@ -14,28 +14,53 @@ public class Server2 {
 	String fixedString;
 	
 	public void runServer() {
-		System.out.println("Waiting for connection...\n");
 		try {
-			// creates the server and waits for a client to connect
+			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
-			clientSocket = server.accept();
+			System.out.println("Server is now online.\nWaiting for connection on port 1234...\n");
 			
-			// sets up input and output streams between client and server
-			DIS = new DataInputStream(clientSocket.getInputStream());
-			DOS = new DataOutputStream(clientSocket.getOutputStream());
+			while (true) {
+				// makes connection between client and server
+				clientSocket = server.accept();
 			
-			// prints what the client sent to the server, and sends to client
-			receivedFromClient = DIS.readUTF();
-			fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
-			System.out.println(fixedString);
-			DOS.writeUTF('"' + fixedString + '"' + " Received");
-			
-			// closes connections
-			clientSocket.close();
-			server.close();
+				// sets up input and output streams between client and server
+				DIS = new DataInputStream(clientSocket.getInputStream());
+				DOS = new DataOutputStream(clientSocket.getOutputStream());
+				
+				// prints what the client sent to the server, and sends to client
+				receivedFromClient = DIS.readUTF();
+				fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
+				System.out.println('"' + fixedString + '"');
+				DOS.writeUTF('"' + fixedString + '"' + " Received");
+			}
 		}
+		
 		catch (IOException io) {
 			io.printStackTrace();
 		} 
+		
+		finally {
+			// terminated connection to client
+			if (clientSocket != null) {
+				try {
+					clientSocket.close();
+				}
+				catch (IOException io) {
+					io.printStackTrace();
+				}
+			}
+			
+			//shutdown server
+			if (server != null) {
+				try {
+					server.close();
+				}
+				catch (IOException io) {
+					io.printStackTrace();
+				}
+			}
+			
+			System.out.println("Server is now offline.\n");
+		}
 	}
 }
