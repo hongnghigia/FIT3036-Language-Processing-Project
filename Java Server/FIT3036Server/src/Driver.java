@@ -4,7 +4,7 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException {
 		
-		Server2 server = new Server2();
+		Server server = new Server();
 		server.runServer();
 	}
 }
