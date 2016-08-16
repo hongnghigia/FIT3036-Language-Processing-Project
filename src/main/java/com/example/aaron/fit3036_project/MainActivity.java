@@ -1,6 +1,7 @@
 package com.example.aaron.fit3036_project;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img_view;
     private ObjectInputStream input;
     private ObjectOutputStream output;
-    private String serverIP = "192.168.1.32";
+    private String serverIP = "192.168.0.3";
     private Socket connection;
 
     @Override
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         try {
                             Socket socket = new Socket(serverIP, 1234);
-                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                            final DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
                             DataInputStream DIS = new DataInputStream(socket.getInputStream());
                             DOS.writeUTF(strToServer);
                             final String strFromServer = DIS.readUTF();
@@ -164,9 +165,36 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Dialog alert asking for feedback
+                                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                                    final String[] choices = {"Good", "Okay", "Bad"};
+                                    dialogBuilder.setTitle("Rate these results");
 
+                                    // what to do when an option is clicked
+                                    dialogBuilder.setSingleChoiceItems(choices, -1, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int selection){
+                                            try {
+                                                System.out.println("bla");
+                                                DOS.writeUTF("Feedback: "+ choices[selection]);
+                                                dialog.dismiss();
+                                            }
+                                            catch (IOException io) {
+                                                io.printStackTrace();
+                                            }
 
-                            System.out.println(strFromServer);
+                                        }
+                                    });
+
+                                    // initialise alert dialog
+                                    AlertDialog statementDialog = dialogBuilder.create();
+                                    statementDialog.show();
+                                }
+                            });
+
                             socket.close();
                         }
                         catch (IOException io){
