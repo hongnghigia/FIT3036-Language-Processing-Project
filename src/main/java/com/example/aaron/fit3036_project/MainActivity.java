@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img_view;
     private ObjectInputStream input;
     private ObjectOutputStream output;
-    private String serverIP = "192.168.1.32";
+    private String serverIP = "192.168.0.3";
     private Socket connection;
 
     @Override
@@ -97,16 +100,54 @@ public class MainActivity extends AppCompatActivity {
                                     builder.show();
                                 }
                             });
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    feedbackDialog();
+                                }
+                            });
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                 }).start();
-
-
-
             }
         });
+    }
+
+    public void feedbackDialog() {
+        // Dialog alert asking for feedback
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        final String[] choices = {"Good", "Okay", "Bad"};
+        dialogBuilder.setTitle("Rate these results");
+
+        // what to do when an option is clicked
+        dialogBuilder.setSingleChoiceItems(choices, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int selection){
+                try {
+                    Socket socket = new Socket(serverIP, 1234);
+                    DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                    DOS.writeUTF(choices[selection]);
+                }
+                catch (Exception io) {
+                    io.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        });
+
+        // initialise alert dialog
+        AlertDialog fbDialog = dialogBuilder.create();
+        Window window = fbDialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.BOTTOM;
+        window.setAttributes(wlp);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        fbDialog.show();
+
     }
 
     /**
@@ -162,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         try {
                             Socket socket = new Socket(serverIP, 1234);
-                            final DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
                             DataInputStream DIS = new DataInputStream(socket.getInputStream());
                             DOS.writeUTF(strToServer);
                             final String strFromServer = DIS.readUTF();
@@ -181,31 +222,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    // Dialog alert asking for feedback
-                                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-                                    final String[] choices = {"Good", "Okay", "Bad"};
-                                    dialogBuilder.setTitle("Rate these results");
-
-                                    // what to do when an option is clicked
-                                    dialogBuilder.setSingleChoiceItems(choices, -1, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int selection){
-                                            try {
-                                                System.out.println("bla");
-                                                DOS.writeUTF("Feedback: "+ choices[selection]);
-
-                                            }
-                                            catch (IOException io) {
-                                                io.printStackTrace();
-                                            }
-                                            dialog.dismiss();
-
-                                        }
-                                    });
-
-                                    // initialise alert dialog
-                                    AlertDialog statementDialog = dialogBuilder.create();
-                                    statementDialog.show();
+                                    feedbackDialog();
                                 }
                             });
 
