@@ -29,9 +29,15 @@ public class Server {
 				
 				// prints what the client sent to the server, and sends to client
 				receivedFromClient = DIS.readUTF();
-				fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
-				System.out.println('"' + fixedString + '"');
-				DOS.writeUTF('"' + fixedString + '"' + " Received");
+				if (receivedFromClient.contains("Feedback:")) {
+					System.out.println("Feedback received");
+				}
+				else {
+					fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
+					System.out.println('"' + fixedString + '"');
+					DOS.writeUTF('"' + fixedString + '"' + " Received");
+				}
+				
 			}
 		}
 		
