@@ -10,7 +10,9 @@ public class IS_PW extends Feature{
 	ArrayList<String> pwWords = new ArrayList<String>();
 
 	public IS_PW(){
-
+		for(String word: "back, center, corner, edge, end, front, right, left, middle, side, top ".split("\\P{Alpha}+")){
+			pwWords.add(word);
+		}
 	}
 
 	@Override
