@@ -1,0 +1,75 @@
+replace:O | front left corner of:S | the table:L
+the place:O | on:P | the front page of:S | the paper:L
+the big pink ball:O | in:P | the middle of:S | the room:L
+the bookshelf:O | at:P | the back of:S | the table:L
+the green bookshelf:O | behind: P| the yellow table:L
+the small chair:O | at:P | the left side of:S | the table:L
+the plans:O | on:P | the table:L
+PC:O | left to:S | the ball:L
+the PC:O | left to:S | the ball:L
+the painting:O | on:P | the top of:S | the table:L
+the pink lady:O
+the pink plate:O | inside:P | a microwave:L
+the green page:O | right to:S | the microwave:L
+the green plate:O | right to:S | the microwave:L
+the poem:O | right to:S | the glasses:L
+get laid: | right:A | on:P | the central of:S | the table:L
+two plane rides:O | under:P | center of:S | the table:L
+get laid: | right:A| on:P | the center of:S | the table:L
+the plate:O | on:P | the left bottom corner of:S | the table:L
+the big pink ball:O | on:P | the floor:L
+Big green Bookshop:O
+deceit:O | left to:S | the yellow table:L
+it's seat:O | left to:S | the yellow table:L
+deceit:O | lifted: | a yellow table:L
+green plant:O | on:P | the table:L
+computer desktop:O | under:P | the table:L
+picture frame:O | on:P | the wall:L
+red plate:O | in:P | the microwave:L
+green plate:O | on:P | the table:L
+pinball:O | on:P | the right side corner of:S | the table:L
+blue plate:O | in:P | the center of:S | the table:L
+blue plate:O | in:P | the left corner:S | how to taper:L
+who played:O | in:P | the middle of:S | the table:L | in front of:S | me:L
+big pitbull:O | on:P | the floor:L
+green bookshelf:O | in front of:S | the wall:L
+store:O | on:P | the left of:S | the table:L
+a vice:O | on:P | a talbe:L
+uppc:O | underneath:P | the table:L
+a black and white picture:O | on:P | the world:L
+a pink blood:O | inside:P | the microwave:L
+a green planet:O | on:P | the table:L
+the purple barn:O | on:P | the table:L
+the blue planet:O | in:P | the center of:S | the table:L
+the blue planet:O | in:P | the left bottom corner of:S | the table:L
+the blue planet:O | in:P | the middle of:S | the longer act of:S | the table:L
+the big pink ball:O | in:P | the middle of:S | the room:L
+the new place exactly:O | on:P | the middle of:S | the table:L
+
+----------14 out 20 sentences are identical - 70%------------------
+
+*******************************************************************
+Partner's 20 sentences (Long Nguyen)
+
+the ball:O | closest to:P | me:L
+the place:O | in the middle of:S | the table:L
+the plate:O | in the front left:S | corner:L
+the place:O | closest to:P | me:L
+the Big Bowl:O
+the green bookshelf:O
+the chair:O | to the left of:S | the table:L
+the potted plant:O | on:P | the top of:S | the table:L
+the computer case:O | below:P | the deck:L
+the lift painting:O | on:P | the wall:L
+the last painting:O | on:P | the wall:L
+the painting:O | in:P | the middle of:S | the world:L
+the play:O | inside:P | the oven:L
+the plate:O | inside:P | the oven:L
+the green plate:O | on:P | the table:L
+the green plate:O | on:P | the opposite side of:S | the table:L
+the purple ball:O | on:P | top of:S | the table:L
+the plague:O | in:P | the middle of:S | the table:L
+the plate:O | on:P | the left side of:S | the table:L
+the plate:O | on:P | the knee right side of:S | the table:L
+
+--------15 out of 20 sentences are identical - 75%-----------
