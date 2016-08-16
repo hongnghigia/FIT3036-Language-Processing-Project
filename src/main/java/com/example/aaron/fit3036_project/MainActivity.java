@@ -1,6 +1,5 @@
 package com.example.aaron.fit3036_project;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -28,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private Button send_btn;
     private Button scene_select;
     private ImageButton mic_btn;
+    private EditText text_box;
     private TextView display_txt;
     private ImageView img_view;
     private ObjectInputStream input;
     private ObjectOutputStream output;
-    private String serverIP = "192.168.0.3";
+    private String serverIP = "192.168.1.32";
     private Socket connection;
 
     @Override
@@ -46,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
         mic_btn = (ImageButton) findViewById(R.id.mic_btn);
         display_txt = (TextView) findViewById(R.id.display_txt);
         img_view = (ImageView) findViewById(R.id.target_img);
+        text_box = (EditText) findViewById(R.id.editText);
 
-        scene_select.setOnClickListener(new View.OnClickListener(){
+        scene_select.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, SceneSelect.class);
                 startActivityForResult(i, 1);
 
@@ -57,45 +58,56 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        mic_btn.setOnClickListener(new View.OnClickListener(){
+        mic_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak");
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak");
                 intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
 
                 startActivityForResult(intent, 2);
 
-//                new Thread(new Runnable() {
-//                    public void run() {
-//                        try {
-//                            Socket socket = new Socket("192.168.1.32", 1234);
-//                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-//                            DOS.writeUTF("HELLOOO");
-//                            socket.close();
-//                        }
-//                        catch (IOException io){
-//                            io.printStackTrace();
-//                        }
-//                    }
-//                }).start();
 
             }
-
         });
 
+        send_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String strToServer = text_box.getText().toString();
+                display_txt.setText(strToServer);
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Socket socket = new Socket(serverIP, 1234);
+                            final DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                            DataInputStream DIS = new DataInputStream(socket.getInputStream());
+                            DOS.writeUTF(strToServer);
 
+                            final String strFromServer = DIS.readUTF();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setMessage(strFromServer);
+                                    builder.create();
+                                    builder.show();
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+
+
+            }
+        });
     }
-//    private void serverDialog(String message) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage(message);
-//        builder.create();
-//        builder.show();
-//
-//    }
 
     /**
      * @param requestCode
@@ -135,15 +147,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            // when using the mic and result
             if (requestCode == 2){
                 ArrayList<String> results;
                 results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 float[] confidence = data.getFloatArrayExtra(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 
-                String tmp = results.toString() + " " + Math.round(confidence[0]*100) + "%";
-                final String strToServer = results.toString();
+                String temp_var = results.toString();
+                final String strToServer = temp_var.substring(1, temp_var.length()-1);
 
-                display_txt.setText(tmp);
+                display_txt.setText('"' + strToServer + '"' + " - " + Math.round(confidence[0]*100) + "%");
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -180,11 +193,12 @@ public class MainActivity extends AppCompatActivity {
                                             try {
                                                 System.out.println("bla");
                                                 DOS.writeUTF("Feedback: "+ choices[selection]);
-                                                dialog.dismiss();
+
                                             }
                                             catch (IOException io) {
                                                 io.printStackTrace();
                                             }
+                                            dialog.dismiss();
 
                                         }
                                     });
@@ -206,3 +220,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
