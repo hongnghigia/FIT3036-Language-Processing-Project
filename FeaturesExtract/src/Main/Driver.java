@@ -20,7 +20,7 @@ public class Driver {
 
 			sc = content.split("\\s+");
 
-			File f = new File("sample.arff");
+			File f = new File("outputs.arff.txt");
 			f.delete();
 			
 			Writer w = new Writer();
