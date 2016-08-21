@@ -17,7 +17,7 @@ public class Server {
 		try {
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
-			System.out.println("Server is now online.\nWaiting for connection on port 1234...\n");
+			System.out.println("Server is now online.\nWaiting for connection on port 1234...");
 			
 			while (true) {
 				// makes connection between client and server
@@ -29,13 +29,12 @@ public class Server {
 				
 				// prints what the client sent to the server, and sends to client
 				receivedFromClient = DIS.readUTF();
-				if (receivedFromClient.equals("Feedback:")) {
-					System.out.println("Feedback received");
+				if (receivedFromClient.contains("Score:")) {
+					System.out.println("Feedback " + receivedFromClient);
 				}
 				else {
-//					fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
-					System.out.println('"' + receivedFromClient + '"');
-					DOS.writeUTF('"' + receivedFromClient + '"' + " Received");
+					fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
+					System.out.println("\n" + '"' + receivedFromClient + '"');
 				}
 				
 			}
