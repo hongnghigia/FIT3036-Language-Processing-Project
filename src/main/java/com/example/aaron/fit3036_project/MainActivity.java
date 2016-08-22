@@ -18,9 +18,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.aaron.fit3036_project.DialogGenerator;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import org.w3c.dom.Text;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -36,10 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText text_box;
     private TextView display_txt;
     private ImageView img_view;
-    private String serverIP = "192.168.0.8";
-    private ImageButton iv1;
-    private ImageButton iv2;
-    private ImageButton iv3;
+    private String serverIP = "192.168.1.32";
+    private TextView ip_view;
     private String score;
 
     @Override
@@ -57,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         display_txt = (TextView) findViewById(R.id.display_txt);
         img_view = (ImageView) findViewById(R.id.target_img);
         text_box = (EditText) findViewById(R.id.editText);
+        ip_view = (TextView) findViewById(R.id.iptextview);
+        ip_view.setText(serverIP);
 
         scene_select.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        ip_view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+            }
+        });
+
 
         mic_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    feedbackView();
+                                    DialogGenerator.feedbackView(MainActivity.this, serverIP);
                                 }
                             });
 
@@ -110,141 +118,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void feedbackDialog() {
-        // Dialog alert asking for feedback
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        final String[] choices = {"Good", "Okay", "Bad"};
-        dialogBuilder.setTitle("Rate these results");
 
-        // what to do when an option is clicked
-        dialogBuilder.setSingleChoiceItems(choices, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int selection){
-                try {
-                    Socket socket = new Socket(serverIP, 1234);
-                    DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-                    DOS.writeUTF("Feedback: " + choices[selection] + "\n");
-                    socket.close();
-                }
-                catch (Exception io) {
-                    io.printStackTrace();
-                }
-                dialog.dismiss();
-            }
-        });
-
-        // initialise alert dialog
-        AlertDialog fbDialog = dialogBuilder.create();
-        Window window = fbDialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.BOTTOM;
-        window.setAttributes(wlp);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        fbDialog.show();
-    }
-
-    public void feedbackView() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        dialogBuilder.setTitle("Please rate these results");
-        LinearLayout ll = new LinearLayout(MainActivity.this);
-        ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0));
-        ll.setOrientation(LinearLayout.HORIZONTAL);
-        final String scorePrefix = "Score: ";
-        final String scoreSuffix = "/3";
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        View v = new View(MainActivity.this);
-        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
-        v.setLayoutParams(new LinearLayout.LayoutParams(width, 0, 1));
-        ll.addView(v);
-
-        iv1 = new ImageButton(MainActivity.this);
-        iv1.setBackgroundResource(R.drawable.face1cgray);
-        iv1.setLayoutParams(p);
-        iv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score = "1";
-                iv1.setBackgroundResource(R.drawable.face1c);
-                iv2.setBackgroundResource(R.drawable.face2cgray);
-                iv3.setBackgroundResource(R.drawable.face3cgray);
-            }
-        });
-        ll.addView(iv1);
-
-        View v1 = new View(MainActivity.this);
-        v1.setLayoutParams(new LinearLayout.LayoutParams(width, 0, 1));
-        ll.addView(v1);
-
-        iv2 = new ImageButton(MainActivity.this);
-        iv2.setBackgroundResource(R.drawable.face2cgray);
-        iv1.setLayoutParams(p);
-        iv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score = "2";
-                iv1.setBackgroundResource(R.drawable.face1cgray);
-                iv2.setBackgroundResource(R.drawable.face2c);
-                iv3.setBackgroundResource(R.drawable.face3cgray);
-            }
-        });
-        ll.addView(iv2);
-
-        View v2 = new View(MainActivity.this);
-        v2.setLayoutParams(new LinearLayout.LayoutParams(width, 0, 1));
-        ll.addView(v2);
-
-        iv3 = new ImageButton(MainActivity.this);
-        iv3.setBackgroundResource(R.drawable.face3cgray);
-        iv1.setLayoutParams(p);
-        iv3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score = "3";
-                iv1.setBackgroundResource(R.drawable.face1cgray);
-                iv2.setBackgroundResource(R.drawable.face2cgray);
-                iv3.setBackgroundResource(R.drawable.face3c);
-            }
-        });
-        ll.addView(iv3);
-
-        View v3 = new View(MainActivity.this);
-        v3.setLayoutParams(new LinearLayout.LayoutParams(width, 0, 1));
-        ll.addView(v3);
-
-        LinearLayout llv = new LinearLayout(MainActivity.this);
-        llv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0));
-        llv.setOrientation(LinearLayout.VERTICAL);
-
-        View v4 = new View(MainActivity.this);
-        v4.setLayoutParams(new LinearLayout.LayoutParams(20, 100));
-        llv.addView(v4);
-        llv.addView(ll);
-
-        dialogBuilder.setView(llv);
-
-        dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                try {
-                    Socket socket = new Socket(serverIP, 1234);
-                    DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-                    DOS.writeUTF(scorePrefix + score + scoreSuffix);
-                    socket.close();
-                } catch (Exception io) {
-                    io.printStackTrace();
-                }
-            }
-        });
-
-        AlertDialog fbDialog = dialogBuilder.create();
-        Window window = fbDialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.BOTTOM;
-        window.setAttributes(wlp);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        fbDialog.show();
-    }
 
     /**
      * @param requestCode
@@ -307,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    feedbackView();
+                                    DialogGenerator.feedbackView(MainActivity.this, serverIP);
                                 }
                             });
 

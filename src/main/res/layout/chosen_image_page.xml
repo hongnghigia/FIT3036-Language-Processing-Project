@@ -4,12 +4,34 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="&lt; Scene select"
-        android:id="@+id/back_btn"
-        android:background="@android:color/transparent" />
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt; Scene select"
+            android:id="@+id/back_btn"
+            android:background="@android:color/transparent"
+            android:layout_weight="0.04" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView2"
+            android:layout_weight="0.61" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/iptextview"
+            android:layout_weight="0.07" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
