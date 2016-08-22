@@ -1,26 +1,16 @@
 package com.example.aaron.fit3036_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.speech.RecognizerIntent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.aaron.fit3036_project.DialogGenerator;
-
-import org.w3c.dom.Text;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

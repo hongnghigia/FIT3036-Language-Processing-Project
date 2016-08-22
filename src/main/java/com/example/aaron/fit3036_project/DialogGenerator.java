@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -23,9 +25,9 @@ public abstract class DialogGenerator {
     private static ImageButton iv2;
     private static ImageButton iv3;
 
-/*
-    Feedback view generator
- */
+    /**
+        Feedback view generator
+     */
     public static void feedbackView(Context This, String server) {
         final String serverIP = server;
 
@@ -130,5 +132,36 @@ public abstract class DialogGenerator {
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         fbDialog.show();
 
+    }
+
+
+    /**
+    New dialog description
+     */
+    public static void IpChangingDialog(Context This){
+        AlertDialog.Builder builder = new AlertDialog.Builder(This);
+        LinearLayout layout = new LinearLayout(This);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0));
+
+        final EditText text_box = new EditText(This);
+        Button submit = new Button(This);
+
+        layout.addView(text_box);
+        layout.addView(submit);
+
+        AlertDialog IPdialog = builder.create();
+        IPdialog.show();
+
+        submit.setOnClickListener(new View.OnClickListener(){
+            protected String returnValue;
+
+            @Override
+            public void onClick(View v){
+                if(!text_box.getText().toString().equals("")){
+                    returnValue = text_box.getText().toString();
+                }
+            }
+        });
     }
 }
