@@ -11,6 +11,7 @@ public class Checker {
 	IS_STOP isStop = new IS_STOP();
 	IS_THAT isThat = new IS_THAT();
 	IS_THE isThe = new IS_THE();
+	PWPW pwPw = new PWPW();
 
 	// adding features to be checked
 	public Checker(){
@@ -20,6 +21,7 @@ public class Checker {
 		features.add(isPW);
 		features.add(isStop);
 		features.add(isThat);
+		features.add(pwPw);
 	}
 	
 	public void check(String target){
@@ -30,7 +32,7 @@ public class Checker {
 		}
 		// add new line after every word
 		Writer w = new Writer();
-		w.write("\n");
+		w.newLine();
 	}
 	
 }

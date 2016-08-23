@@ -24,25 +24,17 @@ public class Writer {
 	public void writeAttributes(){
 		try{
 		PrintWriter out = new PrintWriter(new FileWriter(file,true));
-		out.append(attributes[0]);
-		out.write("\n");
-		out.write("\n");
-		out.append(attributes[1]);
-		out.write("\n");
-		out.append(attributes[2]);
-		out.write("\n");
-		out.append(attributes[3]);
-		out.write("\n");
-		out.append(attributes[4]);
-		out.write("\n");
-		out.append(attributes[5]);
-		out.write("\n");
-		out.append(attributes[6]);
-		out.write("\n");
-		out.write("\n");
-		out.write("\n");
-		out.append(attributes[7]);
-		out.write("\n");
+		out.println(attributes[0]);
+		out.println();
+		out.println(attributes[1]);
+		out.println(attributes[2]);
+		out.println(attributes[3]);
+		out.println(attributes[4]);
+		out.println(attributes[5]);
+		out.println(attributes[6]);
+		out.println();
+		out.println();
+		out.println(attributes[7]);
 		out.close();
 		} catch (IOException e){
 			e.printStackTrace();
@@ -61,5 +53,19 @@ public class Writer {
 			} catch (IOException e){
 				e.printStackTrace();
 			}
+	}
+	
+	public void newLine() {
+		try {
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			PrintWriter out = new PrintWriter(new FileWriter(file, true));
+			out.println();
+			out.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
