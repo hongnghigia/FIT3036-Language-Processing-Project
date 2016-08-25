@@ -1,10 +1,10 @@
 package Features;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import Main.Feature;
 
-/*
- * IS_STOP feature
+/**
+ * is the word in the list of stop words?
  */
 public class IS_STOP extends Feature{
 	ArrayList<String> stopWords = new ArrayList<String>();
@@ -16,12 +16,10 @@ public class IS_STOP extends Feature{
 	}
 	
 	@Override
-	public void execute(String aWord){
-		if(stopWords.contains(aWord)){
-			//writes to textfile "yes-stop"
+	public void execute(String[] aWord){
+		if(stopWords.contains(aWord[0].toLowerCase())){
 			this.write("yes-stop ");
 		} else {
-			//writes to textfile "no-stop"
 			this.write("no-stop ");
 		}
 	}

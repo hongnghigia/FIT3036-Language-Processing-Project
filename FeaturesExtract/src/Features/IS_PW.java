@@ -1,10 +1,10 @@
 package Features;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import Main.Feature;
 
-/*
- * IS_PW feature
+/**
+ * is the word in the list of position words?
  */
 public class IS_PW extends Feature{
 	ArrayList<String> pwWords = new ArrayList<String>();
@@ -16,14 +16,11 @@ public class IS_PW extends Feature{
 	}
 
 	@Override
-	public void execute(String aWord) {
-		if(pwWords.contains(aWord)){
-			//writes to textfile yes-pw
+	public void execute(String[] aWord) {
+		if(pwWords.contains(aWord[0].toLowerCase())){
 			this.write("yes-pw ");
 		} else {
-			//writes to textfile no-pw
 			this.write("no-pw ");
 		}
-		
 	}
 }

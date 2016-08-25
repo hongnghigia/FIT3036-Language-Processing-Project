@@ -1,8 +1,9 @@
 package Features;
+
 import Main.Feature;
 
-/*
- * IS_THAT feature
+/**
+ * is the word "that"?
  */
 public class IS_THAT extends Feature{
 
@@ -11,12 +12,10 @@ public class IS_THAT extends Feature{
 	}
 	
 	@Override
-	public void execute(String aWord){
-		if(aWord.equals("that")){
-			// writes to textfile "yes-that"
+	public void execute(String[] aWord){
+		if(aWord[0].toLowerCase().equals("that")){
 			this.write("yes-that ");
 		} else {
-			// writes to textfile "no-that"
 			this.write("no-that ");
 		}
 	}

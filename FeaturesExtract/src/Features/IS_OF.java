@@ -1,12 +1,9 @@
 package Features;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
 
 import Main.Feature;
 
-/*
- * IS_OF feature
+/**
+ * is the word "of"?
  */
 public class IS_OF extends Feature{
 	
@@ -15,12 +12,10 @@ public class IS_OF extends Feature{
 	}
 	
 	@Override
-	public void execute(String aWord){
-		if(aWord.equals("of")){
-			// writes to textfile "yes-of"
+	public void execute(String[] aWord){
+		if(aWord[0].toLowerCase().equals("of")){
 			this.write("yes-of ");
 		} else {
-			// writes to textfile "no-of"
 			this.write("no-of ");
 		}
 	}

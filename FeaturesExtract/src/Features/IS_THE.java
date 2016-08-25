@@ -1,10 +1,9 @@
 package Features;
-import java.util.ArrayList;
 
 import Main.Feature;
 
-/*
- * IS_THE feature
+/**
+ * is the word "the"?
  */
 public class IS_THE extends Feature{
 
@@ -13,14 +12,11 @@ public class IS_THE extends Feature{
 	}
 	
 	@Override
-	public void execute(String aWord){
-		if(aWord.equals("the")){
-			// write to textfile "yes-the"
+	public void execute(String[] aWord){
+		if(aWord[0].toLowerCase().equals("the")){
 			this.write("yes-the ");
 		} else {
-			//write to textfile "no-the"
 			this.write("no-the ");
 		}
 	}
-	
 }
