@@ -38,6 +38,8 @@ public class Setup {
 			while ((str = in.readLine()) != null) {
 				str = str.replace("|", "");
 				str = str.replace(": ", ":");
+				str = str.replace(" '", "");
+				str = str.replace("'", "");
 				content.add(str);
 			}
 			
