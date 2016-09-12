@@ -20,17 +20,17 @@ public class PWOF extends Feature{
 	public void execute(String[] aWord) {
 		if (pwWords.contains(aWord[0].toLowerCase())){
 			if (aWord[1] == null) {
-				this.write("no-pwof");
+				this.write("no-pwof,");
 			}
 			else if (aWord[1].toLowerCase().equals("of")) {
-				this.write("yes-pwof ");
+				this.write("yes-pwof,");
 			}
 			else {
-				this.write("no-pwof ");
+				this.write("no-pwof,");
 			}
 		} 
 		else {
-			this.write("no-pwof ");
+			this.write("no-pwof,");
 		}
 	}
 }

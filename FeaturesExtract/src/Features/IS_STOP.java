@@ -18,9 +18,9 @@ public class IS_STOP extends Feature{
 	@Override
 	public void execute(String[] aWord){
 		if(stopWords.contains(aWord[0].toLowerCase())){
-			this.write("yes-stop ");
+			this.write("yes-stop,");
 		} else {
-			this.write("no-stop ");
+			this.write("no-stop,");
 		}
 	}
 }

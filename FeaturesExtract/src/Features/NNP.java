@@ -29,13 +29,13 @@ public class NNP extends Feature{
 		
 		if (tag.equals("NN")){
 			if (aWord[1] == null) {
-				this.write("no-NNP ");
+				this.write("no-NNP,");
 			}
 			else if (ppWords.contains(aWord[1].toLowerCase())) {
-				this.write("yes-NNP ");
+				this.write("yes-NNP,");
 			}
 			else {
-				this.write("no-NNP ");
+				this.write("no-NNP,");
 			}
 		} 
 		else {

@@ -15,9 +15,9 @@ public class IS_FINAL extends Feature{
 	public void execute(String[] aWord){
 		// if the following word doesn't exist
 		if(aWord[1] == null){
-			this.write("yes-final ");
+			this.write("yes-final,");
 		} else {
-			this.write("no-final ");
+			this.write("no-final,");
 		}
 	}
 }

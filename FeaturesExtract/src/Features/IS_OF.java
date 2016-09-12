@@ -14,9 +14,9 @@ public class IS_OF extends Feature{
 	@Override
 	public void execute(String[] aWord){
 		if(aWord[0].toLowerCase().equals("of")){
-			this.write("yes-of ");
+			this.write("yes-of,");
 		} else {
-			this.write("no-of ");
+			this.write("no-of,");
 		}
 	}
 }

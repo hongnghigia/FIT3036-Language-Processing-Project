@@ -14,9 +14,9 @@ public class IS_THAT extends Feature{
 	@Override
 	public void execute(String[] aWord){
 		if(aWord[0].toLowerCase().equals("that")){
-			this.write("yes-that ");
+			this.write("yes-that,");
 		} else {
-			this.write("no-that ");
+			this.write("no-that,");
 		}
 	}
 }

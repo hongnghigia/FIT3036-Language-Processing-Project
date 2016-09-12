@@ -13,6 +13,6 @@ public class CLASS extends Feature{
 	
 	@Override
 	public void execute(String[] aWord){
-		this.write(aWord[4] + " ");
+		this.write(aWord[4]);
 	}
 }

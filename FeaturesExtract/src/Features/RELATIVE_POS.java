@@ -20,6 +20,6 @@ public class RELATIVE_POS extends Feature{
 		double a = Double.parseDouble(aWord[2]);
 		double b = Double.parseDouble(aWord[3]);
 		double result = a/b;
-		this.write(df.format(result) + " ");
+		this.write(df.format(result) + ",");
 	}
 }

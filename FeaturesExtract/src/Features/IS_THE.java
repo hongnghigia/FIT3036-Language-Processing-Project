@@ -14,9 +14,9 @@ public class IS_THE extends Feature{
 	@Override
 	public void execute(String[] aWord){
 		if(aWord[0].toLowerCase().equals("the")){
-			this.write("yes-the ");
+			this.write("yes-the,");
 		} else {
-			this.write("no-the ");
+			this.write("no-the,");
 		}
 	}
 }

@@ -19,6 +19,7 @@ public class POS extends Feature{
 		String outputString = tagger.tagString(aWord[0]);
 		String toRemove = aWord[0] + "_";
 		String tag = outputString.replace(toRemove, "");
+		tag = tag.replace(" ", ",");
 		this.write(tag);
 	}
 }

@@ -20,17 +20,17 @@ public class PWPW extends Feature{
 	public void execute(String[] aWord) {
 		if (pwWords.contains(aWord[0].toLowerCase())){
 			if (aWord[1] == null) {
-				this.write("no-pwpw");
+				this.write("no-pwpw,");
 			}
 			else if (pwWords.contains(aWord[1].toLowerCase())) {
-				this.write("yes-pwpw ");
+				this.write("yes-pwpw,");
 			}
 			else {
-				this.write("no-pwpw ");
+				this.write("no-pwpw,");
 			}
 		} 
 		else {
-			this.write("no-pwpw ");
+			this.write("no-pwpw,");
 		}
 	}
 }

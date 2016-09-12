@@ -18,9 +18,9 @@ public class IS_PW extends Feature{
 	@Override
 	public void execute(String[] aWord) {
 		if(pwWords.contains(aWord[0].toLowerCase())){
-			this.write("yes-pw ");
+			this.write("yes-pw,");
 		} else {
-			this.write("no-pw ");
+			this.write("no-pw,");
 		}
 	}
 }

@@ -18,9 +18,9 @@ public class IS_PP extends Feature{
 	@Override
 	public void execute(String[] aWord){
 		if(ppWords.contains(aWord[0].toLowerCase())){
-			this.write("yes-pp ");
+			this.write("yes-pp,");
 		} else {
-			this.write("no-pp ");
+			this.write("no-pp,");
 		}
 	}
 }
