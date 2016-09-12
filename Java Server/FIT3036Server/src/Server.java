@@ -3,8 +3,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import Main.Setup;
 import weka.classifiers.Classifier;
 import weka.core.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class Server {
 
@@ -18,20 +22,22 @@ public class Server {
 	
 	public void runServer() {
 		
+		Setup su = new Setup();
+		
 		try {
+			
+			su.run();
 			cls = (Classifier) weka.core.SerializationHelper.read("cls.model");
-		} 
-		
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//FastVector fvClasses = 
-		//Attribute classAttribute = new Attribute
-		//Instances training = new Instances("mug", );
-		
-		
-		try {
+			
+			Instances unlabelled = new Instances(new BufferedReader(new FileReader("unlabelled.arff")));
+			
+			unlabelled.setClassIndex(unlabelled.numAttributes() - 1);
+			
+			for (int i = 0; i < unlabelled.numInstances(); i++) {
+				double clsLabel = cls.classifyInstance(unlabelled.instance(i));
+				System.out.println(clsLabel + " -> " + unlabelled.classAttribute().value((int) clsLabel));
+			}
+			
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
 			System.out.println("Server is now online.\nWaiting for connection on port 1234...");
@@ -58,6 +64,8 @@ public class Server {
 		
 		catch (IOException io) {
 			io.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} 
 		
 		finally {
