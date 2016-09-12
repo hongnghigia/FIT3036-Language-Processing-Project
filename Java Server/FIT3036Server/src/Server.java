@@ -3,6 +3,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import weka.classifiers.Classifier;
+import weka.core.*;
 
 public class Server {
 
@@ -12,8 +14,23 @@ public class Server {
 	DataOutputStream DOS;
 	String receivedFromClient;
 	String fixedString;
+	Classifier cls;
 	
 	public void runServer() {
+		
+		try {
+			cls = (Classifier) weka.core.SerializationHelper.read("cls.model");
+		} 
+		
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//FastVector fvClasses = 
+		//Attribute classAttribute = new Attribute
+		//Instances training = new Instances("mug", );
+		
+		
 		try {
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
@@ -35,8 +52,7 @@ public class Server {
 				else {
 					fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
 					System.out.println("\n" + '"' + receivedFromClient + '"');
-				}
-				
+				}		
 			}
 		}
 		
