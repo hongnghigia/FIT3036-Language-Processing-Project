@@ -218,7 +218,6 @@ public class Server {
 			int landmarkCount = 0;
 			while ((count < tags.size()) && (landmarkCount < landmarkLimit)) {
 				if (!found) {
-					System.out.println("yay");
 					if (tags.get(count).contains("-L")) {
 						found = true;
 						if (count == (tags.size() - 1)) {
@@ -229,7 +228,6 @@ public class Server {
 					}
 				}
 				else {
-					System.out.println("nay");
 					if ((tags.get(count).equals("I-L")) && (count == (tags.size() - 1))) {
 						landmarkHead.add(sentence.get(count));
 						landmarkCount++;
@@ -243,13 +241,42 @@ public class Server {
 				}
 				count++;
 			}
+			
+			// find spatial relations
+			count = 0;
+			found = false;
+			landmarkCount = 0;
+			String SP = "";
+			while ((count < tags.size()) && (landmarkCount < landmarkLimit)) {
+				if (!found) {
+					if ((tags.get(count).contains("-P")) || (tags.get(count).contains("-S"))) {
+						SP = SP + sentence.get(count) + " ";
+						found = true;
+					}
+				}
+				else {
+					if ((tags.get(count).contains("-P")) || (tags.get(count).contains("-S"))) {
+						SP = SP + sentence.get(count) + " ";
+					}
+					else if (tags.get(count).contains("-L")) {
+						SP = SP.substring(0, SP.length() - 1);
+						prep.add(SP);
+						SP = "";
+						landmarkCount++;
+						found = false;
+					}
+				}
+				count++;
+			}
+			
 			System.out.println("\n" + objectHead + "\n");
 			for (String s : landmarkHead) {
 				System.out.println(s);
 			}
-			
-			// find spatial relations
-			
+			System.out.println();
+			for (String s : prep) {
+				System.out.println(s);
+			}
 		}
 		catch (Exception e){
 			System.out.println("Failed to create nodes...");
