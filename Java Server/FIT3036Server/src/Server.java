@@ -1,14 +1,22 @@
 import java.io.DataInputStream;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import Main.Setup;
+import UCG.Node;
 import weka.classifiers.Classifier;
 import weka.core.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
+
+// imports for xml creator
+import java.io.File;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 public class Server {
 
@@ -37,6 +45,26 @@ public class Server {
 				double clsLabel = cls.classifyInstance(unlabelled.instance(i));
 				System.out.println(clsLabel + " -> " + unlabelled.classAttribute().value((int) clsLabel));
 			}
+			
+			Node node = new Node();
+			node.setLabel("node1");
+			node.setKind("base");
+			node.setKey("called");
+			node.setKey("mug");
+			
+			try{
+				File file = new File("ucg.xml");
+				JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
+				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+						
+				// output
+				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				jaxbMarshaller.marshal(node, file);
+				jaxbMarshaller.marshal(node, System.out);
+			} catch (JAXBException e){
+				e.printStackTrace();
+			}
+			
 			
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
