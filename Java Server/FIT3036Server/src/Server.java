@@ -2,8 +2,10 @@ import java.io.DataInputStream;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import Main.Setup;
 import UCG.Node;
@@ -24,47 +26,34 @@ public class Server {
 	Socket clientSocket;
 	DataInputStream DIS;
 	DataOutputStream DOS;
-	String receivedFromClient;
-	String fixedString;
+	String chosenString;
+	ArrayList<String> sentence;
+	ArrayList<String> tags;
 	Classifier cls;
+	Setup su = new Setup();
 	
 	public void runServer() {
 		
-		Setup su = new Setup();
-		
 		try {
 			
-			su.run();
-			cls = (Classifier) weka.core.SerializationHelper.read("cls.model");
-			
-			Instances unlabelled = new Instances(new BufferedReader(new FileReader("unlabelled.arff")));
-			
-			unlabelled.setClassIndex(unlabelled.numAttributes() - 1);
-			
-			for (int i = 0; i < unlabelled.numInstances(); i++) {
-				double clsLabel = cls.classifyInstance(unlabelled.instance(i));
-				System.out.println(clsLabel + " -> " + unlabelled.classAttribute().value((int) clsLabel));
-			}
-			
-			Node node = new Node();
-			node.setLabel("node1");
-			node.setKind("base");
-			node.setKey("called");
-			node.setKey("mug");
-			
-			try{
-				File file = new File("ucg.xml");
-				JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
-				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-						
-				// output
-				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				jaxbMarshaller.marshal(node, file);
-				jaxbMarshaller.marshal(node, System.out);
-			} catch (JAXBException e){
-				e.printStackTrace();
-			}
-			
+//			Node node = new Node();
+//			node.setLabel("node1");
+//			node.setKind("base");
+//			node.setKey("called");
+//			node.setKey("mug");
+//			
+//			try{
+//				File file = new File("ucg.xml");
+//				JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
+//				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//						
+//				// output
+//				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//				jaxbMarshaller.marshal(node, file);
+//				jaxbMarshaller.marshal(node, System.out);
+//			} catch (JAXBException e){
+//				e.printStackTrace();
+//			}
 			
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
@@ -78,21 +67,15 @@ public class Server {
 				DIS = new DataInputStream(clientSocket.getInputStream());
 				DOS = new DataOutputStream(clientSocket.getOutputStream());
 				
-				// prints what the client sent to the server, and sends to client
-				receivedFromClient = DIS.readUTF();
-				if (receivedFromClient.contains("Score:")) {
-					System.out.println("Feedback " + receivedFromClient);
-				}
-				else {
-					fixedString = receivedFromClient.substring(1, receivedFromClient.length()-1);
-					System.out.println("\n" + '"' + receivedFromClient + '"');
-				}		
+				// handles printing of received messages
+				handleReceived(DIS.readUTF());
 			}
 		}
 		
 		catch (IOException io) {
 			io.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		} 
 		
@@ -118,6 +101,82 @@ public class Server {
 			}
 			
 			System.out.println("Server is now offline.\n");
+		}
+	}
+	
+	/**
+	 * prints received messages
+	 */
+	private void handleReceived(String received) throws IOException {
+		// if received feedback from client
+		if (received.contains("Score:")) {
+			System.out.println("Feedback " + received);
+		}
+		
+		else {
+			// if received multiple sentences (via speech)
+			if (received.contains(", ")){
+				// get the top result of all sentences
+				ArrayList<String> allSentences = new ArrayList<String>();
+				for (String s : received.split(", ")) {
+					allSentences.add(s);
+				}
+				chosenString = allSentences.get(0);
+				System.out.println("\nReceived: " + received);
+				System.out.println("Chosen: " + chosenString);
+			}
+			
+			// received sentence via text
+			else {
+				chosenString = received;
+				System.out.println("\nReceived: " + chosenString);
+			}
+			
+			// put words of chosenString into array list
+			sentence = new ArrayList<String>();
+			for (String w : chosenString.split("\\s+")) {
+				sentence.add(w);
+			}
+			
+			// create arff file and predicts classes for the words
+			su.run(sentence);
+			classify();
+		}	
+	}
+	
+	/**
+	 * predicts the classes for words in the chosen sentence
+	 */
+	private void classify() {
+		try {
+			// use .model file (the classifier)
+			cls = (Classifier) weka.core.SerializationHelper.read("cls.model");
+
+			// use new arff file of new sentence
+			Instances unlabelled = new Instances(new BufferedReader(new FileReader("unlabelled.arff")));
+			
+			// set index of the CLASS attribute in the arff file (the last attribute)
+			unlabelled.setClassIndex(unlabelled.numAttributes() - 1);
+			
+			// predict classes for the words in the chosen sentence
+			tags = new ArrayList<String>();
+			for (int i = 0; i < unlabelled.numInstances(); i++) {
+				double clsLabel = cls.classifyInstance(unlabelled.instance(i));
+				tags.add(unlabelled.classAttribute().value((int) clsLabel));
+			}
+			
+			// clear the arff file
+			PrintWriter pw = new PrintWriter("unlabelled.arff");
+			pw.print("");
+			pw.close();
+			
+			// test printing
+			for (String t : tags) {
+				System.out.println(t);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
