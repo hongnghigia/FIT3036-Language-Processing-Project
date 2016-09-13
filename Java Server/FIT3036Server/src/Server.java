@@ -31,6 +31,10 @@ public class Server {
 	ArrayList<String> tags;
 	Classifier cls;
 	Setup su = new Setup();
+	String objectHead;
+	ArrayList<String> landmarkHead;
+	ArrayList<String> prep;
+	int landmarkLimit = 2;
 	
 	public void runServer() {
 		
@@ -141,6 +145,7 @@ public class Server {
 			// create arff file and predicts classes for the words
 			su.run(sentence);
 			classify();
+			createNodes();
 		}	
 	}
 	
@@ -175,8 +180,79 @@ public class Server {
 				System.out.println(t);
 			}
 			
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void createNodes() {
+		try {
+			landmarkHead = new ArrayList<String>();
+			prep = new ArrayList<String>();
+			
+			// find object
+			int count = 0;
+			boolean found = false;
+			while (count < tags.size()) {
+				if (!found) {
+					if (tags.get(count).contains("-O")) {
+						found = true;
+						if (count == (tags.size() - 1)) {
+							objectHead = sentence.get(count);
+						}
+					}
+				}
+				else {
+					if (!tags.get(count).equals("I-O")) {
+						objectHead = sentence.get(count - 1);
+						count = tags.size();
+					}
+				}
+				count++;
+			}
+			
+			// find landmark(s)
+			count = 0;
+			found = false;
+			int landmarkCount = 0;
+			while ((count < tags.size()) && (landmarkCount < landmarkLimit)) {
+				if (!found) {
+					System.out.println("yay");
+					if (tags.get(count).contains("-L")) {
+						found = true;
+						if (count == (tags.size() - 1)) {
+							landmarkHead.add(sentence.get(count));
+							landmarkCount++;
+							found = false;
+						}
+					}
+				}
+				else {
+					System.out.println("nay");
+					if ((tags.get(count).equals("I-L")) && (count == (tags.size() - 1))) {
+						landmarkHead.add(sentence.get(count));
+						landmarkCount++;
+						found = false;
+					}
+					else if (!tags.get(count).equals("I-L")) {
+						landmarkHead.add(sentence.get(count - 1));
+						landmarkCount++;
+						found = false;
+					}
+				}
+				count++;
+			}
+			System.out.println("\n" + objectHead + "\n");
+			for (String s : landmarkHead) {
+				System.out.println(s);
+			}
+			
+			// find spatial relations
+			
+		}
+		catch (Exception e){
+			System.out.println("Failed to create nodes...");
 		}
 	}
 }
