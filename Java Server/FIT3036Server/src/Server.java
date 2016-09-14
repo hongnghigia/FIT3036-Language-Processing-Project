@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import Main.Setup;
+import Main.XmlGen;
 import UCG.Node;
 import weka.classifiers.Classifier;
 import weka.core.*;
@@ -40,25 +41,6 @@ public class Server {
 		
 		try {
 			
-//			Node node = new Node();
-//			node.setLabel("node1");
-//			node.setKind("base");
-//			node.setKey("called");
-//			node.setKey("mug");
-//			
-//			try{
-//				File file = new File("ucg.xml");
-//				JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
-//				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//						
-//				// output
-//				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//				jaxbMarshaller.marshal(node, file);
-//				jaxbMarshaller.marshal(node, System.out);
-//			} catch (JAXBException e){
-//				e.printStackTrace();
-//			}
-			
 			// runs the server and waits for client to connect
 			server = new ServerSocket(1234);
 			System.out.println("Server is now online.\nWaiting for connection on port 1234...");
@@ -72,7 +54,7 @@ public class Server {
 				DOS = new DataOutputStream(clientSocket.getOutputStream());
 				
 				// handles printing of received messages
-				handleReceived(DIS.readUTF());
+//				handleReceived(DIS.readUTF());
 			}
 		}
 		
@@ -111,7 +93,7 @@ public class Server {
 	/**
 	 * prints received messages
 	 */
-	private void handleReceived(String received) throws IOException {
+	public void handleReceived(String received) throws IOException {
 		// if received feedback from client
 		if (received.contains("Score:")) {
 			System.out.println("Feedback " + received);
@@ -277,6 +259,9 @@ public class Server {
 			for (String s : prep) {
 				System.out.println(s);
 			}
+			
+			XmlGen gen = new XmlGen(objectHead, prep, landmarkHead);
+			gen.run();
 		}
 		catch (Exception e){
 			System.out.println("Failed to create nodes...");

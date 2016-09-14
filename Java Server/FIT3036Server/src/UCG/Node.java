@@ -14,7 +14,16 @@ public class Node {
 	
 	private String label;
 	private Concept concept;
-	private Arc arc;
+	private List<Arc> arcs;
+	
+	@XmlElementRef()
+	public List<Arc> getArcs(){
+		return arcs;
+	}
+	
+	public Node(){
+		arcs = new ArrayList<Arc>();
+	}
 	
 	@XmlAttribute(name = "label")
 	public void setLabel(String label){
@@ -34,11 +43,10 @@ public class Node {
 	}
 	
 	@XmlElement(name = "arc")
+	private Arc arc;
+	
 	public void setArc(Arc arc){
 		this.arc = arc;
-	}
-	public Arc getArc(){
-		return arc;
 	}
 	
 /*
@@ -131,6 +139,16 @@ public class Node {
 		}
 		public Concept getConcept(){
 			return concept;
+		}
+		
+		@XmlElement(name = "child")
+		private String node;
+		
+		public void setChild(String node){
+			this.node = node;
+		}
+		public String getChild(){
+			return node;
 		}
 	}
 }

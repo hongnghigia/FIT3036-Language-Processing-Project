@@ -58,8 +58,8 @@ public class Test {
 		//		...
 		
 		arc.setConcept(_conceptArc);
-		node.setArc(arc);
 		node.setConcept(_concept);
+		node.setArc(arc);
 		cg.getNodes().add(node);
 		cg.getNodes().add(node2);
 		
