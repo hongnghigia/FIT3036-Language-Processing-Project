@@ -1,17 +1,17 @@
 package com.example.aaron.fit3036_project;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 /**
  * Created by Aaron on 8/12/2016.
  */
-public class SceneSelect extends Activity{
+public class SceneSelect extends AppCompatActivity {
 
     private ImageView scene1, scene2, scene3, scene4;
 
@@ -19,7 +19,9 @@ public class SceneSelect extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.scene_select);
+        setContentView(R.layout.scene_select2);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         scene1 = (ImageView) findViewById(R.id.imageView);
         scene2 = (ImageView) findViewById(R.id.imageView2);
@@ -73,5 +75,21 @@ public class SceneSelect extends Activity{
                 finish();
             }
         });
+    }
+
+    /**
+     * back button for the action bar
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">FIT3036-Project</string>
+    <string name="app_name">FIT3036 APP</string>
+    <string name="scene_select_title">Select a Scene</string>
+    <string name="ip_settings_title">IP Settings</string>
+    <string name="search_bar">Type a phrase</string>
+    <string name="speech_text">Speak a phrase</string>
+    <string name="menu_ip">Change IP</string>
+    <string name="menu_scene">Change Scene</string>
+    <string name="menu_clear">Clear All</string>
+    <string name="menu_cancel">Cancel</string>
+    <string name="menu_save">Save</string>
+    <string name="ip_address">IP Address</string>
+    <string name="ip_checkbox_desc">Show IP Address</string>
 </resources>

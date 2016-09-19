@@ -1,86 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:background="@color/white"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&lt; Scene select"
-            android:id="@+id/back_btn"
-            android:background="@android:color/transparent"
-            android:layout_weight="0.04" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/textView2"
-            android:layout_weight="0.61" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/iptextview"
-            android:layout_weight="0.07" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/target_img"
-        android:src="@mipmap/scene1" />
-
-    <Gallery
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/gallery"
-        android:layout_gravity="right" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:id="@+id/ip_display"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="202dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/image_frame"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="35dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@null"
+            android:id="@+id/target_img"
+            android:src="@drawable/scene1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@color/gray_text_box"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/speech_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold|italic"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:hint="@string/speech_text"/>
+
+            </ScrollView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:id="@+id/editText"
+                android:gravity="top|start"
+                android:background="@color/gray_text_box"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/search_bar"
+                android:textSize="12sp"
+                android:textStyle="bold|italic"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="5dp">
+
+            <ImageButton
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:contentDescription="@null"
+                android:id="@+id/send_btn"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/send" />
+
+            <ImageButton
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:contentDescription="@null"
+                android:layout_above="@id/send_btn"
+                android:layout_marginStart="5dp"
+                android:id="@+id/mic_btn"
+                android:background="@drawable/mic" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/sep1"
+        android:background="@android:color/darker_gray"
+        android:layout_above="@id/bottom_layout"
+        android:layout_marginBottom="5dp"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:id="@+id/speech_bubble"
+        android:contentDescription="@null"
+        android:src="@drawable/speech_bubble"
+        android:layout_above="@id/sep1"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:alpha="0.25"/>
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="45dp"
+        android:layout_height="80dp"
         android:id="@+id/display_txt"
-        android:background="@drawable/drawable_back"/>
+        android:textSize="20sp"
+        android:background="@android:color/transparent"
+        android:layout_above="@id/sep1"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="40dp"
+        android:textStyle="italic"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:id="@+id/editText"
-            android:layout_weight="0.92"
-            android:text="Enter a phrase.."
-            android:background="@drawable/drawable_back"
-            android:layout_marginTop="10dp"/>
-
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:text="Send"
-            android:id="@+id/send_btn"
-            android:layout_weight="0.2" />
-    </LinearLayout>
-
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:id="@+id/mic_btn"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/mic_btn"
-        android:background="@android:color/transparent" />
-
-</LinearLayout>
+</RelativeLayout>
 
