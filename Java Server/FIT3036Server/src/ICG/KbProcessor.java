@@ -29,10 +29,10 @@ public class KbProcessor {
 			while(line != null){
 //				System.out.println(line);
 				String[] tmp = line.split(" ");
-				if (tmp[0].equals("define")){
+				if (tmp[0].equalsIgnoreCase("define")){
 					String[] parts = line.split(" ");
 					String[] obj = parts[2].split("\\:");
-					if (obj[1].equals(target)){
+					if (obj[1].equalsIgnoreCase(target)){
 						this.properties.add(obj[0]);
 						line = br.readLine();
 					} else {

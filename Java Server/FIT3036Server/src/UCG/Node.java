@@ -51,4 +51,16 @@ public class Node {
 		}
 		return node;
 	}
+	
+	public String getRole(){
+		return this.role;
+	}
+	
+	public Boolean hasChild(){
+		if(this.children.size() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

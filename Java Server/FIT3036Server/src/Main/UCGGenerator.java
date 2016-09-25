@@ -20,7 +20,7 @@ public class UCGGenerator {
 		pp = prepositions;
 	}
 	
-	public void createUCG() {
+	public ArrayList<Node> createUCG() {
 		int idCount = 1;
 		
 		// makes UCG of object
@@ -64,5 +64,7 @@ public class UCGGenerator {
 		}
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(graphs));
+		
+		return graphs;
 	}
 }

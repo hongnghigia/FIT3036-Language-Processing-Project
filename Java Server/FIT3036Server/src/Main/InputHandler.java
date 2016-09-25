@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
+import ICG.*;
+
 public class InputHandler {
 	
 	private Setup su;
@@ -21,6 +23,7 @@ public class InputHandler {
 	private ArrayList<String> prep;
 	private int landmarkLimit = 2;
 	private UCGGenerator ucgg;
+	private Icg icg;
 	
 	public InputHandler(Setup su) {
 		this.su = su;
@@ -67,7 +70,8 @@ public class InputHandler {
 			
 			// generates possible UCGs for the sentence
 			ucgg = new UCGGenerator(objectHead, landmarkHead, prep);
-			ucgg.createUCG();
+			icg = new Icg(ucgg.createUCG());
+			icg.createICG();
 		}	
 	}
 	
