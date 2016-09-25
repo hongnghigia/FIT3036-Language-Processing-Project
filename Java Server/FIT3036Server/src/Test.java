@@ -3,77 +3,21 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import UCG.*;
 
 public class Test {
 	
 	public void runTest(){
-
-		ConceptGraph cg = new ConceptGraph();
+		Node node1 = new Node("1", "object", "mug");
+		Node node2= new Node("2", "relation", "on");
 		
-		Node node = new Node();
-		node.setLabel("node1");
+		node1.addChild(node2);
 		
-		Node node2 = new Node();
-		node2.setLabel("node2");
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
-		Node.Concept _concept = new Node.Concept();
-		Node.Concept _conceptArc = new Node.Concept();
-		
-		Node.Feature called = new Node.Feature();
-		Node.Feature role = new Node.Feature();
-		
-		Node.Arc arc = new Node.Arc();
-		arc.setLabel("Arc24");
-		Node.Feature arcRole = new Node.Feature();
-		Node.Feature arcCalled = new Node.Feature();
-		
-		// setting up for arc
-		arcRole.setKey("cg_role");
-		arcRole.setValue("arc");
-		arcCalled.setKey("called");
-		arcCalled.setValue("on");
-		_conceptArc.getFeatures().add(arcCalled);
-		_conceptArc.getFeatures().add(arcRole);
-		
-		// setting up for concept for node
-		called.setKey("called");
-		called.setValue("mug");
-		_concept.getFeatures().add(called);
-		role.setKey("cg_role");
-		role.setValue("node");
-		_concept.getFeatures().add(role);
-		
-		// adding the elements together
-		// the structure is as follow
-		// <CG>
-		// 	<node>
-		//		<concept>
-		//			<feature>
-		// 		<arc>
-		//			<component>
-		//				<feature>
-		// 	<node2>
-		//		...
-		
-		arc.setConcept(_conceptArc);
-		node.setConcept(_concept);
-		node.setArc(arc);
-		cg.getNodes().add(node);
-		cg.getNodes().add(node2);
-		
-		try{
-			File file = new File("ucg.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-					
-			// output
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(cg, file);
-			jaxbMarshaller.marshal(cg, System.out);
-		} catch (JAXBException e){
-			e.printStackTrace();
-		}
+		System.out.println(gson.toJson(node1));
 	}
 }

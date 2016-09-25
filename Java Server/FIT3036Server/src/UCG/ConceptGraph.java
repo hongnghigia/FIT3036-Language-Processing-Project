@@ -7,23 +7,23 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "CG")
 public class ConceptGraph {
-	private Node node;
-	private List<Node> nodes;
+	private NodeXML node;
+	private List<NodeXML> nodes;
 	
 	@XmlElementRef()
-	public List<Node> getNodes(){
+	public List<NodeXML> getNodes(){
 		return nodes;
 	}
 	public ConceptGraph(){
-		nodes = new ArrayList<Node>();
+		nodes = new ArrayList<NodeXML>();
 	}
 	
 	@XmlElement(name = "node")
-	public void setNode(Node node){
+	public void setNode(NodeXML node){
 		this.node = node;
 	}
 	
-	public Node getNode(){
+	public NodeXML getNode(){
 		return node;
 	}	
 }

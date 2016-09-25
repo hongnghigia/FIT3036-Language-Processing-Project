@@ -24,11 +24,11 @@ public class XmlGen {
 		ConceptGraph cg = new ConceptGraph();
 		
 		// node for object noun
-		Node objNode = new Node();
+		NodeXML objNode = new NodeXML();
 		objNode.setLabel("node1");
-		Node.Concept obConcept = new Node.Concept();
-		Node.Feature obCalled = new Node.Feature();
-		Node.Feature obRole = new Node.Feature();
+		NodeXML.Concept obConcept = new NodeXML.Concept();
+		NodeXML.Feature obCalled = new NodeXML.Feature();
+		NodeXML.Feature obRole = new NodeXML.Feature();
 		obCalled.setKey("called");
 		obCalled.setValue(this.object);
 		obRole.setKey("cg_role");
@@ -39,11 +39,11 @@ public class XmlGen {
 		
 		objNode.setConcept(obConcept);
 		
-		Node.Arc ppArc = new Node.Arc();
+		NodeXML.Arc ppArc = new NodeXML.Arc();
 		ppArc.setLabel("Arc0");
-		Node.Concept arc = new Node.Concept();
-		Node.Feature called = new Node.Feature();
-		Node.Feature role = new Node.Feature();
+		NodeXML.Concept arc = new NodeXML.Concept();
+		NodeXML.Feature called = new NodeXML.Feature();
+		NodeXML.Feature role = new NodeXML.Feature();
 		called.setKey("called");
 		called.setValue(preps.get(0));
 		role.setKey("cg_role");
@@ -53,11 +53,11 @@ public class XmlGen {
 		
 		
 		// node for landmark
-		Node LandMarkNode = new Node();
+		NodeXML LandMarkNode = new NodeXML();
 		LandMarkNode.setLabel("node2");
-		Node.Concept conceptL = new Node.Concept();
-		Node.Feature Lcalled = new Node.Feature();
-		Node.Feature Lrole = new Node.Feature();
+		NodeXML.Concept conceptL = new NodeXML.Concept();
+		NodeXML.Feature Lcalled = new NodeXML.Feature();
+		NodeXML.Feature Lrole = new NodeXML.Feature();
 		Lcalled.setKey("called");
 		Lrole.setKey("cg_role");
 		Lcalled.setValue(landmarks.get(0));
@@ -74,11 +74,11 @@ public class XmlGen {
 		cg.getNodes().add(objNode);
 		cg.getNodes().add(LandMarkNode);
 		if(preps.size() > 1){
-			Node.Arc ppArc2 = new Node.Arc();
+			NodeXML.Arc ppArc2 = new NodeXML.Arc();
 			ppArc2.setLabel("Arc1");
-			Node.Concept arc2 = new Node.Concept();
-			Node.Feature called2 = new Node.Feature();
-			Node.Feature role2 = new Node.Feature();
+			NodeXML.Concept arc2 = new NodeXML.Concept();
+			NodeXML.Feature called2 = new NodeXML.Feature();
+			NodeXML.Feature role2 = new NodeXML.Feature();
 			called2.setKey("called");
 			called2.setValue(preps.get(1));
 			role2.setKey("cg_role");
@@ -87,11 +87,11 @@ public class XmlGen {
 			arc2.getFeatures().add(role2);
 			
 			// node for landmark
-			Node LandMarkNode2 = new Node();
+			NodeXML LandMarkNode2 = new NodeXML();
 			LandMarkNode2.setLabel("node3");
-			Node.Concept conceptL2 = new Node.Concept();
-			Node.Feature Lcalled2 = new Node.Feature();
-			Node.Feature Lrole2 = new Node.Feature();
+			NodeXML.Concept conceptL2 = new NodeXML.Concept();
+			NodeXML.Feature Lcalled2 = new NodeXML.Feature();
+			NodeXML.Feature Lrole2 = new NodeXML.Feature();
 			Lcalled2.setKey("called");
 			Lrole2.setKey("cg_role");
 			Lcalled2.setValue(landmarks.get(1));
@@ -112,7 +112,7 @@ public class XmlGen {
 		
 		try{
 			File file = new File("ucg.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Node.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(NodeXML.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

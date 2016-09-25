@@ -9,11 +9,14 @@ public class Driver {
 		
 		// TESTING CODE: 
 		// uncomment to test XML file generation using sentence from user input
-		System.out.println("Enter a sentence (e.g. the mug on the table)...");
-		Scanner sc = new Scanner(System.in);
-		String s = sc.nextLine();
-		sc.close();
-		server.handleReceived(s);
+//		System.out.println("Enter a sentence (e.g. the mug on the table)...");
+//		Scanner sc = new Scanner(System.in);
+//		String s = sc.nextLine();
+//		sc.close();
+//		server.handleReceived(s);
+		
+		Test test = new Test();
+		test.runTest();
 		
 //		server.runServer();
 	}

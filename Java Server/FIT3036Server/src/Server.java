@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import Main.Setup;
 import Main.XmlGen;
-import UCG.Node;
+import UCG.NodeXML;
 import weka.classifiers.Classifier;
 import weka.core.*;
 import java.io.BufferedReader;
