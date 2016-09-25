@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import com.google.gson.*;
 
 public class Node {
-	private String id;
+	private int id;
 	private String role;
 	private String value;
 	private ArrayList<Node> children = new ArrayList<Node>();
 	
-	public Node(String id, String role ,String value, Node child){
+	public Node(int id, String role ,String value, Node child){
 		this.id = id;
 		this.role = role;
 		this.value = value;
 		this.children.add(child);
 	}
 	
-	public Node(String id, String role, String value){
+	public Node(int id, String role, String value){
 		this.id = id;
 		this.role = role;
 		this.value = value;
@@ -26,7 +26,29 @@ public class Node {
 		this.children.add(child);
 	}
 	
-	public ArrayList<Node> getChild(){
+	public ArrayList<Node> getChildren(){
 		return this.children;
+	}
+	
+	public String getValue() {
+		return this.value;
+	}
+	
+	public Node getChild(String childVal) {
+		Node node = null;
+		for (Node n : children) {
+			if (n.getValue().equals(childVal)) {
+				node = n;
+			}
+		}
+		return node;
+	}
+	
+	public Node getLast() {
+		Node node = this;
+		while (node.getChildren().size() != 0) {
+			node = node.getChildren().get(0);
+		}
+		return node;
 	}
 }

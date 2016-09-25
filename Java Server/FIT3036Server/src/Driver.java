@@ -15,9 +15,9 @@ public class Driver {
 //		sc.close();
 //		server.handleReceived(s);
 		
-		Test test = new Test();
-		test.runTest();
+//		Test test = new Test();
+//		test.runTest();
 		
-//		server.runServer();
+		server.runServer();
 	}
 }
