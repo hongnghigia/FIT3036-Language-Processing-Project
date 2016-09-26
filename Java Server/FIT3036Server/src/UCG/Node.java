@@ -56,6 +56,9 @@ public class Node {
 		return this.role;
 	}
 	
+	public Node next(){
+		return this.children.get(0);
+	}
 	public Boolean hasChild(){
 		if(this.children.size() > 0){
 			return true;
