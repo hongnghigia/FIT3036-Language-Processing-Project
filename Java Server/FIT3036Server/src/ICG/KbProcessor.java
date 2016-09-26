@@ -25,6 +25,7 @@ public class KbProcessor {
 		}
 	
 		try{
+			this.properties.clear();
 			String line = br.readLine();
 			while(line != null){
 //				System.out.println(line);
