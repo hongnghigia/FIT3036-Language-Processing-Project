@@ -23,6 +23,13 @@ public class Icg {
 	public void createICG(){
 		preparation();
 		straightGraph();
+		if (relations.size() > 1){
+			branchingGraph();
+			}
+		
+		System.out.println(icgs);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		System.out.println(gson.toJson(icgs));
 	}
 	
 	public void preparation(){
@@ -72,16 +79,16 @@ public class Icg {
 	
 	public void straightGraph(){
 		if(relations.size() > 1){
-
 			for (Node o : objects){
 				for (Node l : landmarks1){
 					for (Node lm : landmarks2){
-						//flushing chidlren
+						//flushing children
 						relations.get(1).clearChildren();
 						relations.get(0).clearChildren();
 						l.clearChildren();
 						o.clearChildren();
 						
+						//adding to the icgs
 						relations.get(1).addChild(lm);
 						l.addChild(relations.get(1));
 						relations.get(0).addChild(l);
@@ -92,8 +99,43 @@ public class Icg {
 			}
 		}
 		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		System.out.println(gson.toJson(icgs));	
+		else {
+			if (relations.size() == 1){
+				for (Node o : objects){
+					for (Node l : landmarks1){
+						//flushing children
+						relations.get(0).clearChildren();
+						l.clearChildren();
+						o.clearChildren();
+						
+						relations.get(0).addChild(l);
+						o.addChild(relations.get(0));
+						icgs.add(o);
+					}
+				}
+			}
+		}
+	}
+	
+	public void branchingGraph(){
+		for (Node o : objects){
+			for (Node l : landmarks1){
+				for (Node lm : landmarks2){
+					//flushing children
+					relations.get(1).clearChildren();
+					relations.get(0).clearChildren();
+					l.clearChildren();
+					o.clearChildren();
+					
+					relations.get(0).addChild(l);
+					relations.get(1).addChild(lm);
+					o.addChild(relations.get(0));
+					o.addChild(relations.get(1));
+					
+					icgs.add(o);
+				}
+			}
+		}
 	}
 	
 }

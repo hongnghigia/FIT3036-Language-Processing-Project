@@ -62,8 +62,8 @@ public class UCGGenerator {
 				}
 			}
 		}
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		System.out.println(gson.toJson(graphs));
+//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		System.out.println(gson.toJson(graphs));
 		
 		return graphs;
 	}
