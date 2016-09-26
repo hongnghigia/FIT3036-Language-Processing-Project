@@ -1,17 +1,6 @@
 package ICG;
 import java.util.ArrayList;
 
-import org.drools.*;
-import org.drools.builder.KnowledgeBuilder;
-import org.drools.builder.KnowledgeBuilderError;
-import org.drools.builder.KnowledgeBuilderErrors;
-import org.drools.builder.KnowledgeBuilderFactory;
-import org.drools.builder.ResourceType;
-import org.drools.io.ResourceFactory;
-import org.drools.logger.KnowledgeRuntimeLogger;
-import org.drools.logger.KnowledgeRuntimeLoggerFactory;
-import org.drools.runtime.StatefulKnowledgeSession;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,7 +9,6 @@ import UCG.*;
 public class Icg {
 	private ArrayList<Node> ucg = new ArrayList<Node>();
 	private ArrayList<Node> icgs = new ArrayList<Node>();
-	private ArrayList<Node> graph = new ArrayList<Node>();
 	private ArrayList<Node> objects = new ArrayList<Node>();
 	private ArrayList<Node> relations = new ArrayList<Node>();
 	private ArrayList<Node> landmarks1 = new ArrayList<Node>();
@@ -76,7 +64,6 @@ public class Icg {
 			String tmp = i.getValue();
 			if (tmp.toLowerCase().contains(testStr)){
 				landmarks1.add(i);
-				System.out.println(i.getValue());
 			} else {
 				landmarks2.add(i);
 			}
@@ -89,6 +76,12 @@ public class Icg {
 			for (Node o : objects){
 				for (Node l : landmarks1){
 					for (Node lm : landmarks2){
+						//flushing chidlren
+						relations.get(1).clearChildren();
+						relations.get(0).clearChildren();
+						l.clearChildren();
+						o.clearChildren();
+						
 						relations.get(1).addChild(lm);
 						l.addChild(relations.get(1));
 						relations.get(0).addChild(l);

@@ -66,4 +66,8 @@ public class Node {
 			return false;
 		}
 	}
+	
+	public void clearChildren(){
+		this.children.clear();
+	}
 }
