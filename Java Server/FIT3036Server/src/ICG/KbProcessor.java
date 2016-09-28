@@ -71,13 +71,13 @@ public class KbProcessor {
 					if (obj[0].equalsIgnoreCase(name)){
 						// starting at the line after the define line, add in every properties until
 						// the next define line.
-						System.out.println(propertyLines);
+						//System.out.println(propertyLines);
 						propertyLines = br.readLine().trim();
 						while (!propertyLines.contains("define")){
 							if (propertyLines.isEmpty()){
 								return properties;
 							} else {
-								String[] splits = propertyLines.split("\\=");
+								String[] splits = propertyLines.split(" = ");
 								properties.put(splits[0], splits[1]);	
 								propertyLines = br.readLine().trim();
 								}

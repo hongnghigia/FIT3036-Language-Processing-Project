@@ -10,6 +10,7 @@ import weka.classifiers.Classifier;
 import weka.core.Instances;
 
 import ICG.*;
+import Relations.RelationChecker;
 
 public class InputHandler {
 	
@@ -24,6 +25,7 @@ public class InputHandler {
 	private int landmarkLimit = 2;
 	private UCGGenerator ucgg;
 	private Icg icg;
+	private RelationChecker rc;
 	
 	public InputHandler(Setup su) {
 		this.su = su;
@@ -68,10 +70,12 @@ public class InputHandler {
 			classify();
 			createNodes();
 			
-			// generates possible UCGs for the sentence
+			// generates possible UCGs and ICGs for the sentence
 			ucgg = new UCGGenerator(objectHead, landmarkHead, prep);
 			icg = new Icg(ucgg.createUCG());
 			icg.createICG();
+			rc = new RelationChecker();
+			rc.getBestIcg(icg.getIcgs());
 		}	
 	}
 	

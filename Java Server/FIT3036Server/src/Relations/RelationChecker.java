@@ -2,6 +2,9 @@ package Relations;
 
 import java.util.ArrayList;
 
+import UCG.ICGNode;
+import UCG.Node;
+
 public class RelationChecker {
 
 	private ArrayList<Relation> relations = new ArrayList<Relation>();
@@ -17,7 +20,36 @@ public class RelationChecker {
 		relations.add(at);
 	}
 	
-	public double getRelationScore(Object obj, Object lm, String arc) {
+	public void getBestIcg(ArrayList<Node> icgs) {
+		ArrayList<Double> scores = new ArrayList<Double>();
+		double score;
+		for (Node o : icgs) {
+			score = 0.0;
+			if (o.hasChild()) {
+				for (Node a : o.getChildren()) {
+					score += getRelationScore((ICGNode) o, (ICGNode) a.getFirstChild(), a.getValue());
+					if (a.getFirstChild().hasChild()) {
+						Node a2 = a.getFirstChild().getFirstChild();
+						score += getRelationScore((ICGNode) a.getFirstChild(), (ICGNode) a2.getFirstChild(), a2.getValue());
+					}
+				}
+			}
+			System.out.println(score);
+			scores.add(score);
+		}
+		
+		double bestScore = 0;
+		int bestIndex = 0;
+		for (int i = 0; i < scores.size(); i++) {
+			if (scores.get(i) > bestScore) {
+				bestScore = scores.get(i);
+				bestIndex = i;
+			}
+		}
+		System.out.println(icgs.get(bestIndex).getValue());
+	}
+	
+	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {
 		if (arc.equalsIgnoreCase("on")) {
 			return relations.get(0).evaluate(obj, lm);
 		}

@@ -70,4 +70,8 @@ public class Node {
 	public void clearChildren(){
 		this.children.clear();
 	}
+	
+	public Node getFirstChild() {
+		return this.children.get(0);
+	}
 }
