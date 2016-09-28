@@ -9,23 +9,23 @@ import java.util.*;
 
 
 public class KbProcessor {
-	private ArrayList<String> properties = new ArrayList<String>();
+	private ArrayList<String> names = new ArrayList<String>();
+	private HashMap<String, String> properties = new HashMap<String, String>();
 	private String filename;
 	public KbProcessor(String filename){
 		this.filename = filename;
 	}
 	
-	public ArrayList<String> getProperties(String target){
+	public ArrayList<String> getNames(String target){
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(this.filename));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	
 		try{
-			this.properties.clear();
+			this.names.clear();
 			String line = br.readLine();
 			while(line != null){
 //				System.out.println(line);
@@ -34,7 +34,7 @@ public class KbProcessor {
 					String[] parts = line.split(" ");
 					String[] obj = parts[2].split("\\:");
 					if (obj[1].equalsIgnoreCase(target)){
-						this.properties.add(obj[0]);
+						this.names.add(obj[0]);
 						line = br.readLine();
 					} else {
 						line = br.readLine();
@@ -44,11 +44,53 @@ public class KbProcessor {
 				}
 			}
 			br.close();
-			return this.properties;
+			return this.names;
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		return this.properties;
+		return this.names;
 		
+	}
+	
+	public HashMap<String, String> getProperties(String name){
+		properties.clear();
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(this.filename));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			String propertyLines = br.readLine().trim();
+			while (propertyLines != null){
+				String[] tmp = propertyLines.split(" ");
+				if (tmp[0].equalsIgnoreCase("define")){
+					String[] parts = propertyLines.split(" ");
+					String[] obj = parts[2].split("\\:");
+					if (obj[0].equalsIgnoreCase(name)){
+						// starting at the line after the define line, add in every properties until
+						// the next define line.
+						System.out.println(propertyLines);
+						propertyLines = br.readLine().trim();
+						while (!propertyLines.contains("define")){
+							if (propertyLines.isEmpty()){
+								return properties;
+							} else {
+								String[] splits = propertyLines.split("\\=");
+								properties.put(splits[0], splits[1]);	
+								propertyLines = br.readLine().trim();
+								}
+						}
+					}
+				}
+				propertyLines = br.readLine();
+			}
+			return properties;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return properties;
 	}
 }

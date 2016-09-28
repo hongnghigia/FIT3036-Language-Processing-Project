@@ -1,5 +1,6 @@
 package ICG;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +24,7 @@ public class Icg {
 	public void createICG(){
 		preparation();
 		straightGraph();
+		preparation();
 		if (relations.size() > 1){
 			branchingGraph();
 			}
@@ -33,11 +35,18 @@ public class Icg {
 	}
 	
 	public void preparation(){
+		objects.clear();
+		tmpLM.clear();
+		landmarks1.clear();
+		landmarks2.clear();
+		relations.clear();
+		
 		int id=0;
 		Node node = ucg.get(0);
-		ArrayList<String> names = kbreader.getProperties(ucg.get(0).getValue());
+		ArrayList<String> names = kbreader.getNames(ucg.get(0).getValue());
 		for(String name : names){
-			Node icgNode = new Node(id, node.getRole(), name);
+			HashMap<String, String> properties = kbreader.getProperties(name);
+			ICGNode icgNode = new ICGNode(id, node.getRole(), name, properties);
 			objects.add(icgNode);
 			id += 1;
 		}
@@ -54,9 +63,12 @@ public class Icg {
 			if(nxtNode.getRole().equals("node")){
 //				System.out.println(nxtNode.getValue() + "\n");
 				
-				ArrayList<String> lmNames = kbreader.getProperties(nxtNode.getValue());
+				ArrayList<String> lmNames = kbreader.getNames(nxtNode.getValue());
 				for (String name : lmNames){
-					Node aNode = new Node(id, "node", name);
+					HashMap<String, String> lmProperties = kbreader.getProperties(name);
+					System.out.println(lmProperties);
+					ICGNode aNode = new ICGNode(id, "node", name, lmProperties);
+					aNode.showProperties();
 					tmpLM.add(aNode);
 					id += 1;
 				}
@@ -79,6 +91,7 @@ public class Icg {
 	
 	public void straightGraph(){
 		if(relations.size() > 1){
+			
 			for (Node o : objects){
 				for (Node l : landmarks1){
 					for (Node lm : landmarks2){
@@ -137,5 +150,6 @@ public class Icg {
 			}
 		}
 	}
+	
 	
 }
