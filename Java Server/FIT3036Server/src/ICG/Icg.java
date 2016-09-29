@@ -24,13 +24,13 @@ public class Icg {
 	public void createICG(){
 		preparation();
 		straightGraph();
-		preparation();
 		if (relations.size() > 1){
 			branchingGraph();
 			}
-
+		
+		//System.out.println(icgs);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		//System.out.println(gson.toJson(icgs));
+		System.out.println(gson.toJson(icgs));
 	}
 	
 	public void preparation(){
@@ -46,7 +46,6 @@ public class Icg {
 		for(String name : names){
 			HashMap<String, String> properties = kbreader.getProperties(name);
 			ICGNode icgNode = new ICGNode(id, node.getRole(), name, properties);
-			properties.clear();
 			objects.add(icgNode);
 			id += 1;
 		}
@@ -66,6 +65,7 @@ public class Icg {
 				ArrayList<String> lmNames = kbreader.getNames(nxtNode.getValue());
 				for (String name : lmNames){
 					HashMap<String, String> lmProperties = kbreader.getProperties(name);
+					//System.out.println(lmProperties);
 					ICGNode aNode = new ICGNode(id, "node", name, lmProperties);
 					//aNode.showProperties();
 					tmpLM.add(aNode);
@@ -93,19 +93,20 @@ public class Icg {
 			
 			for (Node o : objects){
 				for (Node l : landmarks1){
-					for (Node lm : landmarks2){
-						//flushing children
-						relations.get(1).clearChildren();
-						relations.get(0).clearChildren();
-						l.clearChildren();
-						o.clearChildren();
+					for (Node l2 : landmarks2){
+						Node a = relations.get(0);
+						Node a2 = relations.get(1);
+						ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+						Node r = new Node(a.getId(), a.getRole(), a.getValue());
+						Node r2 = new Node(a2.getId(), a2.getRole(), a2.getValue()); 
+						ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
+						ICGNode lm2 = new ICGNode(l2.getId(), l2.getRole(), l2.getValue(), ((ICGNode) l2).getProperties());
 						
-						//adding to the icgs
-						relations.get(1).addChild(lm);
-						l.addChild(relations.get(1));
-						relations.get(0).addChild(l);
-						o.addChild(relations.get(0));
-						icgs.add(o);
+						r2.addChild(lm2);
+						lm.addChild(r2);
+						r.addChild(lm);
+						obj.addChild(r);
+						icgs.add(obj);
 					}
 				}
 			}
@@ -115,14 +116,14 @@ public class Icg {
 			if (relations.size() == 1){
 				for (Node o : objects){
 					for (Node l : landmarks1){
-						//flushing children
-						relations.get(0).clearChildren();
-						l.clearChildren();
-						o.clearChildren();
+						Node a = relations.get(0);
+						ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+						Node r = new Node(a.getId(), a.getRole(), a.getValue());
+						ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
 						
-						relations.get(0).addChild(l);
-						o.addChild(relations.get(0));
-						icgs.add(o);
+						r.addChild(lm);
+						obj.addChild(r);
+						icgs.add(obj);
 					}
 				}
 			}
@@ -132,19 +133,20 @@ public class Icg {
 	public void branchingGraph(){
 		for (Node o : objects){
 			for (Node l : landmarks1){
-				for (Node lm : landmarks2){
-					//flushing children
-					relations.get(1).clearChildren();
-					relations.get(0).clearChildren();
-					l.clearChildren();
-					o.clearChildren();
+				for (Node l2 : landmarks2){
+					Node a = relations.get(0);
+					Node a2 = relations.get(1);
+					ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+					Node r = new Node(a.getId(), a.getRole(), a.getValue());
+					Node r2 = new Node(a2.getId(), a2.getRole(), a2.getValue()); 
+					ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
+					ICGNode lm2 = new ICGNode(l2.getId(), l2.getRole(), l2.getValue(), ((ICGNode) l2).getProperties());
 					
-					relations.get(0).addChild(l);
-					relations.get(1).addChild(lm);
-					o.addChild(relations.get(0));
-					o.addChild(relations.get(1));
-					
-					icgs.add(o);
+					r.addChild(lm);
+					r2.addChild(lm2);
+					obj.addChild(r);
+					obj.addChild(r2);
+					icgs.add(obj);
 				}
 			}
 		}
