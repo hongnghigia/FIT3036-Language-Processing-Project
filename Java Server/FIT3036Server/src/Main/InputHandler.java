@@ -140,6 +140,9 @@ public class InputHandler {
 						objectHead = sentence.get(count - 1);
 						count = tags.size();
 					}
+					if ((count == (tags.size() - 1)) && (tags.get(count).equals("I-O"))) {
+						objectHead = sentence.get(count);
+					}
 				}
 				count++;
 			}
@@ -200,7 +203,6 @@ public class InputHandler {
 				}
 				count++;
 			}
-			
 		}
 		catch (Exception e){
 			System.out.println("Failed to create nodes...");

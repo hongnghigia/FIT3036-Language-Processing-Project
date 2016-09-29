@@ -34,6 +34,7 @@ public class RelationChecker {
 					}
 				}
 			}
+			System.out.println("\nScore for " + o.getValue() + ":");
 			System.out.println(score);
 			scores.add(score);
 		}
@@ -46,7 +47,7 @@ public class RelationChecker {
 				bestIndex = i;
 			}
 		}
-		System.out.println(icgs.get(bestIndex).getValue());
+		System.out.println("\nBest Match: " + icgs.get(bestIndex).getValue());
 	}
 	
 	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {
