@@ -3,11 +3,11 @@ package UCG;
 import java.util.HashMap;
 
 public class ICGNode extends Node{
-	private HashMap<String, String> properties;
-	private String[] sizeStrings;
-	private String[] locationStrings;
-	private Double[] sizes = new Double[3];
-	private Double[] locations = new Double[3];
+	private transient HashMap<String, String> properties;
+	private transient String[] sizeStrings;
+	private transient String[] locationStrings;
+	private transient Double[] sizes = new Double[3];
+	private transient Double[] locations = new Double[3];
 	
 	public ICGNode(int id, String role, String value, HashMap<String, String> properties) {
 		super(id, role, value);
