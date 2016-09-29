@@ -15,7 +15,7 @@ public class Icg {
 	private ArrayList<Node> landmarks1 = new ArrayList<Node>();
 	private ArrayList<Node> landmarks2 = new ArrayList<Node>();
 	private ArrayList<Node> tmpLM = new ArrayList<Node>();
-	private KbProcessor kbreader = new KbProcessor("image1.kb");
+	private KbProcessor kbreader = new KbProcessor("image2.kb");
 	
 	public Icg(ArrayList<Node> graphs){
 		this.ucg = graphs;
@@ -90,7 +90,6 @@ public class Icg {
 	
 	public void straightGraph(){
 		if(relations.size() > 1){
-			
 			for (Node o : objects){
 				for (Node l : landmarks1){
 					for (Node l2 : landmarks2){
@@ -126,7 +125,7 @@ public class Icg {
 						icgs.add(obj);
 					}
 				}
-			}
+			} 
 		}
 	}
 	

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import com.google.gson.*;
 
-public class Node {
+public class Node implements Cloneable{
 	private int id;
 	private String role;
 	private String value;
@@ -73,5 +73,9 @@ public class Node {
 	
 	public Node getFirstChild() {
 		return this.children.get(0);
+	}
+	
+	public int getId(){
+		return this.id;
 	}
 }

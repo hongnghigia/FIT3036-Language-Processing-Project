@@ -17,7 +17,7 @@ public class LocationAt extends Relation {
 		
 		Double[] scores = {scoreOn, scoreNear, scoreIn};
 		Arrays.sort(scores);
-		return scores[0];
+		return scores[2];
 	}
 
 }

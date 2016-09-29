@@ -10,7 +10,7 @@ import java.util.*;
 
 public class KbProcessor {
 	private ArrayList<String> names = new ArrayList<String>();
-	private HashMap<String, String> properties = new HashMap<String, String>();
+	private HashMap<String, String> properties;
 	private String filename;
 	public KbProcessor(String filename){
 		this.filename = filename;
@@ -33,7 +33,8 @@ public class KbProcessor {
 				if (tmp[0].equalsIgnoreCase("define")){
 					String[] parts = line.split(" ");
 					String[] obj = parts[2].split("\\:");
-					if (obj[1].equalsIgnoreCase(target)){
+					
+					if (obj[1].toLowerCase().contains(target)){
 						this.names.add(obj[0]);
 						line = br.readLine();
 					} else {
@@ -53,6 +54,7 @@ public class KbProcessor {
 	}
 	
 	public HashMap<String, String> getProperties(String name){
+		properties = new HashMap<String, String>();
 		properties.clear();
 		BufferedReader br = null;
 		try {
