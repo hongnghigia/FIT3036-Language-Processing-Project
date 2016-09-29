@@ -2,10 +2,12 @@ package Relations;
 
 import java.util.Arrays;
 
+import UCG.ICGNode;
+
 public class LocationNear extends Relation {
 
 	@Override
-	public double evaluate(Object obj, Object lm) {
+	public double evaluate(ICGNode obj, ICGNode lm) {
 		return 0.0;
 //		boolean nearX;
 //		boolean nearY;

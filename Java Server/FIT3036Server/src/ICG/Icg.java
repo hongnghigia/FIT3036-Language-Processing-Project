@@ -28,8 +28,7 @@ public class Icg {
 		if (relations.size() > 1){
 			branchingGraph();
 			}
-		
-		//System.out.println(icgs);
+
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		//System.out.println(gson.toJson(icgs));
 	}
@@ -47,6 +46,7 @@ public class Icg {
 		for(String name : names){
 			HashMap<String, String> properties = kbreader.getProperties(name);
 			ICGNode icgNode = new ICGNode(id, node.getRole(), name, properties);
+			properties.clear();
 			objects.add(icgNode);
 			id += 1;
 		}
@@ -66,7 +66,6 @@ public class Icg {
 				ArrayList<String> lmNames = kbreader.getNames(nxtNode.getValue());
 				for (String name : lmNames){
 					HashMap<String, String> lmProperties = kbreader.getProperties(name);
-					//System.out.println(lmProperties);
 					ICGNode aNode = new ICGNode(id, "node", name, lmProperties);
 					//aNode.showProperties();
 					tmpLM.add(aNode);
