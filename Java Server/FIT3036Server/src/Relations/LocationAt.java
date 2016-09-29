@@ -1,14 +1,23 @@
 package Relations;
 
+import java.util.Arrays;
+
 import UCG.ICGNode;
 
 public class LocationAt extends Relation {
+	LocationOn lo = new LocationOn();
+	LocationNear ln = new LocationNear();
+	LocationIn li = new LocationIn();
 	
 	@Override
 	public double evaluate(ICGNode obj, ICGNode lm) {
-		double boundary[] = {0.25, 0.25, 0.25};
+		double scoreOn = lo.evaluate(obj, lm);
+		double scoreNear = ln.evaluate(obj, lm);
+		double scoreIn = li.evaluate(obj, lm);
 		
-		return 1.0;
+		Double[] scores = {scoreOn, scoreNear, scoreIn};
+		Arrays.sort(scores);
+		return scores[0];
 	}
 
 }
