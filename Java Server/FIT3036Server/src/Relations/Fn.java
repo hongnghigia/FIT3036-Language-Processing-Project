@@ -10,7 +10,10 @@ public class Fn extends Relation{
 	HashMap<String, Double> square2 = new HashMap<String, Double>();
 	HashMap<String, Double> square3 = new HashMap<String, Double>();
 	HashMap<String, Double> square4 = new HashMap<String, Double>();
-	
+	HashMap<String, Double> topEdge = new HashMap<String, Double>();
+	HashMap<String, Double> bottomEdge = new HashMap<String, Double>();
+	HashMap<String, Double> leftEdge = new HashMap<String, Double>();
+	HashMap<String, Double> rightEdge = new HashMap<String, Double>();
 	
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm) {
@@ -51,6 +54,18 @@ public class Fn extends Relation{
 		square4.put("Y", lm.getMaxY() - boundary);
 		square4.put("D", lm.getMaxX() - square4.get("X"));
 		square4.put("W", lm.getMaxY() - square4.get("Y"));
+		
+		
+		//Making edges for the landmark
+		//Top Edge
+		topEdge.put("X", square1.get("D"));
+		topEdge.put("Y", square1.get("Y"));
+		topEdge.put("D", square3.get("X") - square1.get("D"));
+		topEdge.put("W", square1.get("W"));
+		
+		//Bottom Edge
+		bottomEdge.put("X", );
+		
 		
 		return 0;
 	}
