@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import java.io.DataOutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
@@ -115,7 +116,8 @@ public abstract class DialogGenerator {
         dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
-                    Socket socket = new Socket(serverIP, 1234);
+                    Socket socket = new Socket();
+                    socket.connect(new InetSocketAddress(serverIP, 1234), 50);
                     DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
                     DOS.writeUTF(scorePrefix + score + scoreSuffix);
                     socket.close();
