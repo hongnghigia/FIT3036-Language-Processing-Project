@@ -33,9 +33,9 @@ public class Server {
 				DIS = new DataInputStream(clientSocket.getInputStream());
 				DOS = new DataOutputStream(clientSocket.getOutputStream());
 				
-				// create UCG of input
+				// determine best result and return to client
 				ih = new InputHandler(su);
-				ih.handleInput(DIS.readUTF());
+				DOS.writeUTF(ih.handleInput(DIS.readUTF()));
 			}
 		}
 		

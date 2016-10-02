@@ -5,17 +5,15 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -37,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private String serverIP = "192.168.0.2";
     private TextView ip_view;
     private boolean showIP = true;
+    private String currentImage = "image1.kb";
+    private String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +104,14 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             Socket socket = new Socket(serverIP, 1234);
                             DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-                            DOS.writeUTF(strToServer);
+                            DataInputStream DIS = new DataInputStream(socket.getInputStream());
+                            DOS.writeUTF(currentImage + ";" + strToServer);
+                            item = DIS.readUTF();
 
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    highlightObject();
                                     DialogGenerator.feedbackView(MainActivity.this, serverIP);
                                 }
                             });
@@ -139,7 +142,24 @@ public class MainActivity extends AppCompatActivity {
                 speech_txt = "";
                 strToServer = "";
                 mic_btn.setBackgroundResource(R.drawable.mic);
-                // add code for clearing image
+                switch(currentImage) {
+                    case "image1.kb":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1);
+                        break;
+                    case "image2.kb":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2);
+                        break;
+                    case "image3.kb":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3);
+                        break;
+                    case "image4.kb":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4);
+                        break;
+                }
                 break;
             case R.id.change_scene:
                 Intent i = new Intent(this, SceneSelect.class);
@@ -173,21 +193,22 @@ public class MainActivity extends AppCompatActivity {
                 if (scene_number.equals("scene1")) {
                     img_view.setImageResource(0);
                     img_view.setImageResource(R.drawable.scene1);
-                } else {
-                    if (scene_number.equals("scene2")) {
-                        img_view.setImageResource(0);
-                        img_view.setImageResource(R.drawable.scene2);
-                    } else {
-                        if (scene_number.equals("scene3")) {
-                            img_view.setImageResource(0);
-                            img_view.setImageResource(R.drawable.scene3);
-                        } else {
-                            if (scene_number.equals("scene4")) {
-                                img_view.setImageResource(0);
-                                img_view.setImageResource(R.drawable.scene4);
-                            }
-                        }
-                    }
+                    currentImage = "image1.kb";
+                }
+                else if (scene_number.equals("scene2")) {
+                    img_view.setImageResource(0);
+                    img_view.setImageResource(R.drawable.scene2);
+                    currentImage = "image2.kb";
+                }
+                else if (scene_number.equals("scene3")) {
+                    img_view.setImageResource(0);
+                    img_view.setImageResource(R.drawable.scene3);
+                    currentImage = "image3.kb";
+                }
+                else if (scene_number.equals("scene4")) {
+                    img_view.setImageResource(0);
+                    img_view.setImageResource(R.drawable.scene4);
+                    currentImage = "image4.kb";
                 }
             }
 
@@ -212,27 +233,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 display_speech.setText(printSpeech);
                 mic_btn.setBackgroundResource(R.drawable.mic2);
-
-//                new Thread(new Runnable() {
-//                    public void run() {
-//                        try {
-//                            Socket socket = new Socket(serverIP, 1234);
-//                            DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
-//                            DOS.writeUTF(strToServer);
-//
-//                            runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    DialogGenerator.feedbackView(MainActivity.this, serverIP);
-//                                }
-//                            });
-//
-//                            socket.close();
-//                        } catch (IOException io) {
-//                            io.printStackTrace();
-//                        }
-//                    }
-//                }).start();
             }
 
             // setting ip
@@ -254,6 +254,199 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar, menu);
+        return true;
+    }
+
+    private boolean highlightObject() {
+        switch(currentImage) {
+            case "image1.kb":
+                switch(item) {
+                    case "brown_table1":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_1);
+                        break;
+                    case "orange_ball2":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_2);
+                        break;
+                    case "red_plate3":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_3);
+                        break;
+                    case "black_portrait4":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_4);
+                        break;
+                    case "black_portrait5":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_5);
+                        break;
+                    case "brown_desktop6":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_6);
+                        break;
+                    case "brown_desktop7":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_7);
+                        break;
+                    case "brown_plant8":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_8);
+                        break;
+                    case "brown_plant9":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_9);
+                        break;
+                    case "white_laptop10":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene1_10);
+                        break;
+                }
+                break;
+
+            case "image2.kb":
+                switch(item) {
+                    case "brown_table1":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_1);
+                        break;
+                    case "purple_ball2":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_2);
+                        break;
+                    case "blue_plate3":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_3);
+                        break;
+                    case "green_plate4":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_4);
+                        break;
+                    case "purple_ball5":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_5);
+                        break;
+                    case "red_screwdriver6":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_6);
+                        break;
+                    case "red_plate7":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_7);
+                        break;
+                    case "white_glass8":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_8);
+                        break;
+                    case "white_wineglass9":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_9);
+                        break;
+                    case "green_plate10":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_10);
+                        break;
+                    case "brown_hammer11":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_11);
+                        break;
+                    case "white_microwave12":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_12);
+                        break;
+                    case "red_plate13":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene2_13);
+                        break;
+                }
+                break;
+
+            case "image3.kb":
+                switch(item) {
+                    case "yellow_table1":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_1);
+                        break;
+                    case "blue_plate2":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_2);
+                        break;
+                    case "blue_plate3":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_3);
+                        break;
+                    case "blue_plate4":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_4);
+                        break;
+                    case "blue_plate5":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_5);
+                        break;
+                    case "blue_plate6":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_6);
+                        break;
+                    case "blue_plate7":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene3_7);
+                        break;
+                }
+                break;
+
+            case "image4.kb":
+                switch(item) {
+                    case "yellow_table1":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_1);
+                        break;
+                    case "purple_chest2":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_2);
+                        break;
+                    case "pink_ball3":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_3);
+                        break;
+                    case "green_bookcase4":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_4);
+                        break;
+                    case "pink_ball5":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_5);
+                        break;
+                    case "blue_chest6":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_6);
+                        break;
+                    case "brown_bookcase7":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_7);
+                        break;
+                    case "brown_plant8":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_8);
+                        break;
+                    case "brown_stool9":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_9);
+                        break;
+                    case "brown_stool10":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_10);
+                        break;
+                    case "brown_stool11":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_11);
+                        break;
+                    case "brown_hammer12":
+                        img_view.setImageResource(0);
+                        img_view.setImageResource(R.drawable.scene4_12);
+                        break;
+                }
+                break;
+        }
         return true;
     }
 }

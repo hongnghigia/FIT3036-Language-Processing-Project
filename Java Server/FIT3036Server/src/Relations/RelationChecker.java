@@ -20,7 +20,7 @@ public class RelationChecker {
 		relations.add(at);
 	}
 	
-	public void getBestIcg(ArrayList<Node> icgs) {
+	public String getBestIcg(ArrayList<Node> icgs) {
 		ArrayList<Double> scores = new ArrayList<Double>();
 		double score;
 		for (Node o : icgs) {
@@ -48,6 +48,7 @@ public class RelationChecker {
 			}
 		}
 		System.out.println("\nBest Match: " + icgs.get(bestIndex).getValue());
+		return icgs.get(bestIndex).getValue();
 	}
 	
 	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {

@@ -15,13 +15,14 @@ public class Icg {
 	private ArrayList<Node> landmarks1 = new ArrayList<Node>();
 	private ArrayList<Node> landmarks2 = new ArrayList<Node>();
 	private ArrayList<Node> tmpLM = new ArrayList<Node>();
-	private KbProcessor kbreader = new KbProcessor("image2.kb");
+	private KbProcessor kbreader;
 	
-	public Icg(ArrayList<Node> graphs){
+	public Icg(ArrayList<Node> graphs, String imageKB){
 		this.ucg = graphs;
+		kbreader = new KbProcessor(imageKB);
 	}
 	
-	public void createICG(){
+	public ArrayList<Node> createICG(){
 		preparation();
 		straightGraph();
 		if (relations.size() > 1){
@@ -31,6 +32,7 @@ public class Icg {
 		//System.out.println(icgs);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(icgs));
+		return icgs;
 	}
 	
 	public void preparation(){
@@ -76,14 +78,16 @@ public class Icg {
 			node = nxtNode;
 			}
 		// putting each landmarks to its respected list, i.e table1, table2 go to "table" list.
-		String str = tmpLM.get(0).getValue();
-		String testStr = str.substring(0, str.length()-1);
-		for (Node i : tmpLM){
-			String tmp = i.getValue();
-			if (tmp.toLowerCase().contains(testStr)){
-				landmarks1.add(i);
-			} else {
-				landmarks2.add(i);
+		if (tmpLM.size() != 0) {
+			String str = tmpLM.get(0).getValue();
+			String testStr = str.substring(0, str.length()-1);
+			for (Node i : tmpLM){
+				String tmp = i.getValue();
+				if (tmp.toLowerCase().contains(testStr)){
+					landmarks1.add(i);
+				} else {
+					landmarks2.add(i);
+				}
 			}
 		}
 	}
@@ -111,21 +115,24 @@ public class Icg {
 			}
 		}
 		
-		else {
-			if (relations.size() == 1){
-				for (Node o : objects){
-					for (Node l : landmarks1){
-						Node a = relations.get(0);
-						ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
-						Node r = new Node(a.getId(), a.getRole(), a.getValue());
-						ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
-						
-						r.addChild(lm);
-						obj.addChild(r);
-						icgs.add(obj);
-					}
+		else if (relations.size() == 1){
+			for (Node o : objects){
+				for (Node l : landmarks1){
+					Node a = relations.get(0);
+					ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+					Node r = new Node(a.getId(), a.getRole(), a.getValue());
+					ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
+					
+					r.addChild(lm);
+					obj.addChild(r);
+					icgs.add(obj);
 				}
 			} 
+		}
+		else if (relations.size() < 1) {
+			Node o = objects.get(0);
+			ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+			icgs.add(obj);
 		}
 	}
 	

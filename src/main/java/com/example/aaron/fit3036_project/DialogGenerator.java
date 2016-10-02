@@ -38,7 +38,7 @@ public abstract class DialogGenerator {
         LinearLayout ll = new LinearLayout(This);
         ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0));
         ll.setOrientation(LinearLayout.HORIZONTAL);
-        final String scorePrefix = "Score: ";
+        final String scorePrefix = "fb;Score: ";
         final String scoreSuffix = "/3";
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(200, 200);
 
@@ -132,36 +132,5 @@ public abstract class DialogGenerator {
         window.setAttributes(wlp);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         fbDialog.show();
-    }
-
-
-    /**
-    New dialog description
-     */
-    public static void IpChangingDialog(Context This){
-        AlertDialog.Builder builder = new AlertDialog.Builder(This);
-        LinearLayout layout = new LinearLayout(This);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0));
-
-        final EditText text_box = new EditText(This);
-        Button submit = new Button(This);
-
-        layout.addView(text_box);
-        layout.addView(submit);
-
-        AlertDialog IPdialog = builder.create();
-        IPdialog.show();
-
-        submit.setOnClickListener(new View.OnClickListener(){
-            protected String returnValue;
-
-            @Override
-            public void onClick(View v){
-                if(!text_box.getText().toString().equals("")){
-                    returnValue = text_box.getText().toString();
-                }
-            }
-        });
     }
 }

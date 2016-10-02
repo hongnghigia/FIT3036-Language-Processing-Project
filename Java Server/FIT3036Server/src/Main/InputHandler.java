@@ -34,18 +34,21 @@ public class InputHandler {
 	/**
 	 * prints received messages
 	 */
-	public void handleInput(String received) throws IOException {
+	public String handleInput(String r) throws IOException {
+		String[] received = r.split(";");
+		
 		// if received feedback from client
-		if (received.contains("Score:")) {
-			System.out.println("Feedback " + received);
+		if (received[0].equalsIgnoreCase("fb")) {
+			System.out.println("Feedback " + received[1]);
+			return "Feedback received!";
 		}
 		
 		else {
 			// if received multiple sentences (via speech)
-			if (received.contains(", ")){
+			if (received[1].contains(", ")){
 				// get the top result of all sentences
 				ArrayList<String> allSentences = new ArrayList<String>();
-				for (String s : received.split(", ")) {
+				for (String s : received[1].split(", ")) {
 					allSentences.add(s);
 				}
 				chosenString = allSentences.get(0);
@@ -55,7 +58,7 @@ public class InputHandler {
 			
 			// received sentence via text
 			else {
-				chosenString = received;
+				chosenString = received[1];
 				System.out.println("\nReceived: " + chosenString);
 			}
 			
@@ -72,10 +75,10 @@ public class InputHandler {
 			
 			// generates possible UCGs and ICGs for the sentence
 			ucgg = new UCGGenerator(objectHead, landmarkHead, prep);
-			icg = new Icg(ucgg.createUCG());
+			icg = new Icg(ucgg.createUCG(), received[0]);
 			icg.createICG();
 			rc = new RelationChecker();
-			rc.getBestIcg(icg.getIcgs());
+			return rc.getBestIcg(icg.getIcgs());
 		}	
 	}
 	
