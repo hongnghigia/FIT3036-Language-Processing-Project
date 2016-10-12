@@ -8,6 +8,7 @@ import UCG.Node;
 public class RelationChecker {
 
 	private ArrayList<Relation> relations = new ArrayList<Relation>();
+	private RelationDict relationsDict = new RelationDict();
 	private LocationOn on = new LocationOn();
 	private LocationNear near = new LocationNear();
 	private LocationIn in = new LocationIn();
@@ -52,16 +53,16 @@ public class RelationChecker {
 	}
 	
 	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {
-		if (arc.equalsIgnoreCase("on")) {
+		if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_on") || relationsDict.getSynonym(arc).equalsIgnoreCase("location_above")) {
 			return relations.get(0).evaluate(obj, lm);
 		}
-		else if (arc.equalsIgnoreCase("near")) {
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_near")) {
 			return relations.get(1).evaluate(obj, lm);
 		}
-		else if (arc.equalsIgnoreCase("in")) {
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inside")) {
 			return relations.get(2).evaluate(obj, lm);
 		}
-		else if (arc.equalsIgnoreCase("at")){
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_at")){
 			return relations.get(3).evaluate(obj, lm);
 		}
 		else {
