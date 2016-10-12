@@ -1,10 +1,8 @@
 package ICG;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.*;
 
 
@@ -80,9 +78,12 @@ public class KbProcessor {
 								return properties;
 							} else {
 								String[] splits = propertyLines.split(" = ");
-								properties.put(splits[0], splits[1]);	
-								propertyLines = br.readLine().trim();
+								properties.put(splits[0].trim(), splits[1].trim());
+								propertyLines = br.readLine();
+								if (propertyLines == null) {
+									return properties;
 								}
+							}
 						}
 					}
 				}
