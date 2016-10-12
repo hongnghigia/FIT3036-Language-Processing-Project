@@ -117,7 +117,7 @@ public abstract class DialogGenerator {
             public void onClick(DialogInterface dialog, int id) {
                 try {
                     Socket socket = new Socket();
-                    socket.connect(new InetSocketAddress(serverIP, 1234), 50);
+                    socket.connect(new InetSocketAddress(serverIP, 1234), 1000);
                     DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
                     DOS.writeUTF(scorePrefix + score + scoreSuffix);
                     socket.close();
