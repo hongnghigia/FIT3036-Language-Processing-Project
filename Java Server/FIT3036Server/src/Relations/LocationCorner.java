@@ -9,9 +9,36 @@ public class LocationCorner extends Relation {
 	private double scoreX;
 	private double scoreY;
 	private double scoreZ;
+	private double sizeW;
+	private double sizeD;
+	private double sizeH;
+	private double xD;
+	private double yD;
+	private double zD;
 
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm) {
+		// scale with landmark if its larger than 1m
+		if (lm.getW() > 1) {
+			sizeW = lm.getW();
+		}
+		else {
+			sizeW = 1;
+		}
+		
+		if (lm.getD() > 1) {
+			sizeD = lm.getD();
+		}
+		else {
+			sizeD = 1;
+		}
+		
+		if (lm.getH() > 1) {
+			sizeH = lm.getH();
+		}
+		else {
+			sizeH = 1;
+		}
 		
 		// how near a corner on X plane
 		Double[] distancesX0 = new Double[2];
@@ -26,13 +53,12 @@ public class LocationCorner extends Relation {
 		Arrays.sort(distancesX0);
 		Arrays.sort(distancesX1);
 		if (distancesX0[0] <= distancesX1[0]) {
-			Double D = distancesX0[0];
-			scoreX = Math.pow(Math.E, (-(1/lm.getW()) * D));
+			xD = distancesX0[0];
 		}
 		else {
-			Double D = distancesX1[0];
-			scoreX = Math.pow(Math.E, (-(1/lm.getW()) * D));
+			xD = distancesX1[0];
 		}
+		scoreX = Math.pow(Math.E, (-(1/sizeW) * xD));
 		
 		// how near a corner on Y plane
 		Double[] distancesY0 = new Double[2];
@@ -47,13 +73,12 @@ public class LocationCorner extends Relation {
 		Arrays.sort(distancesY0);
 		Arrays.sort(distancesY1);
 		if (distancesY0[0] <= distancesY1[0]) {
-			Double D = distancesY0[0];
-			scoreY = Math.pow(Math.E, (-(1/lm.getD()) * D));
+			yD = distancesY0[0];
 		}
 		else {
-			Double D = distancesY1[0];
-			scoreY = Math.pow(Math.E, (-(1/lm.getD()) * D));
+			yD = distancesY1[0];
 		}
+		scoreY = Math.pow(Math.E, (-(1/sizeD) * yD));
 		
 		// how near a corner on Z plane
 		Double[] distancesZ0 = new Double[2];
@@ -68,14 +93,14 @@ public class LocationCorner extends Relation {
 		Arrays.sort(distancesZ0);
 		Arrays.sort(distancesZ1);
 		if (distancesZ0[0] <= distancesZ1[0]) {
-			Double D = distancesZ0[0];
-			scoreZ = Math.pow(Math.E, (-(1/lm.getH()) * D));
+			zD = distancesZ0[0];
 		}
 		else {
-			Double D = distancesZ1[0];
-			scoreZ = Math.pow(Math.E, (-(1/lm.getH()) * D));
+			zD = distancesZ1[0];
 		}
+		scoreZ = Math.pow(Math.E, (-(1/sizeH) * zD));
 		
+		// combine x y z scores
 		return (scoreX + scoreY + scoreZ) / 3;
 	}
 }
