@@ -23,12 +23,12 @@ public class LocationCenter extends Relation {
 		// object is left of landmark's center
 		else if (obj.getMaxX() < centerXL) {
 			double D = centerXL - obj.getMaxX();
-			scoreX = Math.pow(Math.E, (-0.1 * D));
+			scoreX = Math.pow(Math.E, (-1 * D));
 		}
 		// object is right of landmark's center
 		else if (obj.getMinX() > centerXL) {
 			double D = obj.getMinX() - centerXL;
-			scoreX = Math.pow(Math.E, (-0.1 * D));
+			scoreX = Math.pow(Math.E, (-1 * D));
 		}
 		
 		// touching center in Y plane
@@ -38,17 +38,17 @@ public class LocationCenter extends Relation {
 		// object is back of landmark's center
 		else if (obj.getMaxY() < centerYL) {
 			double D = centerYL - obj.getMaxY();
-			scoreY = Math.pow(Math.E, (-0.1 * D));
+			scoreY = Math.pow(Math.E, (-1 * D));
 		}
 		// object is front of landmark's center
 		else if (obj.getMinY() > centerYL) {
 			double D = obj.getMinY() - centerYL;
-			scoreY = Math.pow(Math.E, (-0.1 * D));
+			scoreY = Math.pow(Math.E, (-1 * D));
 		}
 		
 		// distance in Z plane
 		double D = obj.getMinZ() - lm.getMaxZ();
-		scoreZ = Math.pow(Math.E, (-0.1 * D));
+		scoreZ = Math.pow(Math.E, (-1 * D));
 		
 		return (scoreX + scoreY + scoreZ) / 3;
 	}
