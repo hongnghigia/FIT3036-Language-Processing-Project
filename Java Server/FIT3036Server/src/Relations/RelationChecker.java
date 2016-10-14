@@ -13,12 +13,14 @@ public class RelationChecker {
 	private LocationNear near = new LocationNear();
 	private LocationIn in = new LocationIn();
 	private LocationAt at = new LocationAt();
+	private LocationCenter center = new LocationCenter();
 	
 	public RelationChecker() {
 		relations.add(on);
 		relations.add(near);
 		relations.add(in);
 		relations.add(at);
+		relations.add(center);
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs) {
@@ -64,6 +66,9 @@ public class RelationChecker {
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_at")){
 			return relations.get(3).evaluate(obj, lm);
+		}
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecenterof")){
+			return relations.get(4).evaluate(obj, lm);
 		}
 		else {
 			return 0.0;
