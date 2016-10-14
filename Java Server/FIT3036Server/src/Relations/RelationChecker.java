@@ -13,6 +13,7 @@ public class RelationChecker {
 	private LocationNear near = new LocationNear();
 	private LocationIn in = new LocationIn();
 	private LocationAt at = new LocationAt();
+	private LocationEdge edge = new LocationEdge();
 	private LocationCenter center = new LocationCenter();
 	
 	public RelationChecker() {
@@ -21,6 +22,7 @@ public class RelationChecker {
 		relations.add(in);
 		relations.add(at);
 		relations.add(center);
+		relations.add(edge);
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs) {
