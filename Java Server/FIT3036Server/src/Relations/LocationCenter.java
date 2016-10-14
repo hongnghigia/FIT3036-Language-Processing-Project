@@ -50,6 +50,6 @@ public class LocationCenter extends Relation {
 		double D = obj.getMinZ() - lm.getMaxZ();
 		scoreZ = Math.pow(Math.E, (-0.1 * D));
 		
-		return scoreX + scoreY + scoreZ;
+		return (scoreX + scoreY + scoreZ) / 3;
 	}
 }
