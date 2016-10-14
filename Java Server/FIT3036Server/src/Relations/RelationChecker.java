@@ -13,8 +13,9 @@ public class RelationChecker {
 	private LocationNear near = new LocationNear();
 	private LocationIn in = new LocationIn();
 	private LocationAt at = new LocationAt();
-	private LocationEdge edge = new LocationEdge();
 	private LocationCenter center = new LocationCenter();
+	private LocationEdge edge = new LocationEdge();
+	private LocationCorner corner = new LocationCorner();
 	
 	public RelationChecker() {
 		relations.add(on);
@@ -23,6 +24,7 @@ public class RelationChecker {
 		relations.add(at);
 		relations.add(center);
 		relations.add(edge);
+		relations.add(corner);
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs) {
@@ -57,7 +59,8 @@ public class RelationChecker {
 	}
 	
 	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {
-		if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_on") || relationsDict.getSynonym(arc).equalsIgnoreCase("location_above")) {
+		if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_on") || 
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_above")) {
 			return relations.get(0).evaluate(obj, lm);
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_near")) {
@@ -71,6 +74,14 @@ public class RelationChecker {
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecenterof")){
 			return relations.get(4).evaluate(obj, lm);
+		}
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_on") || 
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_off")){
+			return relations.get(5).evaluate(obj, lm);
+		}
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_off") || 
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_on")){
+			return relations.get(6).evaluate(obj, lm);
 		}
 		else {
 			return 0.0;
