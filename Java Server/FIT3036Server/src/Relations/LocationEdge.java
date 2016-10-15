@@ -18,6 +18,7 @@ public class LocationEdge extends Relation{
 	HashMap<String, Double> rightEdge = new HashMap<String, Double>();
 	
 	double distance;
+	double distanceZ;
 	double eval;
 	
 	@Override
@@ -95,8 +96,8 @@ public class LocationEdge extends Relation{
 		rightEdge.put("midY", (rightEdge.get("Y")/2) + rightEdge.get("Y"));
 		
 		// Calculating object's middle point
-		double objmidX = (obj.getMaxX() / 2) + obj.getMinX();
-		double objmidY = (obj.getMaxY() / 2) + obj.getMinY();
+		double objmidX = (obj.getW()/2) + obj.getMinX();
+		double objmidY = (obj.getW()/2) + obj.getMinY();
 		
 		// Check if object is in top edge
 		if(objmidX >= topEdge.get("X") && objmidY >= topEdge.get("Y")){
@@ -209,14 +210,18 @@ public class LocationEdge extends Relation{
 				}
 			}
 		}
-		
-		eval = score(distance);
+		if(obj.getMinZ() >= lm.getMaxZ()){
+			distanceZ = obj.getMinZ() - lm.getMaxZ();
+		} else {
+			distanceZ = lm.getMaxZ();
+		}
+		eval = score(distance, distanceZ);
 		return eval;
 	}
 	
 	// calculate the score using the function score = e ^ (-0.5 * D) where D is the distance between the object (center) and the landmark (center)
-	private double score(double D){
-		double score = Math.pow(Math.E, -0.5 * D);
+	private double score(double D, double Z){
+		double score = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D);
 		return score;
 	}
 	
