@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import UCG.ICGNode;
 
-public class LocationCorner extends Relation {
+public class LocationCorner extends Topological {
 	
 	private double scoreX;
 	private double scoreY;

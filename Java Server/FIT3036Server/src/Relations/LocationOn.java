@@ -2,7 +2,7 @@ package Relations;
 
 import UCG.ICGNode;
 
-public class LocationOn extends Relation {
+public class LocationOn extends Topological {
 	
 	@Override
 	public double evaluate(ICGNode obj, ICGNode lm) {

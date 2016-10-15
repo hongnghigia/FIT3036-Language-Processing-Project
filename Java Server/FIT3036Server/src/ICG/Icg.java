@@ -161,4 +161,10 @@ public class Icg {
 	public ArrayList<Node> getIcgs() {
 		return icgs;
 	}
+	
+	public ICGNode getSpeaker(){
+		HashMap<String, String> properties = kbreader.getProperties("speaker");
+		ICGNode speaker = new ICGNode(0, "node", "speaker", properties);
+		return speaker;
+	}
 }

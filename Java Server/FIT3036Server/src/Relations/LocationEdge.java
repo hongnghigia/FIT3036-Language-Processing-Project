@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import UCG.ICGNode;
 
-public class LocationEdge extends Relation{
+public class LocationEdge extends Topological{
 	double cornerVal = 0.5;
 	double edgeW = 0.2;
 	

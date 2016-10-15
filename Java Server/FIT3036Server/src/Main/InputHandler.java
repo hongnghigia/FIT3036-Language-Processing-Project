@@ -12,6 +12,7 @@ import weka.core.Instances;
 import ICG.*;
 import Relations.RelationChecker;
 
+import UCG.*;
 public class InputHandler {
 	
 	private Setup su;
@@ -78,7 +79,7 @@ public class InputHandler {
 			icg = new Icg(ucgg.createUCG(), received[0]);
 			icg.createICG();
 			rc = new RelationChecker();
-			return rc.getBestIcg(icg.getIcgs());
+			return rc.getBestIcg(icg.getIcgs(), icg.getSpeaker());
 		}	
 	}
 	

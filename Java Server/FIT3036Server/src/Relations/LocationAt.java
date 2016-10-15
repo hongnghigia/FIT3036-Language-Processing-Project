@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import UCG.ICGNode;
 
-public class LocationAt extends Relation {
+public class LocationAt extends Topological {
 	LocationOn lo = new LocationOn();
 	LocationNear ln = new LocationNear();
 	LocationIn li = new LocationIn();

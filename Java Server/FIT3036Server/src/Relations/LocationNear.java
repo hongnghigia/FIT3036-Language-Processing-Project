@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import UCG.ICGNode;
 
-public class LocationNear extends Relation {
+public class LocationNear extends Topological {
 	private double scoreX;
 	private double scoreY;
 	private double scoreZ;

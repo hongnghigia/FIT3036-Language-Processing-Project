@@ -7,7 +7,8 @@ import UCG.Node;
 
 public class RelationChecker {
 
-	private ArrayList<Relation> relations = new ArrayList<Relation>();
+	private ArrayList<Topological> relations = new ArrayList<Topological>();
+	private ArrayList<Projective> projectives = new ArrayList<Projective>();
 	private RelationDict relationsDict = new RelationDict();
 	private LocationOn on = new LocationOn();
 	private LocationNear near = new LocationNear();
@@ -16,6 +17,8 @@ public class RelationChecker {
 	private LocationCenter center = new LocationCenter();
 	private LocationEdge edge = new LocationEdge();
 	private LocationCorner corner = new LocationCorner();
+	private LocationEnd end = new LocationEnd();
+	private ProjectiveFront front = new ProjectiveFront();
 	
 	public RelationChecker() {
 		relations.add(on);
@@ -25,19 +28,22 @@ public class RelationChecker {
 		relations.add(center);
 		relations.add(edge);
 		relations.add(corner);
+		relations.add(end);
+		
+		projectives.add(front);
 	}
 	
-	public String getBestIcg(ArrayList<Node> icgs) {
+	public String getBestIcg(ArrayList<Node> icgs, ICGNode speaker) {
 		ArrayList<Double> scores = new ArrayList<Double>();
 		double score;
 		for (Node o : icgs) {
 			score = 0.0;
 			if (o.hasChild()) {
 				for (Node a : o.getChildren()) {
-					score += getRelationScore((ICGNode) o, (ICGNode) a.getFirstChild(), a.getValue());
+					score += getRelationScore((ICGNode) o, (ICGNode) a.getFirstChild(), a.getValue(), speaker);
 					if (a.getFirstChild().hasChild()) {
 						Node a2 = a.getFirstChild().getFirstChild();
-						score += getRelationScore((ICGNode) a.getFirstChild(), (ICGNode) a2.getFirstChild(), a2.getValue());
+						score += getRelationScore((ICGNode) a.getFirstChild(), (ICGNode) a2.getFirstChild(), a2.getValue(), speaker);
 					}
 				}
 			}
@@ -58,7 +64,7 @@ public class RelationChecker {
 		return icgs.get(bestIndex).getValue();
 	}
 	
-	private double getRelationScore(ICGNode obj, ICGNode lm, String arc) {
+	private double getRelationScore(ICGNode obj, ICGNode lm, String arc, ICGNode speaker) {
 		if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_on") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_above")) {
 			return relations.get(0).evaluate(obj, lm);
@@ -83,7 +89,14 @@ public class RelationChecker {
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_on")){
 			return relations.get(6).evaluate(obj, lm);
 		}
-		else {
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_on") || 
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_off")){
+			return relations.get(7).evaluate(obj, lm);
+		} 
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_infrontof_off") ||
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_infrontof_on")){
+			return projectives.get(0).evaluate(obj, lm, speaker);
+		} else {
 			return 0.0;
 		}
 	}

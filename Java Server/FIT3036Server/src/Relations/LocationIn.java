@@ -2,7 +2,7 @@ package Relations;
 
 import UCG.ICGNode;
 
-public class LocationIn extends Relation {
+public class LocationIn extends Topological {
 	// the percentage of inside an object is to the lm for all planes
 	double insideX;
 	double insideY;

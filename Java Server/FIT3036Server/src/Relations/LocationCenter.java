@@ -2,7 +2,7 @@ package Relations;
 
 import UCG.ICGNode;
 
-public class LocationCenter extends Relation {
+public class LocationCenter extends Topological {
 	
 	private double centerXL;
 	private double centerYL;
