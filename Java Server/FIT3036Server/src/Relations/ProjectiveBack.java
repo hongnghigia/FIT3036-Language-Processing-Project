@@ -27,6 +27,11 @@ public class ProjectiveBack extends Projective {
 	private double backX;
 	private double backY;
 	private double multiplier;
+	private double distX;
+	private double distY;
+	private double distZ;
+	private double D;
+	private double score;
 	
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm, ICGNode speaker) {
@@ -106,17 +111,54 @@ public class ProjectiveBack extends Projective {
 			}
 			// object is back of and on the table
 			else {
-				multiplier = 0.75;
+				multiplier = 0.50;
 			}
 		}
 		// object is not back of
 		else {
-			multiplier = 0.5;
+			multiplier = 0.25;
 		}
 		
+		// get X distance from object to back point
+		if (((obj.getMinX() < backX) && (obj.getMaxX() > backX)) || (obj.getMaxX() == backX) || (obj.getMinX() == backX)) {
+			distX = 0;
+		}
+		else if (obj.getMaxX() < backX) {
+			distX = backX - obj.getMaxX();
+		}
+		else {
+			backX = obj.getMinX() - backX;
+		}
 		
+		// get Y distance from object to back point
+		if (((obj.getMinY() < backY) && (obj.getMaxY() > backY)) || (obj.getMaxY() == backY) || (obj.getMinY() == backY)) {
+			distY = 0;
+		}
+		else if (obj.getMaxY() < backY) {
+			distY = backY - obj.getMaxY();
+		}
+		else {
+			distY = obj.getMinY() - backY;
+		}
 		
-		return 0.0;
+		// get Z distance from object to back point
+		if (obj.getMinZ() > lm.getMaxZ()) {
+			distZ = obj.getMinZ() - lm.getMaxZ();
+		}
+		else if (obj.getMaxZ() < lm.getMinZ()) {
+			distZ = lm.getMinZ() - obj.getMaxZ();
+		}
+		else {
+			distZ = 0;
+		}
+		
+		// calculate the XY distance using pythagoras
+		D = Math.hypot(distX, distY);
+		
+		// calculate score
+		score = Math.pow(Math.E, (-0.5 * (-0.5 * distZ) * D));
+		score = score * multiplier;
+		return score;
 	}
 	
 	private boolean isBack(String sp, String obj, double centerXO, double centerYO, double centerXL, double centerYL) {
