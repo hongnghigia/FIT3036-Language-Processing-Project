@@ -156,7 +156,7 @@ public class ProjectiveBack extends Projective {
 		D = Math.hypot(distX, distY);
 		
 		// calculate score
-		score = Math.pow(Math.E, (-0.5 * (-0.5 * distZ) * D));
+		score = Math.pow(Math.E, ((-0.5 + (-0.5 * distZ)) * D));
 		score = score * multiplier;
 		return score;
 	}
