@@ -99,7 +99,6 @@ public class Icg {
 	}
 	
 	public void straightGraph(){
-		System.out.print(relations.toString());
 		if(relations.size() > 1){
 			for (Node o : objects){
 				for (Node l : landmarks1){
