@@ -48,11 +48,10 @@ public class ProjectiveFront extends Projective{
 		double score14 = determinantScore(point1, point4, speakerPoint);
 		double score23 = determinantScore(point2, point3, speakerPoint);
 		
+		double objscore14 = determinantScore(point1, point4, objpoint);
+		double objscore23 = determinantScore(point2, point3, objpoint);
 		// checking the determinant score
 		if (score14 == 1 && score23 == 1){ // the speaker at the bottom quadrant
-			double objscore14 = determinantScore(point1, point4, objpoint);
-			double objscore23 = determinantScore(point2, point3, objpoint);
-			
 			if(objscore14 == 1 && objscore23 == 1){ // if the object is also in the same quadrant as speaker
 				double midEdgeX = lm.getW()/2 + lm.getMinX();
 				double midEdgeY = lm.getMaxY();
@@ -60,9 +59,6 @@ public class ProjectiveFront extends Projective{
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
 			}
 		} else if (score14 == 1 && score23 == -1) { // Left quadrant
-			double objscore14 = determinantScore(point1, point4, objpoint);
-			double objscore23 = determinantScore(point2, point3, objpoint);
-			
 			if(objscore14 == 1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
 				double midEdgeX = lm.getMinX();
 				double midEdgeY = lm.getD()/2 + lm.getMinY();
@@ -70,9 +66,6 @@ public class ProjectiveFront extends Projective{
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
 			}
 		} else if (score14 == -1 && score23 == 1) { // Right quadrant
-			double objscore14 = determinantScore(point1, point4, objpoint);
-			double objscore23 = determinantScore(point2, point3, objpoint);
-			
 			if(objscore14 == -1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
 				double midEdgeX = lm.getMaxX();
 				double midEdgeY = lm.getD()/2 + lm.getMinY();
@@ -80,8 +73,6 @@ public class ProjectiveFront extends Projective{
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
 			}
 		} else if (score14 == -1 && score23 == -1) { // top quadrant
-			double objscore14 = determinantScore(point1, point4, objpoint);
-			double objscore23 = determinantScore(point2, point3, objpoint);
 			
 			if(objscore14 == -1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
 				double midEdgeX = lm.getW()/2 + lm.getMinX();
@@ -135,11 +126,11 @@ public class ProjectiveFront extends Projective{
 	}
 	
 	private double determinantScore(Point a, Point b, Point c){
-		return ((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX()));
+		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
 	}
 	
 	private double score(double D, double Z){
-		double result = Math.pow(Math.E, -0.5 * (-0.5 * Z) * D);
+		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D);
 		return result;
 	}
 
