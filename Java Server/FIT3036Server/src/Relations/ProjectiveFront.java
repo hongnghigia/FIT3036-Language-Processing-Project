@@ -9,6 +9,8 @@ public class ProjectiveFront extends Projective{
 	Point pointA, pointB, pointC, pointD;
 	double distance;
 	double eval;
+	double multiplier;
+	double distZ;
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm, ICGNode speaker) {
 		// -------------
@@ -52,33 +54,44 @@ public class ProjectiveFront extends Projective{
 		double objscore23 = determinantScore(point2, point3, objpoint);
 		// checking the determinant score
 		if (score14 == 1 && score23 == 1){ // the speaker at the bottom quadrant
+			double midEdgeX = lm.getW()/2 + lm.getMinX();
+			double midEdgeY = lm.getMaxY();
 			if(objscore14 == 1 && objscore23 == 1){ // if the object is also in the same quadrant as speaker
-				double midEdgeX = lm.getW()/2 + lm.getMinX();
-				double midEdgeY = lm.getMaxY();
-				
+				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 1;
+			} else {
+				multiplier = 0.5;
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
 			}
 		} else if (score14 == 1 && score23 == -1) { // Left quadrant
+			double midEdgeX = lm.getMinX();
+			double midEdgeY = lm.getD()/2 + lm.getMinY();
 			if(objscore14 == 1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
-				double midEdgeX = lm.getMinX();
-				double midEdgeY = lm.getD()/2 + lm.getMinY();
-				
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 1;
+			} else {
+				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 0.5;
 			}
 		} else if (score14 == -1 && score23 == 1) { // Right quadrant
+			double midEdgeX = lm.getMaxX();
+			double midEdgeY = lm.getD()/2 + lm.getMinY();
 			if(objscore14 == -1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
-				double midEdgeX = lm.getMaxX();
-				double midEdgeY = lm.getD()/2 + lm.getMinY();
-				
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 1;
+			} else {
+				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 0.5;
 			}
 		} else if (score14 == -1 && score23 == -1) { // top quadrant
-			
+			double midEdgeX = lm.getW()/2 + lm.getMinX();
+			double midEdgeY = lm.getMinY();
 			if(objscore14 == -1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
-				double midEdgeX = lm.getW()/2 + lm.getMinX();
-				double midEdgeY = lm.getMinY();
-				
 				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 1;
+			} else {
+				distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+				multiplier = 0.5;
 			}
 		}
 		// -----------------
@@ -120,8 +133,18 @@ public class ProjectiveFront extends Projective{
 				distance = Math.hypot(objmidX - lm.getMaxX(), objmidY - lm.getMinY());
 			}
 		}
-
-		eval = score(distance, obj.getMinZ() - lm.getMaxZ());
+		
+		// get Z distance from object to back point
+		if (obj.getMinZ() > lm.getMaxZ()) {
+			distZ = obj.getMinZ() - lm.getMaxZ();
+		}
+		else if (obj.getMaxZ() < lm.getMinZ()) {
+			distZ = lm.getMinZ() - obj.getMaxZ();
+		}
+		else {
+			distZ = 0;
+		}
+		eval = score(Math.abs(distance), distZ, multiplier);
 		return eval;
 	}
 	
@@ -129,8 +152,8 @@ public class ProjectiveFront extends Projective{
 		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
 	}
 	
-	private double score(double D, double Z){
-		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D);
+	private double score(double D, double Z, double M){
+		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
 		return result;
 	}
 
