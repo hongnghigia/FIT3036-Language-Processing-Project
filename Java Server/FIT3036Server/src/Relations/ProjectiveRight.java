@@ -160,6 +160,7 @@ public class ProjectiveRight extends Projective{
 		return score;
 	}
 	
+	// returns true based on the location of the speaker and the location of the object
 	private boolean isRight(String sp, String obj, double centerXO, double centerYO, double centerXL, double centerYL) {
 		if (sp.equals("bottom") && obj.equals("right")) {
 			return true;
@@ -188,6 +189,7 @@ public class ProjectiveRight extends Projective{
 		return false;
 	}
 	
+	// returns true based on the location of the speaker and the area in which counts as "off" the landmark
 	private boolean isOff(String sp, double centerXO, double centerYO, double minXL, double maxXL, double minYL, double maxYL) {
 		if (sp.equals("bottom") && (centerXO > maxXL)) {
 			return true;

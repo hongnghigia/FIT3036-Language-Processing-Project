@@ -161,6 +161,7 @@ public class ProjectiveBack extends Projective {
 		return score;
 	}
 	
+	// returns true based on the location of the speaker and the location of the object
 	private boolean isBack(String sp, String obj, double centerXO, double centerYO, double centerXL, double centerYL) {
 		if (sp.equals("bottom") && obj.equals("top")) {
 			return true;
@@ -189,6 +190,7 @@ public class ProjectiveBack extends Projective {
 		return false;
 	}
 	
+	// returns true based on the location of the speaker and the area in which counts as "off" the landmark
 	private boolean isOff(String sp, double centerXO, double centerYO, double minXL, double maxXL, double minYL, double maxYL) {
 		if (sp.equals("bottom") && (centerYO < minYL)) {
 			return true;
