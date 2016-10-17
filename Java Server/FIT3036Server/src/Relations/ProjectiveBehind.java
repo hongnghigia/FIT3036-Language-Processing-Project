@@ -110,12 +110,12 @@ public class ProjectiveBehind extends Projective{
 			}
 			// object is back of and on the table
 			else {
-				multiplier = 0.25;
+				multiplier = 0.5;
 			}
 		}
 		// object is not back of
 		else {
-			multiplier = 0.25;
+			multiplier = 0.5;
 		}
 		
 		// get X distance from object to back point

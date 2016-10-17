@@ -19,6 +19,9 @@ public class RelationChecker {
 	private LocationCorner corner = new LocationCorner();
 	private LocationEnd end = new LocationEnd();
 	private ProjectiveFront front = new ProjectiveFront();
+	private ProjectiveBack back = new ProjectiveBack();
+	private ProjectiveLeft left = new ProjectiveLeft();
+	private ProjectiveRight right = new ProjectiveRight();
 	
 	public RelationChecker() {
 		relations.add(on);
@@ -31,6 +34,9 @@ public class RelationChecker {
 		relations.add(end);
 		
 		projectives.add(front);
+		projectives.add(back);
+		projectives.add(left);
+		projectives.add(right);
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs, ICGNode speaker) {
@@ -83,11 +89,11 @@ public class RelationChecker {
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_on") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_off")){
-			return relations.get(5).evaluate(obj, lm);
+			return relations.get(0).evaluate(obj, lm);
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_off") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_on")){
-			return relations.get(6).evaluate(obj, lm);
+			return relations.get(1).evaluate(obj, lm);
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_on") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_off")){
@@ -96,7 +102,20 @@ public class RelationChecker {
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_infrontof_off") ||
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_infrontof_on")){
 			return projectives.get(0).evaluate(obj, lm, speaker);
-		} else {
+		} 
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inbackof_off") ||
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_inbackof_on")){
+			return projectives.get(1).evaluate(obj, lm, speaker);
+		} 
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_totheleftof_off") ||
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_totheleftof_on")){
+			return projectives.get(2).evaluate(obj, lm, speaker);
+		} 
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_totherightof_off") ||
+				relationsDict.getSynonym(arc).equalsIgnoreCase("location_totherightof_on")){
+			return projectives.get(3).evaluate(obj, lm, speaker);
+		} 
+		else {
 			return 0.0;
 		}
 	}

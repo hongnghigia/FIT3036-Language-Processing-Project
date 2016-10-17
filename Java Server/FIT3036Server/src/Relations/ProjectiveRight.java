@@ -110,12 +110,12 @@ public class ProjectiveRight extends Projective{
 			}
 			// object is right of and on the table
 			else {
-				multiplier = 0.50;
+				multiplier = 0.75;
 			}
 		}
 		// object is not right of
 		else {
-			multiplier = 0.25;
+			multiplier = 0.50;
 		}
 		
 		// get X distance from object to back point
