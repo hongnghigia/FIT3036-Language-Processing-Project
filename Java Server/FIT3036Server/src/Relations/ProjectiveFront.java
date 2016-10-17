@@ -121,7 +121,7 @@ public class ProjectiveFront extends Projective{
 			}
 		}
 
-		eval = score(distance, objmidZ - lm.getMaxZ());
+		eval = score(distance, obj.getMinZ() - lm.getMaxZ());
 		return eval;
 	}
 	
