@@ -22,6 +22,7 @@ public class RelationChecker {
 	private ProjectiveBack back = new ProjectiveBack();
 	private ProjectiveLeft left = new ProjectiveLeft();
 	private ProjectiveRight right = new ProjectiveRight();
+	private ProjectiveBehind behind = new ProjectiveBehind();
 	
 	public RelationChecker() {
 		relations.add(on);
@@ -37,6 +38,7 @@ public class RelationChecker {
 		projectives.add(back);
 		projectives.add(left);
 		projectives.add(right);
+		projectives.add(behind);
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs, ICGNode speaker) {
@@ -114,6 +116,9 @@ public class RelationChecker {
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_totherightof_off") ||
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_totherightof_on")){
 			return projectives.get(3).evaluate(obj, lm, speaker);
+		} 
+		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_behind")){
+			return projectives.get(4).evaluate(obj, lm, speaker);
 		} 
 		else {
 			return 0.0;
