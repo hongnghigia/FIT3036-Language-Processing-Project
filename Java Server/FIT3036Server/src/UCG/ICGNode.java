@@ -68,4 +68,16 @@ public class ICGNode extends Node{
 	public double getH() {
 		return sizes[2];
 	}
+	
+	public boolean hasFace(){
+		if (this.properties.get("hasFace").equals("Y")){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public double getAngle(){
+		return Double.parseDouble(this.properties.get("angle"));
+	}
 }

@@ -47,4 +47,12 @@ public abstract class Projective {
 			return "top";
 		}
 	}
+	
+	/*
+	 * Convert a radian value to degree
+	 */
+	protected double toDegree(double rad){
+		double result = rad * (180 / Math.PI);
+		return result;
+	}
 }

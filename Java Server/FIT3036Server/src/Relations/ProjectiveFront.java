@@ -13,25 +13,6 @@ public class ProjectiveFront extends Projective{
 	double distZ;
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm, ICGNode speaker) {
-		// -------------
-		// 1 		   3
-		//
-		// 2		   4
-		// -------------
-		
-		// Initializing the corner points for the landmark
-		point1 = new Point();
-		point1.setLocation(lm.getMinX(), lm.getMinY());
-		
-		point3 = new Point();
-		point3.setLocation(lm.getMaxX(), lm.getMinY());
-		
-		point2 = new Point();
-		point2.setLocation(lm.getMinX(), lm.getMaxY());
-		
-		point4 = new Point();
-		point4.setLocation(lm.getMaxX(), lm.getMaxY());
-		
 		// check where the speaker is
 		// middle point of the speaker
 		double midSX = (speaker.getW()/2) + speaker.getMinX();
@@ -46,6 +27,63 @@ public class ProjectiveFront extends Projective{
 		
 		Point objpoint = new Point();
 		objpoint.setLocation(objmidX, objmidY);
+		
+		point1 = new Point();
+		point2 = new Point();
+		point3 = new Point();
+		point4 = new Point();
+		double angle = toDegree(lm.getAngle());
+		if(lm.hasFace()){
+			if (angle > 90 && angle < 95){ // rotated 90 degrees
+				// ------
+				// 2    1
+				//
+				//
+				// 4    3
+				// ------
+				point1.setLocation(lm.getMinX() + lm.getD(), lm.getMinY());
+				point2.setLocation(lm.getMinX(), lm.getMinY());
+				point3.setLocation(lm.getMinX() + lm.getD(), lm.getMinY() + lm.getW());
+				point4.setLocation(lm.getMinX(), lm.getMinY() + lm.getW());
+				
+			} else if (angle > 180 && angle < 185) { // rotated 180 degrees
+				// -----------------
+				// 4               2
+				//
+				// 3               1
+				// -----------------
+				point1.setLocation(lm.getMinX() + lm.getW(), lm.getMinY() + lm.getD());
+				point2.setLocation(lm.getMinX() + lm.getW(), lm.getMinY());
+				point3.setLocation(lm.getMinX(), lm.getMinY() + lm.getD());
+				point4.setLocation(lm.getMinX(), lm.getMinY());
+				
+			} else if (angle > 270 && angle < 275) { // rotated 270 degrees
+				// ------
+				// 3    4
+				//
+				//
+				// 1    2
+				// ------
+				point1.setLocation(lm.getMinX(), lm.getMinY() + lm.getW());
+				point2.setLocation(lm.getMinX() + lm.getD(), lm.getMinY() + lm.getW());
+				point3.setLocation(lm.getMinX(), lm.getMinY());
+				point4.setLocation(lm.getMinX() + lm.getD(), lm.getMinY());	
+			}
+		}
+		else if (!lm.hasFace() || angle == 0){ // if the landmark has no face attribute or has an angle of 0
+			// every thing down below
+			point1.setLocation(lm.getMinX(), lm.getMinY());
+			point2.setLocation(lm.getMinX(), lm.getMaxY());
+			point3.setLocation(lm.getMaxX(), lm.getMinY());
+			point4.setLocation(lm.getMaxX(), lm.getMaxY());
+		}
+		// -------------
+		// 1 		   3
+		//
+		// 2		   4
+		// -------------
+		
+		// Initializing the corner points for the landmark
 		
 		double score14 = determinantScore(point1, point4, speakerPoint);
 		double score23 = determinantScore(point2, point3, speakerPoint);
@@ -156,5 +194,15 @@ public class ProjectiveFront extends Projective{
 		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
 		return result;
 	}
-
+	
+	private boolean checkObject(Point p1, Point p2, Point p3, Point p4, Point ob){
+		double s14 = determinantScore(p1, p4, ob);
+		double s23 = determinantScore(p2, p3, ob);
+		
+		if (s14 == 1 && s23 == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
