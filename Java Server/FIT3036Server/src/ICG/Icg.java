@@ -80,13 +80,11 @@ public class Icg {
 			}
 			node = nxtNode;
 			}
-		System.out.println(tmpLM.toString());
 		// putting each landmarks to its respected list, i.e table1, table2 go to "table" list.
 		if (tmpLM.size() != 0) {
 			String str = tmpLM.get(0).getValue();
 			String[] testStr = str.split("\\_");
 			testStr[1] = testStr[1].replaceAll("[^A-Za-z]", "");
-			System.out.println(testStr[1]);
 			for (Node i : tmpLM){
 				String tmp = i.getValue();
 				if (tmp.toLowerCase().contains(testStr[1])){
