@@ -19,7 +19,7 @@ define concept yellow_table1:Dinner_Table
 	angle = 0
 	pixel_ll = 390.5,342.0
 	pixel_hh = 703.0,475.0
-	face = none
+	hasFace = N
 
 define concept purple_chest2:Chest
 	colour = purple
@@ -29,7 +29,7 @@ define concept purple_chest2:Chest
 	angle = 1.571
 	pixel_ll = 760.0,226.0
 	pixel_hh = 893.0,463.5
-	face = yz:0
+	hasFace = Y
 
 define concept pink_ball3:Ball
 	colour = pink
@@ -39,7 +39,7 @@ define concept pink_ball3:Ball
 	angle = 0
 	pixel_ll = 453.0,344.5
 	pixel_hh = 477.5,363.0
-	face = none
+	hasFace = N
 
 define concept green_bookcase4:Bookcase
 	colour = green
@@ -49,7 +49,7 @@ define concept green_bookcase4:Bookcase
 	angle = 0
 	pixel_ll = 454.0,210.5
 	pixel_hh = 612.0,333.0
-	face = xz:1
+	hasFace = Y
 
 define concept pink_ball5:Ball
 	colour = pink
@@ -59,7 +59,7 @@ define concept pink_ball5:Ball
 	angle = 0
 	pixel_ll = 534.0,511.0
 	pixel_hh = 650.0,607.5
-	face = none
+	hasFace = N
 
 define concept blue_chest6:Chest
 	colour = blue
@@ -69,7 +69,7 @@ define concept blue_chest6:Chest
 	angle = 0
 	pixel_ll = 165.5,289.0 
 	pixel_hh = 315.0,405.5
-	face = xz:1
+	hasFace = Y
 
 define concept brown_bookcase7:Bookcase
 	colour = brown
@@ -79,7 +79,7 @@ define concept brown_bookcase7:Bookcase
 	angle = 1.571
 	pixel_ll = 963.5, 332.5
 	pixel_hh = 1123.5,713.0
-	face = yz:0
+	hasFace = Y
 
 define concept brown_plant8:Plant
 	colour = brown
@@ -89,7 +89,7 @@ define concept brown_plant8:Plant
 	angle = 0
 	pixel_ll = 167.0,184.5
 	pixel_hh = 269.5,294.5
-	face = none
+	hasFace = N
 
 define concept brown_stool9:Stool
     colour = brown
@@ -99,7 +99,7 @@ define concept brown_stool9:Stool
 	angle = 0
 	pixel_ll = 290.0,422.0
 	pixel_hh = 384.0,502.0
-	face = none
+	hasFace = N
 
 define concept brown_stool10:Stool
     colour = brown
@@ -109,7 +109,7 @@ define concept brown_stool10:Stool
 	angle = 0
 	pixel_ll = 890.0,556.0
 	pixel_hh = 995.0,694.0
-	face = none
+	hasFace = N
 
 define concept brown_stool11:Stool
     colour = brown
@@ -119,7 +119,7 @@ define concept brown_stool11:Stool
 	angle = 0
 	pixel_ll = 670.0,358.0
 	pixel_hh = 748.0,446.0
-	face = none
+	hasFace = N
 
 define concept brown_hammer12:Hammer
 	colour = brown
@@ -129,7 +129,7 @@ define concept brown_hammer12:Hammer
 	angle = 1.571
 	pixel_ll = 525.5,486.0
 	pixel_hh = 595.5,496.5
-	face = none
+	hasFace = N
 
 define concept speaker13:Speaker
 	speaker = Y
@@ -138,6 +138,7 @@ define concept speaker13:Speaker
 	size_wdh = 0.7:0.4:1.800
 	location_xyz = 2.182:8.804:1.519
 	angle = 3.3778455
+	hasFace = N
 
 define concept grey_wall14:Wall
 	speaker = N
@@ -147,7 +148,7 @@ define concept grey_wall14:Wall
 	#location_xyz = 0.86:1.146:0.000
 	location_xyz = 0.86:1.096:0.000
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept grey_wall15:Wall
 	speaker = N
@@ -159,7 +160,7 @@ define concept grey_wall15:Wall
 	#location_xyz = 5.611:1.196:0.000
 	location_xyz = 5.611:1.146:0.000
 	angle = 1.571
-	face = none
+	hasFace = N
 
 define concept floor16:Floor
 	speaker = N
@@ -169,4 +170,4 @@ define concept floor16:Floor
 	#location_xyz = 0.86:1.196:-0.400
 	location_xyz = 0.86:1.146:-0.400
 	angle = 0
-	face = none
+	hasFace = N

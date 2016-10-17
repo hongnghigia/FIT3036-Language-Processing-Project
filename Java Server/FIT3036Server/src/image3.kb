@@ -17,7 +17,7 @@ define concept yellow_table1:Dinner_Table
 	angle = 0
 	pixel_ll = 12.0,12.0
 	pixel_hh = 1225.25,700.3
-	face = none
+	hasFace = N
 
 define concept blue_plate2:Plate
 	colour = blue
@@ -27,7 +27,7 @@ define concept blue_plate2:Plate
 	angle = 0
 	pixel_ll = 480.2,93.0
 	pixel_hh = 585.0,150.15
-	face = none
+	hasFace = N
 
 define concept blue_plate3:Plate
 	colour = blue
@@ -37,7 +37,7 @@ define concept blue_plate3:Plate
 	angle = 0
 	pixel_ll = 60.0,325.0
 	pixel_hh = 185.5,396.8
-	face = none
+	hasFace = N
 
 define concept blue_plate4:Plate
 	colour = blue
@@ -47,7 +47,7 @@ define concept blue_plate4:Plate
 	angle = 0
 	pixel_ll = 550.2,162.0
 	pixel_hh = 660.3,230.1
-	face = none
+	hasFace = N
 
 define concept blue_plate5:Plate
 	colour = blue
@@ -57,7 +57,7 @@ define concept blue_plate5:Plate
 	angle = 0
 	pixel_ll = 212.0,170.0
 	pixel_hh = 320.0,230.3
-	face = none
+	hasFace = N
 
 define concept blue_plate6:Plate
 	colour = blue
@@ -67,7 +67,7 @@ define concept blue_plate6:Plate
 	angle = 0
 	pixel_ll = 1015.0,140.0
 	pixel_hh = 1140.0,205.3
-	face = none
+	hasFace = N
 
 define concept blue_plate7:Plate
 	colour = blue
@@ -77,7 +77,7 @@ define concept blue_plate7:Plate
 	angle = 0
 	pixel_ll = 674.0,323.0
 	pixel_hh = 800.0,410.3
-	face = none
+	hasFace = N
 
 define concept speaker8:Speaker
 	speaker = Y
@@ -86,3 +86,4 @@ define concept speaker8:Speaker
 	size_wdh = 0.7:0.4:1.800
 	location_xyz = 3.424:3.175:0.140
 	angle = 3.142
+	hasFace = N

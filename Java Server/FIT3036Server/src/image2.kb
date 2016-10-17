@@ -17,7 +17,7 @@ define concept brown_table1:Dinner_Table
 	pixel_ll = 97, 107
 	pixel_hh = 1128, 451
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept purple_ball2:Ball
 	colour = purple
@@ -27,7 +27,7 @@ define concept purple_ball2:Ball
 	pixel_ll = 960, 286
 	pixel_hh = 1024, 341
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept blue_plate3:Plate
 	colour = blue
@@ -37,7 +37,7 @@ define concept blue_plate3:Plate
 	pixel_ll = 813, 117
 	pixel_hh = 930, 188
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept green_plate4:Plate
 	colour = green 
@@ -47,7 +47,7 @@ define concept green_plate4:Plate
 	pixel_ll = 966, 287
 	pixel_hh = 1023, 200
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept purple_ball5:Ball
 	colour = purple
@@ -57,7 +57,7 @@ define concept purple_ball5:Ball
 	pixel_ll = 970, 152
 	pixel_hh = 1024, 200
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept red_screwdriver6:Screwdriver
 	colour = red
@@ -68,7 +68,7 @@ define concept red_screwdriver6:Screwdriver
 	pixel_hh = 792, 169
 	#angle = 0.017
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept red_plate7:Plate
 	colour = red
@@ -78,7 +78,7 @@ define concept red_plate7:Plate
 	pixel_ll = 622, 311
 	pixel_hh = 732, 392
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept white_glass8:Glass
 	colour = white
@@ -88,7 +88,7 @@ define concept white_glass8:Glass
 	pixel_ll = 544, 255
 	pixel_hh = 594, 334
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept white_wineglass9:Wineglass
 	colour = white
@@ -98,7 +98,7 @@ define concept white_wineglass9:Wineglass
 	pixel_ll = 511, 325
 	pixel_hh = 560, 403
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept green_plate10:Plate
 	colour = green
@@ -108,7 +108,7 @@ define concept green_plate10:Plate
 	pixel_ll = 380, 307
 	pixel_hh = 487, 391
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept brown_hammer11:Hammer
 	colour = brown
@@ -118,7 +118,7 @@ define concept brown_hammer11:Hammer
 	pixel_ll = 309, 81
 	pixel_hh = 366, 180
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept white_microwave12:Microwave
 	colour = white
@@ -128,7 +128,7 @@ define concept white_microwave12:Microwave
 	pixel_ll = 140, 74
 	pixel_hh = 465, 291
 	angle = 0
-	face = none
+	hasFace = Y
 
 define concept red_plate13:Plate
 	colour = red
@@ -138,7 +138,7 @@ define concept red_plate13:Plate
 	pixel_ll = 245, 201
 	pixel_hh = 348, 260
 	angle = 0
-	face = none
+	hasFace = N
 
 define concept speaker14:Speaker
 	speaker = Y
@@ -148,3 +148,4 @@ define concept speaker14:Speaker
 	location_xyz = 3.622:3.990:0.390 
 	#angle = 9.439171
 	angle = 3.142
+	hasFace = N
