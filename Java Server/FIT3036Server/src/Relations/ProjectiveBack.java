@@ -127,7 +127,7 @@ public class ProjectiveBack extends Projective {
 			distX = backX - obj.getMaxX();
 		}
 		else {
-			backX = obj.getMinX() - backX;
+			distX = obj.getMinX() - backX;
 		}
 		
 		// get Y distance from object to back point
