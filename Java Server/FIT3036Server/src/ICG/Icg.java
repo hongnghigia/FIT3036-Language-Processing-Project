@@ -16,8 +16,10 @@ public class Icg {
 	private ArrayList<Node> landmarks2 = new ArrayList<Node>();
 	private ArrayList<Node> tmpLM = new ArrayList<Node>();
 	private KbProcessor kbreader;
+	private String image;
 	
 	public Icg(ArrayList<Node> graphs, String imageKB){
+		this.image = imageKB;
 		this.ucg = graphs;
 		kbreader = new KbProcessor(imageKB);
 	}
@@ -45,6 +47,7 @@ public class Icg {
 		int id=0;
 		Node node = ucg.get(0);
 		ArrayList<String> names = kbreader.getNames(ucg.get(0).getValue());
+		
 		for(String name : names){
 			HashMap<String, String> properties = kbreader.getProperties(name);
 			ICGNode icgNode = new ICGNode(id, node.getRole(), name, properties);
@@ -77,22 +80,28 @@ public class Icg {
 			}
 			node = nxtNode;
 			}
+		System.out.println(tmpLM.toString());
 		// putting each landmarks to its respected list, i.e table1, table2 go to "table" list.
 		if (tmpLM.size() != 0) {
 			String str = tmpLM.get(0).getValue();
-			String testStr = str.substring(0, str.length()-1);
+			String[] testStr = str.split("\\_");
+			testStr[1] = testStr[1].replaceAll("[^A-Za-z]", "");
+			System.out.println(testStr[1]);
 			for (Node i : tmpLM){
 				String tmp = i.getValue();
-				if (tmp.toLowerCase().contains(testStr)){
+				if (tmp.toLowerCase().contains(testStr[1])){
 					landmarks1.add(i);
 				} else {
 					landmarks2.add(i);
 				}
 			}
+			
+			System.out.println(landmarks1.toString());
 		}
 	}
 	
 	public void straightGraph(){
+		System.out.print(relations.toString());
 		if(relations.size() > 1){
 			for (Node o : objects){
 				for (Node l : landmarks1){
@@ -118,14 +127,17 @@ public class Icg {
 		else if (relations.size() == 1){
 			for (Node o : objects){
 				for (Node l : landmarks1){
+					int id = 0;
 					Node a = relations.get(0);
-					ICGNode obj = new ICGNode(o.getId(), o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
+					ICGNode obj = new ICGNode(id, o.getRole(), o.getValue(), ((ICGNode) o).getProperties());
 					Node r = new Node(a.getId(), a.getRole(), a.getValue());
-					ICGNode lm = new ICGNode(l.getId(), l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
+					ICGNode lm = new ICGNode(id, l.getRole(), l.getValue(), ((ICGNode) l).getProperties());
 					
 					r.addChild(lm);
 					obj.addChild(r);
 					icgs.add(obj);
+					
+					id += 1;
 				}
 			} 
 		}
@@ -163,8 +175,11 @@ public class Icg {
 	}
 	
 	public ICGNode getSpeaker(){
-		HashMap<String, String> properties = kbreader.getProperties("speaker");
+		KbProcessor reader = new KbProcessor(this.image);
+		ArrayList<String> names = reader.getNames("speaker");
+		HashMap<String, String> properties = reader.getProperties(names.get(0));
 		ICGNode speaker = new ICGNode(0, "node", "speaker", properties);
+		
 		return speaker;
 	}
 }
