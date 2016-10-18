@@ -5,18 +5,13 @@ import java.util.Arrays;
 import UCG.ICGNode;
 
 public class LocationNear extends Topological {
-	private double scoreX;
-	private double scoreY;
-	private double scoreZ;
-	private double sizeW;
-	private double sizeD;
-	private double sizeH;
-	private double xD;
-	private double yD;
-	private double zD;
+	private double xD, yD, zD;
+	private double D;
+	private double score;
 
 	@Override
 	public double evaluate(ICGNode obj, ICGNode lm) {
+		// calculate volumes of object and landmark
 		double objectV = obj.getW() * obj.getD() * obj.getH();
 		double landmarkV = lm.getW() * lm.getD() * lm.getH();
 		ICGNode bigger;
@@ -32,32 +27,11 @@ public class LocationNear extends Topological {
 			smaller = obj;
 		}
 		
-		// scale with larger object if its larger than 1m
-		if (bigger.getW() > 1) {
-			sizeW = bigger.getW();
-		}
-		else {
-			sizeW = 1;
-		}
-		
-		if (bigger.getD() > 1) {
-			sizeD = bigger.getD();
-		}
-		else {
-			sizeD = 1;
-		}
-		
-		if (bigger.getH() > 1) {
-			sizeH = bigger.getH();
-		}
-		else {
-			sizeH = 1;
-		}
-		
 		// return score of how near the two objects are
 		// each 1/3 of the score is for each plane
 			
 		// X score
+		// all distances between X values of object and landmark
 		double[] tmpX = new double[4];
 		if (smaller.getMinX() < bigger.getMinX()) {
 			tmpX[0] = bigger.getMinX() - smaller.getMinX();
@@ -71,17 +45,13 @@ public class LocationNear extends Topological {
 			tmpX[2] = smaller.getMaxX() - bigger.getMinX();
 			tmpX[3] = smaller.getMaxX() - bigger.getMaxX();
 		}
-		// get distance from smaller to bigger
+		// sort distance from smaller to bigger
 		Arrays.sort(tmpX);
+		// get shortest distance
 		xD = tmpX[0];
-		if (xD <= 0) {
-			scoreX = 1;
-		}
-		else {
-			scoreX = Math.pow(Math.E, (-(1/sizeW) * xD));
-		}
 		
 		// Y score
+		// all distances between Y values of object and landmark
 		double[] tmpY = new double[4];
 		if (smaller.getMinY() < bigger.getMinY()) {
 			tmpY[0] = bigger.getMinY() - smaller.getMinY();
@@ -95,41 +65,28 @@ public class LocationNear extends Topological {
 			tmpY[2] = smaller.getMaxY() - bigger.getMinY();
 			tmpY[3] = smaller.getMaxY() - bigger.getMaxY();
 		}
-		// get distance from smaller to bigger
+		// sort distance from smaller to bigger
 		Arrays.sort(tmpY);
+		// get shortest distance
 		yD = tmpY[0];
-		if (yD <= 0) {
-			scoreY = 1;
-		}
-		else {
-			scoreY = Math.pow(Math.E, (-(1/sizeD) * yD));
-		}
 		
 		// Z score
-		double[] tmpZ = new double[4];
-		if (smaller.getMinZ() < bigger.getMinZ()) {
-			tmpZ[0] = bigger.getMinZ() - smaller.getMinZ();
-			tmpZ[1] = bigger.getMinZ() - smaller.getMaxZ();
-			tmpZ[2] = bigger.getMaxZ() - smaller.getMinZ();
-			tmpZ[3] = bigger.getMaxZ() - smaller.getMaxZ();
+		// all distances between
+		if (smaller.getMinZ() > bigger.getMaxZ()) {
+			zD = smaller.getMinZ() - bigger.getMaxZ();
+		}
+		else if (smaller.getMaxZ() < bigger.getMinZ()) {
+			zD = bigger.getMinZ() - smaller.getMaxZ();
 		}
 		else {
-			tmpZ[0] = smaller.getMinZ() - bigger.getMinZ();
-			tmpZ[1] = smaller.getMinZ() - bigger.getMaxZ();
-			tmpZ[2] = smaller.getMaxZ() - bigger.getMinZ();
-			tmpZ[3] = smaller.getMaxZ() - bigger.getMaxZ();
-		}
-		// get distance from smaller to bigger
-		Arrays.sort(tmpZ);
-		zD = tmpZ[0];
-		if (zD <= 0) {
-			scoreZ = 1;
-		}
-		else {
-			scoreZ = Math.pow(Math.E, (-(1/sizeH) * zD));
+			zD = 0;
 		}
 		
-		// combine x y z scores
-		return (scoreX + scoreY + scoreZ) / 3;
+		// distance from object to landmark in 3D plane
+		D = Math.sqrt(Math.pow(xD, 2) + Math.pow(yD, 2) + Math.pow(zD, 2));
+		
+		// calculate score for relation
+		score = Math.pow(Math.E, -0.5 * D);
+		return score;
 	}
 }

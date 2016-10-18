@@ -4,79 +4,61 @@ import UCG.ICGNode;
 
 public class LocationCenter extends Topological {
 	
-	private double centerXL;
-	private double centerYL;
-	private double scoreX;
-	private double scoreY;
-	private double scoreZ;
-	private double sizeW;
-	private double sizeD;
-	private double sizeH;
-	private double xD;
-	private double yD;
-	private double zD;
+	private double centerXL, centerYL;
+	private double xD, yD, zD;
+	private double D;
+	private double score;
 
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm) {
-		// scale with landmark if its larger than 1m
-		if (lm.getW() > 1) {
-			sizeW = lm.getW();
-		}
-		else {
-			sizeW = 1;
-		}
-		
-		if (lm.getD() > 1) {
-			sizeD = lm.getD();
-		}
-		else {
-			sizeD = 1;
-		}
-		
-		if (lm.getH() > 1) {
-			sizeH = lm.getH();
-		}
-		else {
-			sizeH = 1;
-		}
-		
 		// center of landmark
 		centerXL = lm.getMinX() + (lm.getW() * 0.5);
 		centerYL = lm.getMinY() + (lm.getD() * 0.5);
 		
-		// touching center in X plane
-		if (obj.getMinX() <= centerXL && obj.getMaxX() >= centerXL) {
-			scoreX = 1;
-		}
 		// object is left of landmark's center
-		else if (obj.getMaxX() < centerXL) {
+		if (obj.getMaxX() < centerXL) {
 			xD = centerXL - obj.getMaxX();
 		}
 		// object is right of landmark's center
 		else if (obj.getMinX() > centerXL) {
 			xD = obj.getMinX() - centerXL;
 		}
-		scoreX = Math.pow(Math.E, (-(1/sizeW) * xD));
-		
-		// touching center in Y plane
-		if (obj.getMinY() <= centerYL && obj.getMaxY() >= centerYL) {
-			scoreY = 1;
+		// touching center in X plane
+		else {
+			xD = 0;
 		}
+		
 		// object is back of landmark's center
-		else if (obj.getMaxY() < centerYL) {
+		if (obj.getMaxY() < centerYL) {
 			yD = centerYL - obj.getMaxY();
 		}
 		// object is front of landmark's center
 		else if (obj.getMinY() > centerYL) {
 			yD = obj.getMinY() - centerYL;
 		}
-		scoreY = Math.pow(Math.E, (-(1/sizeD) * yD));
+		// touching center in Y plane
+		else {
+			yD = 0;
+		}
 		
-		// distance in Z plane
-		zD = obj.getMinZ() - lm.getMaxZ();
-		scoreZ = Math.pow(Math.E, (-(1/sizeH) * zD));
+		// object is lower than surface
+		if (obj.getMaxZ() < lm.getMaxZ()) {
+			zD = lm.getMaxZ() - obj.getMaxZ();
+		}
+		// object is higher than surface
+		else if (obj.getMinZ() > lm.getMaxZ()) {
+			zD = obj.getMinZ() - lm.getMaxZ();
+		}
+		// object is touching surface
+		else {
+			zD = 0;
+		}
 		
-		// combine x y z scores
-		return (scoreX + scoreY + scoreZ) / 3;
+		// distance from object to landmark in 3D plane
+		D = Math.sqrt(Math.pow(xD, 2) + Math.pow(yD, 2) + Math.pow(zD, 2));
+		
+		// calculate score for relation
+		score = Math.pow(Math.E, -0.5 * D);
+		return score;
 	}
 }

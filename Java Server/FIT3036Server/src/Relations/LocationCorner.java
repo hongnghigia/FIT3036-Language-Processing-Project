@@ -5,48 +5,19 @@ import java.util.Arrays;
 import UCG.ICGNode;
 
 public class LocationCorner extends Topological {
-	
-	private double scoreX;
-	private double scoreY;
-	private double scoreZ;
-	private double sizeW;
-	private double sizeD;
-	private double sizeH;
-	private double xD;
-	private double yD;
-	private double zD;
+	private double xD, yD, zD;
+	private double D;
+	private double score;
 
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm) {
-		// scale with landmark if its larger than 1m
-		if (lm.getW() > 1) {
-			sizeW = lm.getW();
-		}
-		else {
-			sizeW = 1;
-		}
-		
-		if (lm.getD() > 1) {
-			sizeD = lm.getD();
-		}
-		else {
-			sizeD = 1;
-		}
-		
-		if (lm.getH() > 1) {
-			sizeH = lm.getH();
-		}
-		else {
-			sizeH = 1;
-		}
-		
 		// how near a corner on X plane
 		Double[] distancesX0 = new Double[2];
 		Double[] distancesX1 = new Double[2];
-		// distances to left X
+		// distances to min X corner
 		distancesX0[0] = Math.abs(obj.getMinX() - lm.getMinX());
 		distancesX0[1] = Math.abs(obj.getMaxX() - lm.getMinX());
-		// distances to right X
+		// distances to max X corner
 		distancesX1[0] = Math.abs(obj.getMinX() - lm.getMaxX());
 		distancesX1[1] = Math.abs(obj.getMaxX() - lm.getMaxX());
 		// get shortest distance to a corner
@@ -58,15 +29,14 @@ public class LocationCorner extends Topological {
 		else {
 			xD = distancesX1[0];
 		}
-		scoreX = Math.pow(Math.E, (-(1/sizeW) * xD));
 		
-		// how near a corner on Y plane
+		// how near a corner is on Y plane
 		Double[] distancesY0 = new Double[2];
 		Double[] distancesY1 = new Double[2];
-		// distances to back Y
+		// distances to min Y corner
 		distancesY0[0] = Math.abs(obj.getMinY() - lm.getMinY());
 		distancesY0[1] = Math.abs(obj.getMaxY() - lm.getMinY());
-		// distances to front Y
+		// distances to max Y corner
 		distancesY1[0] = Math.abs(obj.getMinY() - lm.getMaxY());
 		distancesY1[1] = Math.abs(obj.getMaxY() - lm.getMaxY());
 		// get shortest distance to a corner
@@ -78,18 +48,17 @@ public class LocationCorner extends Topological {
 		else {
 			yD = distancesY1[0];
 		}
-		scoreY = Math.pow(Math.E, (-(1/sizeD) * yD));
 		
 		// how near a corner on Z plane
 		Double[] distancesZ0 = new Double[2];
 		Double[] distancesZ1 = new Double[2];
-		// distances to bottom Z
+		// distances to min Z
 		distancesZ0[0] = Math.abs(obj.getMinZ() - lm.getMinZ());
 		distancesZ0[1] = Math.abs(obj.getMaxZ() - lm.getMinZ());
-		// distances to top Z
+		// distances to max Z
 		distancesZ1[0] = Math.abs(obj.getMinZ() - lm.getMaxZ());
 		distancesZ1[1] = Math.abs(obj.getMaxZ() - lm.getMaxZ());
-		// get shortest distance to a corner
+		// get shortest distance 
 		Arrays.sort(distancesZ0);
 		Arrays.sort(distancesZ1);
 		if (distancesZ0[0] <= distancesZ1[0]) {
@@ -98,9 +67,12 @@ public class LocationCorner extends Topological {
 		else {
 			zD = distancesZ1[0];
 		}
-		scoreZ = Math.pow(Math.E, (-(1/sizeH) * zD));
 		
-		// combine x y z scores
-		return (scoreX + scoreY + scoreZ) / 3;
+		// distance from object to landmark in 3D plane
+		D = Math.sqrt(Math.pow(xD, 2) + Math.pow(yD, 2) + Math.pow(zD, 2));
+		
+		// calculate score for relation
+		score = Math.pow(Math.E, -0.5 * D);
+		return score;
 	}
 }

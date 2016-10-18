@@ -193,12 +193,11 @@ public class ProjectiveRight extends Projective{
 			distZ = 0;
 		}
 		
-		// calculate the XY distance using pythagoras
-		D = Math.hypot(Math.abs(centerXO - rightX), Math.abs(centerYO - rightY));
+		// distance from object to landmark in 3D plane
+		D = Math.sqrt(Math.pow(Math.abs(centerXO - rightX), 2) + Math.pow(Math.abs(centerYO - rightY), 2) + Math.pow(distZ, 2));
 		
-		// calculate score
-		score = Math.pow(Math.E, ((-0.5 + (-0.5 * distZ)) * D));
-		score = score * multiplier;
+		// calculate score for relation
+		score = Math.pow(Math.E, -0.5 * D) * multiplier;
 		return score;
 	}
 	
