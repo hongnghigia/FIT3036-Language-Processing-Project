@@ -17,6 +17,7 @@ public class Checker {
 	IS_PW isPW = new IS_PW();
 	IS_PP isPP = new IS_PP();
 	IS_STOP isStop = new IS_STOP();
+	FIRST_THE firstThe = new FIRST_THE();
 	RELATIVE_POS relativePos = new RELATIVE_POS();
 	PWOF pwOf = new PWOF();
 	NNP nnp = new NNP();
@@ -32,6 +33,7 @@ public class Checker {
 		features.add(isPW);
 		features.add(isPP);
 		features.add(isStop);
+		features.add(firstThe);
 		features.add(relativePos);
 		features.add(pwOf);
 		features.add(nnp);

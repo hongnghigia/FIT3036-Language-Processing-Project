@@ -141,8 +141,9 @@ public class Setup {
 				}
 				
 				// create String[], where [0] = word, [1] = next word, [2] = current index, [3] = total words, [4] = class
+				int counter = 0;
 				for (int i = 0; i < line.size(); i++) {
-					String[] toCheck = new String[5];
+					String[] toCheck = new String[6];
 					toCheck[0] = line.get(i);
 					if (i == (line.size() - 1)) {
 						toCheck[1] = null;
@@ -153,6 +154,12 @@ public class Setup {
 					toCheck[2] = Integer.toString(i);
 					toCheck[3] = Integer.toString(line.size());
 					toCheck[4] = classes.get(i);
+					if (line.get(i).toLowerCase().equals("the") && counter == 0){
+						toCheck[5] = "0,";
+						counter += 1;
+					} else {
+						toCheck[5] = "1,";
+					}
 					
 					// uses checker to check the word against each feature
 					c1.check(toCheck);
