@@ -30,8 +30,7 @@ public class Icg {
 		if (relations.size() > 1){
 			branchingGraph();
 			}
-		
-		//System.out.println(icgs);
+
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(icgs));
 		return icgs;

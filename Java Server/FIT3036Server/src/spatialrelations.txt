@@ -26,9 +26,9 @@ define concept location_above:Location_R
 	implementation=check_location(Parent,Child)
 	called+=above
 	called+=over
-	called+=on_top_of
-	called+=at_top_of
-	called+=on_top
+	called+= on_top_of
+	called+= at_top_of
+	called+= on_top
 
 define concept location_inside:Location_R
 	description += e.g. The book is in LOCATION
@@ -225,9 +225,3 @@ define concept location_far:Location_R
 	called+=farther_away_from
 	called+=further_from
 	called+=further_away_from
-
-define concept location_behind:Location_R
-	description += e.g. The book is behind LOCATION
-	implementation=check_location(Parent,Child)
-	called+=behind
-	called+=beyond

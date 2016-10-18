@@ -19,6 +19,8 @@ public class Writer {
 			 "@ATTRIBUTE\tIS_PW\t{no-pw,yes-pw}",
 			 "@ATTRIBUTE\tIS_PP\t{no-pp,yes-pp}",
 			 "@ATTRIBUTE\tIS_STOP\t{no-stop,yes-stop}",
+			 "@ATTRIBUTE\tFIRST_THE\t{0,1}",
+			 "@ATTRIBUTE\tFIRST_PP\t{0,1}",
 			 "@ATTRIBUTE\tRELATIVE_POS\tNUMERIC",
 			 "@ATTRIBUTE\tPWOF\t{no-pwof,yes-pwof}",
 			 "@ATTRIBUTE\tNNP\t{no-NNP,yes-NNP}",
@@ -51,9 +53,11 @@ public class Writer {
 		out.println(attributes[11]);
 		out.println(attributes[12]);
 		out.println(attributes[13]);
-		out.println();
-		out.println();
 		out.println(attributes[14]);
+		out.println(attributes[15]);
+		out.println();
+		out.println();
+		out.println(attributes[16]);
 		out.close();
 		} catch (IOException e){
 			e.printStackTrace();

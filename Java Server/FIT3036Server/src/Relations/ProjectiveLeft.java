@@ -1,146 +1,167 @@
 package Relations;
 
+import java.awt.Point;
+
 import UCG.ICGNode;
 
 public class ProjectiveLeft extends Projective{
-
-	private double centerXS;
-	private double centerYS;
-	private double centerXO;
-	private double centerYO;
-	private double centerXL;
-	private double centerYL;
-	private double aX;
-	private double aY;
-	private double bX;
-	private double bY;
-	private double cX;
-	private double cY;
-	private double dX;
-	private double dY;
-	private double determinant1;
-	private double determinant2;
-	private double determinant3;
-	private double determinant4;
-	private String locationSpeaker;
-	private String locationObject;
-	private double leftX;
-	private double leftY;
-	private double multiplier;
-	private double distX;
-	private double distY;
-	private double distZ;
-	private double D;
-	private double score;
+	Point point1, point2, point3, point4;
+	Point pointA, pointB, pointC, pointD;
+	double distance;
+	double eval;
+	double multiplier;
+	double distZ;
+	double midEdgeX;
+	double midEdgeY;
 	
 	@Override
 	double evaluate(ICGNode obj, ICGNode lm, ICGNode speaker) {
-		// find center of speaker
-		centerXS = speaker.getMinX() + (speaker.getW() * 0.5);
-		centerYS = speaker.getMinY() + (speaker.getD() * 0.5);
+		double midSX = (speaker.getW()/2) + speaker.getMinX();
+		double midSY = (speaker.getD()/2) + speaker.getMinY();
 		
-		// find center of object
-		centerXO = obj.getMinX() + (obj.getW() * 0.5);
-		centerYO = obj.getMinY() + (obj.getD() * 0.5);
+		double objmidX = (obj.getW()/2) + obj.getMinX();
+		double objmidY = (obj.getD()/2) + obj.getMinY();
+		double objmidZ = (obj.getH()/2) + obj.getMinZ();
 		
-		// find center of landmark
-		centerXL = lm.getMinX() + (lm.getW() * 0.5);
-		centerYL = lm.getMinY() + (lm.getD() * 0.5);
+		midEdgeX = 0;
+		midEdgeY = 0;
+		// speaker coordinates
+		Point speakerPoint = new Point();
+		speakerPoint.setLocation(midSX, midSY);
 		
-		// find corners of landmark
-		aX = lm.getMinX();
-		aY = lm.getMaxY();
-		bX = lm.getMaxX();
-		bY = lm.getMinY();
-		cX = lm.getMinX();
-		cY = lm.getMinY();
-		dX = lm.getMaxX();
-		dY = lm.getMaxY();
+		Point objpoint = new Point();
+		objpoint.setLocation(objmidX, objmidY);
 		
-		// find determinants of speaker
-		determinant1 = ((bX - aX) * (centerYS - aY)) - ((bY - aY) * (centerXS - aX));
-		determinant2 = ((dX - cX) * (centerYS - cY)) - ((dY - cY) * (centerXS - cX));
+		point1 = new Point();
+		point2 = new Point();
+		point3 = new Point();
+		point4 = new Point();
+		double angle = toDegree(lm.getAngle());
 		
-		// find determinants of object
-		determinant3 = ((bX - aX) * (centerYO - aY)) - ((bY - aY) * (centerXO - aX));
-		determinant4 = ((dX - cX) * (centerYO - cY)) - ((dY - cY) * (centerXO - cX));
-		
-		// using determinants to find which quadrant the speaker and object are in
-		locationSpeaker = getQuadrant(determinant1, determinant2);
-		locationObject = getQuadrant(determinant3, determinant4);
-		
-		// find the left edge/corner
-		if (locationSpeaker.equals("top")) {
-			leftX = lm.getMaxX();
-			leftY = centerYL;
-		}
-		else if (locationSpeaker.equals("bottom")) {
-			leftX = lm.getMinX();
-			leftY = centerYL;
-		}
-		else if (locationSpeaker.equals("left")) {
-			leftX = centerXL;
-			leftY = lm.getMinY();
-		}
-		else if (locationSpeaker.equals("right")) {
-			leftX = centerXL;
-			leftY = lm.getMaxY();
-		}
-		else if (locationSpeaker.equals("topleft")) {
-			leftX = lm.getMaxX();
-			leftY = lm.getMinY();
-		}
-		else if (locationSpeaker.equals("topright")) {
-			leftX = lm.getMaxX();
-			leftY = lm.getMaxY();
-		}
-		else if (locationSpeaker.equals("bottomleft")) {
-			leftX = lm.getMinX();
-			leftY = lm.getMinY();
-		}
-		else if (locationSpeaker.equals("bottomright")) {
-			leftX = lm.getMinX();
-			leftY = lm.getMaxY();
-		}
-		
-		// get score multiplier
-		if (isLeft(locationSpeaker, locationObject, centerXO, centerYO, centerXL, centerYL)) {
-			// object is left of and off the table
-			if (isOff(locationSpeaker, centerXO, centerYO, lm.getMinX(), lm.getMaxX(), lm.getMinY(), lm.getMaxY())) {
-				multiplier = 1.0;
+		if(lm.hasFace()){
+			if (angle == 0){
+				// -----------------
+				// 1               3
+				//
+				// 2               4
+				// -----------------
+				point1.setLocation(lm.getMinX(), lm.getMinY());
+				point2.setLocation(lm.getMinX(), lm.getMaxY());
+				point3.setLocation(lm.getMaxX(), lm.getMinY());
+				point4.setLocation(lm.getMaxX(), lm.getMaxY());
+				midEdgeX = lm.getMinX();
+				midEdgeY = lm.getD()/2 + lm.getMinY();
 			}
-			// object is left of and on the table
-			else {
-				multiplier = 0.75;
+			if (angle >= 90 && angle < 95){ // rotated 90 degrees
+				// ------
+				// 2    1
+				//
+				//
+				// 4    3
+				// ------
+				point1.setLocation(lm.getMinX() + lm.getD(), lm.getMinY());
+				point2.setLocation(lm.getMinX(), lm.getMinY());
+				point3.setLocation(lm.getMinX() + lm.getD(), lm.getMinY() + lm.getW());
+				point4.setLocation(lm.getMinX(), lm.getMinY() + lm.getW());
+				midEdgeX = lm.getMinX() + (lm.getD()/2);
+				midEdgeY = lm.getMinY();
+				
+			} else if (angle >= 180 && angle < 185) { // rotated 180 degrees
+				// -----------------
+				// 4               2
+				//
+				// 3               1
+				// -----------------
+				point1.setLocation(lm.getMinX() + lm.getW(), lm.getMinY() + lm.getD());
+				point2.setLocation(lm.getMinX() + lm.getW(), lm.getMinY());
+				point3.setLocation(lm.getMinX(), lm.getMinY() + lm.getD());
+				point4.setLocation(lm.getMinX(), lm.getMinY());
+				midEdgeX = lm.getMaxX();
+				midEdgeY = lm.getMinY() + (lm.getD()/2);
+				
+			} else if (angle >= 270 && angle < 275) { // rotated 270 degrees
+				// ------
+				// 3    4
+				//
+				//
+				// 1    2
+				// ------
+				point1.setLocation(lm.getMinX(), lm.getMinY() + lm.getW());
+				point2.setLocation(lm.getMinX() + lm.getD(), lm.getMinY() + lm.getW());
+				point3.setLocation(lm.getMinX(), lm.getMinY());
+				point4.setLocation(lm.getMinX() + lm.getD(), lm.getMinY());
+				midEdgeX = lm.getMinX() + lm.getW();
+				midEdgeY = lm.getMinY() + (lm.getD()/2);
+			}
+			
+			if (isLeft(point1, point2, point3, point4, objpoint)){
+				multiplier = 1;
+			} else {
+				multiplier = 0.5;
 			}
 		}
-		// object is not left of
-		else {
-			multiplier = 0.50;
+		else if (!lm.hasFace()){
+			point1.setLocation(lm.getMinX(), lm.getMinY());
+			point2.setLocation(lm.getMinX(), lm.getMaxY());
+			point3.setLocation(lm.getMaxX(), lm.getMinY());
+			point4.setLocation(lm.getMaxX(), lm.getMaxY());
+			
+			// -------------
+			// 1 		   3
+			//
+			// 2		   4
+			// -------------
+			
+			// Initializing the corner points for the landmark
+			
+			double score14 = determinantScore(point1, point4, speakerPoint);
+			double score23 = determinantScore(point2, point3, speakerPoint);
+			
+			double objscore14 = determinantScore(point1, point4, objpoint);
+			double objscore23 = determinantScore(point2, point3, objpoint);
+			// checking the determinant score
+			if (score14 == 1 && score23 == 1){ // speaker at the bottom
+				midEdgeX = lm.getMinX();
+				midEdgeY = lm.getMinY() + (lm.getD()/2);
+				if (objscore14 == 1 && objscore23 == -1){ // object to the left of landmark
+					multiplier = 1;
+				} else {
+					multiplier = 0.5;
+				}
+			} else if (score14 == 1 && score23 == -1){ // speaker left quadrant
+				midEdgeX = lm.getMinX() + (lm.getW()/2);
+				midEdgeY = lm.getMinY();
+				if (objscore14 == -1 && objscore23 == -1){
+					multiplier = 1;
+				} else {
+					multiplier = 0.5;
+				}
+			} else if (score14 == -1 && score23 == -1){ // speaker top quadrant
+				midEdgeX = lm.getMaxX();
+				midEdgeY = lm.getMinY() + (lm.getD()/2);
+				if (objscore14 == 1 && objscore23 == 1){
+					multiplier = 1;
+				} else {
+					multiplier = 0.5;
+				}
+			} else if (score14 == -1 && score23 == 1){ // speaker right quadrant
+				midEdgeX = lm.getMinX() + (lm.getW()/2);
+				midEdgeY = lm.getMaxY();
+				if (objscore14 == 1 && objscore23 == -1){
+					multiplier = 1;
+				} else {
+					multiplier = 0.5;
+				}
+			}
+			// -----------------
+			//        C
+			//        |
+			// A______|_________B
+			//        |
+			//        |
+			//        D
+			// ------------------
 		}
-		
-		// get X distance from object to back point
-		if (((obj.getMinX() < leftX) && (obj.getMaxX() > leftX)) || (obj.getMaxX() == leftX) || (obj.getMinX() == leftX)) {
-			distX = 0;
-		}
-		else if (obj.getMaxX() < leftX) {
-			distX = leftX - obj.getMaxX();
-		}
-		else {
-			distX = obj.getMinX() - leftX;
-		}
-		
-		// get Y distance from object to back point
-		if (((obj.getMinY() < leftY) && (obj.getMaxY() > leftY)) || (obj.getMaxY() == leftY) || (obj.getMinY() == leftY)) {
-			distY = 0;
-		}
-		else if (obj.getMaxY() < leftY) {
-			distY = leftY - obj.getMaxY();
-		}
-		else {
-			distY = obj.getMinY() - leftY;
-		}
-		
 		// get Z distance from object to back point
 		if (obj.getMinZ() > lm.getMaxZ()) {
 			distZ = obj.getMinZ() - lm.getMaxZ();
@@ -151,71 +172,28 @@ public class ProjectiveLeft extends Projective{
 		else {
 			distZ = 0;
 		}
-		
-		// calculate the XY distance using pythagoras
-		D = Math.hypot(distX, distY);
-		
-		// calculate score
-		score = Math.pow(Math.E, ((-0.5 + (-0.5 * distZ)) * D));
-		score = score * multiplier;
-		return score;
+		distance = Math.sqrt(Math.pow(Math.abs(objmidX - midEdgeX), 2) + Math.pow(Math.abs(objmidY - midEdgeY), 2) + Math.pow(Math.abs(objmidZ - distZ), 2));
+		eval = score(Math.abs(distance), distZ, multiplier);
+		return eval;	
 	}
 	
-	// returns true based on the location of the speaker and the location of the object
-	private boolean isLeft(String sp, String obj, double centerXO, double centerYO, double centerXL, double centerYL) {
-		if (sp.equals("bottom") && obj.equals("left")) {
-			return true;
-		}
-		else if (sp.equals("top") && obj.equals("right")) {
-			return true;
-		}
-		else if (sp.equals("left") && obj.equals("top")) {
-			return true;
-		}
-		else if (sp.equals("right") && obj.equals("bottom")) {
-			return true;
-		}
-		else if (sp.equals("topright") && (centerXO > centerXL) && (centerYO > centerYL)) {
-			return true;
-		}
-		else if (sp.equals("bottomleft") && (centerXO < centerXL) && (centerYO < centerYL)) {
-			return true;
-		}
-		else if (sp.equals("bottomright") && (centerXO < centerXL) && (centerYO > centerYL)) {
-			return true;
-		}
-		else if (sp.equals("topleft") && (centerXO > centerXL) && (centerYO < centerYL)) {
-			return true;
-		}
-		return false;
+	private double score(double D, double Z, double M){
+		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
+		return result;
 	}
-	
-	// returns true based on the location of the speaker and the area in which counts as "off" the landmark
-	private boolean isOff(String sp, double centerXO, double centerYO, double minXL, double maxXL, double minYL, double maxYL) {
-		if (sp.equals("top") && (centerXO > maxXL)) {
+
+	private double determinantScore(Point a, Point b, Point c){
+		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
+	}
+
+	private boolean isLeft(Point p1, Point p2, Point p3, Point p4, Point ob){
+		double s14 = determinantScore(p1, p4, ob);
+		double s23 = determinantScore(p2, p3, ob);
+		
+		if (s14 == 1 && s23 == -1){
 			return true;
+		} else {
+			return false;
 		}
-		else if (sp.equals("bottom") && (centerXO < minXL)) {
-			return true;
-		}
-		else if (sp.equals("right") && (centerYO > maxYL)) {
-			return true;
-		}
-		else if (sp.equals("left") && (centerYO < minYL)) {
-			return true;
-		}
-		else if (sp.equals("topright") && (centerXO > maxXL) && (centerYO > maxYL)) {
-			return true;
-		}
-		else if (sp.equals("bottomleft") && (centerXO < minXL) && (centerYO < minYL)) {
-			return true;
-		}
-		else if (sp.equals("bottomright") && (centerXO < minXL) && (centerYO > maxYL)) {
-			return true;
-		}
-		else if (sp.equals("topleft") && (centerXO > maxXL) && (centerYO < minYL)) {
-			return true;
-		}
-		return false;
 	}
 }

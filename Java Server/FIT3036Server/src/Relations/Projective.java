@@ -1,5 +1,7 @@
 package Relations;
 
+import java.awt.Point;
+
 import UCG.ICGNode;
 
 public abstract class Projective {

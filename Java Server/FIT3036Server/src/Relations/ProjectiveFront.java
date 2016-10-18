@@ -61,7 +61,6 @@ public class ProjectiveFront extends Projective{
 				//
 				// 4    3
 				// ------
-				System.out.println("YES");
 				point1.setLocation(lm.getMinX() + lm.getD(), lm.getMinY());
 				point2.setLocation(lm.getMinX(), lm.getMinY());
 				point3.setLocation(lm.getMinX() + lm.getD(), lm.getMinY() + lm.getW());
@@ -99,6 +98,8 @@ public class ProjectiveFront extends Projective{
 			
 			if (isFront(point1, point2, point3, point4, objpoint)){
 				multiplier = 1;
+			} else {
+				multiplier = 0.5;
 			}
 		}
 		else if (!lm.hasFace()){ // if the landmark has no face attribute
@@ -215,18 +216,18 @@ public class ProjectiveFront extends Projective{
 		else {
 			distZ = 0;
 		}
-		distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
+		distance = Math.sqrt(Math.pow(Math.abs(objmidX - midEdgeX), 2) + Math.pow(Math.abs(objmidY - midEdgeY), 2) + Math.pow(Math.abs(objmidZ - distZ), 2));
 		eval = score(Math.abs(distance), distZ, multiplier);
 		return eval;
-	}
-	
-	private double determinantScore(Point a, Point b, Point c){
-		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
 	}
 	
 	private double score(double D, double Z, double M){
 		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
 		return result;
+	}
+	
+	private double determinantScore(Point a, Point b, Point c){
+		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
 	}
 	
 	private boolean isFront(Point p1, Point p2, Point p3, Point p4, Point ob){
