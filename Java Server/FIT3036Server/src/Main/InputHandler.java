@@ -207,6 +207,15 @@ public class InputHandler {
 				}
 				count++;
 			}
+			for (int i = 0; i < prep.size(); i++) {
+				if (prep.get(i).contains(" ")) {
+					String sub = prep.get(i).substring(prep.get(i).lastIndexOf(" ") + 1);
+					if (sub.equals("the")) {
+						String nothe = prep.get(i).substring(0, prep.get(i).lastIndexOf(" "));
+						prep.set(i, nothe);
+					}
+				}
+			}
 		}
 		catch (Exception e){
 			System.out.println("Failed to create nodes...");
