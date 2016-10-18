@@ -8,8 +8,8 @@
 @ATTRIBUTE	IS_PW	{no-pw,yes-pw}
 @ATTRIBUTE	IS_PP	{no-pp,yes-pp}
 @ATTRIBUTE	IS_STOP	{no-stop,yes-stop}
+@ATTRIBUTE	FIRST_THE	{0,1}
 @ATTRIBUTE	IS_FIRST	{no-first,yes-first}
-@ATTRIBUTE	THE_PW	{0,1}
 @ATTRIBUTE	RELATIVE_POS	NUMERIC
 @ATTRIBUTE	PWOF	{no-pwof,yes-pwof}
 @ATTRIBUTE	NNP	{no-NNP,yes-NNP}
