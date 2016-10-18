@@ -16,9 +16,9 @@ public class THE_PW extends Feature{
 	@Override
 	public void execute(String[] aWord) {
 		if (aWord[0].toLowerCase().equals("the") && pwWords.contains(aWord[1])){
-			this.write("1,");
-		} else {
 			this.write("0,");
+		} else {
+			this.write("1,");
 		}
 	}
 
