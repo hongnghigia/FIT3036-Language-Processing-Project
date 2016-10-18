@@ -8,12 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Features.IS_PP;
+
 /**
  * prepares the input for feature extraction
  */
 public class Setup {
-
+	ArrayList<String> pplist;
 	public void run() {
+		IS_PP pp = new IS_PP();
+		pplist = pp.getPP();
 		Checker c1 = new Checker();
 		ArrayList<String> classes; 	// stores the class tags (B-O, I-O, B-L, etc.)
 		int consClasses;			// how many consecutive classes of the same class in a row
@@ -141,7 +145,10 @@ public class Setup {
 				}
 				
 				// create String[], where [0] = word, [1] = next word, [2] = current index, [3] = total words, [4] = class
+				// [5] - first the
+				// [6] - first pp
 				int counter = 0;
+				int ppcounter = 0;
 				for (int i = 0; i < line.size(); i++) {
 					String[] toCheck = new String[6];
 					toCheck[0] = line.get(i);
@@ -159,6 +166,13 @@ public class Setup {
 						counter += 1;
 					} else {
 						toCheck[5] = "1,";
+					}
+					
+					if (pplist.contains(line.get(i)) && ppcounter == 0){
+						toCheck[6] = "0,";
+						ppcounter += 1;
+					} else {
+						toCheck[6] = "1,";
 					}
 					
 					// uses checker to check the word against each feature

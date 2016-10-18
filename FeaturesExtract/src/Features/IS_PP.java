@@ -15,6 +15,10 @@ public class IS_PP extends Feature{
 		}
 	}
 	
+	public ArrayList<String> getPP(){
+		return this.ppWords;
+	}
+	
 	@Override
 	public void execute(String[] aWord){
 		if(ppWords.contains(aWord[0].toLowerCase())){
