@@ -1,0 +1,861 @@
+the small table:O | close to:P | the small ball:L
+the pot plant:O | on:P | top of:S  | the table:L
+the computer:O | under:P | the table: L
+what:A | computer:O | under:P | the table:L
+portrait:O | on:P | the wall:L | above:P | the table:L
+the pink plate:O | inside:P | the microwave:L
+the green light:O | at:P | the back of:S | the table:L
+the purple ball:O | at:P | the right end of:S | the table:L
+the blue plate:O | in:P | the centre of:S | the table:L
+the blue light:O | in:P | the left front corner of:S | the table:L
+the blue plate:O | at:P | the front of:S | the table:L
+the pink ball:O | in:P | the title:L
+the pink ball:O | in:P | the from of:S | the table:L
+the green book:O | is:A | behind:P | the table:L
+the brown stool:O | at:P | the length of:S | the table:L
+the pant:O | on:P | the table:L
+the computer:O | underP | the desk:L
+the picture:O | above:P | the desk:L
+the red plate:O | inside:P | a microwave:L
+the green plate:O | near:P | the screwdriver:L
+the bowl:O | close to:P | me:L
+the plate:O | in:P | the middle of:S | the table:L
+the plate:O | at:P | the corner of:S | the table:L
+the plate:O | closest to:P | me:L
+The large pink ball:O | on:P | the floor:L
+the Green Book case:O
+a green plant:O | on:P | table:L
+a white PC case:O | on:P | Grey:L
+white PC case:O | on:P | Grey carpet:L
+a photo of a woman:O | on:P | the wall:L
+a pink plate:O | in:P | the microwave:L
+a green plate:O | on:P | the table:L
+Apollo ball:O | on:P | the table:L
+a blue play:O | in:P | the middle of:S | the table:L
+Apollo place:O | at:P | the corner of:S | left hand side:S
+apple pie:O | at:P | the middle of:S | the front edge: S
+a pink ball:O | at:P | the centre of:S | the room:L
+a grain bookshelf:O | on:P | the wall:L
+orange seed:O | near:P | yellow table:L
+the plant:O | on:P | the ground:L | this:N
+the case:O | on:P | the ground:L | next to:P | the yellow ball:L
+the frame:O | on:P | the wall:L | above:P | the brown disk:L
+Dennett place:O | inside:P | the microwave:L
+the green plate:O | next to:P | the screwdriver:L
+the perfect ball:O | on:P | the most right side of:S | the round table:L
+the blood plate:O | and:N | the left from corner of:S | the table:L
+the blue plate:O | in:P | front of:S | me:L
+a pink bow:O | in:P | front of:S | me:L
+a green bookshelf:O | at:P | the end of:S | the room:L
+a stew:O | on:P | the left of:S | a yellow table:L
+the plant:O | on:P | the table:L
+the computer tower:O | under:P | the table:L
+the picture:O | on:P | the world:L
+the pink plate:O | in:P | the microwave:L
+the green light:O | on:P | the table:L
+the purple bottle:O | on:P | the table:L
+the blue plate:O | in:P | the center of:S | the table:L
+the blue plate:O | on:P | the left hand side of:S | the table:L
+the pink bull:O | on:P | the floor:L
+the Green Book eyes:O
+the pot plant:O | on:P | the table:L
+the hot drive:O | under:P | the table:L
+the picture of the face:O
+the pink plate:O | in:P | the microwave:L
+the green light:O | next to:P | the blue plate:L
+the principal:O | closest to:P | the raid fight:L
+the blue plate:O | in:P | the middle of:S | the table:L
+the blue light:O | in:P | the corner of:S | the table:L
+the blue place:O | on:P | the edge of:S | the table:L
+the people:O | in:P | the middle of:S | the room:L
+the Green Book Case:O
+the chip:O | to:P | the left of:S | the table:L
+small vase:O | on:P | the table:L
+PC case:O | under:P | the table:L
+portrait:O | on:P | the wall:L | behind:P | the table:L
+heating plates:O | in:P | the microwave:L
+small Queen plate:O | on:P | the table:L
+small purple ball:O | on:P | the table:L
+blue plate:O | in:P | the front edge of:S | the table:L
+big ball:O | in front of:P | the yellow table:L
+Green Book self:O | behind:P | the table:L
+orange chair:O | on:P | the left of:S | the table:L
+the front of:S | the table:L
+the planet:O | on:P | the table:L
+the CPU:O | under:P | the desk:L
+picture:O | on:P | the left:S
+the plate:O | in:P | the microwave:L
+the green plate:O | to:P | the left of:S | the blue play:L
+the green plate:O | to:P | the left of:S | the blue plate:L
+the physical battle:O | to:P | the front right of:S | the table:L
+the purple ball:O | to:P | the front right of:S | the table:L
+the place:O | closest to:P | the center of:S | the table:L
+the place:O | closest to:P | the exact center of:S | the table:L
+the plate:O | to:P | the front of:S | the table:L
+the claim:O | to:P | the center of:S | the table:L
+The Lodge:O | at:P | all:L | in:P | the middle of:S | the room:L
+the Green Book Shelf:O | against:P | the wall:L
+the process:O | to:P | the left of:S | the yellow table:L
+the flower plant:O | on:P | the left side of:S | the table:L
+the computer:O | underneath:P | the table:L
+the picture frame:O | on:P | the left:S | to:P | that picture frame:L
+the plate:O | inside:P | the microwave:L | on:P | the left side:S | of:P | the table:L
+the green light:O | next to:P | the screwdriver:L | at:P | the top of:S | the table:L
+the people:O | on:P | the right side of:S | the table:L
+the people:O | on:P | the right side of:S | the tape:L
+the blue plate:O | in:P | the middle of:S | the table:L
+the blue plate:O | at:P | the left corner:S | from:P | the corner of:S | the table:L
+the blue plate:O | in:P | front of:S | me:L | on:P | this side of:S | the table:L
+the temple:O | in:P | front of:S | a camera:L | in:P | front of:S | the table:L
+the temple:O | in:P | front of:S | a camera:L | in:P | front of:S | the time:L
+the Green Book show:O | on:P | the back wall:L | behind:N
+the store:O | on:P | the left side:S | of:P | the yellow table:L
+the storm:O | on:P | the left side:S | of:P | the yellow table:L
+Caputo flour:O
+the CPU:O | under:P | the table:L
+a picture:O | on:P | the wall:L
+a pink plates:O | in:P | the microwave:L
+a green plate:O | on:P | the table:L
+a purple balls:O
+blue plate:O | in:P | the middle of:S | the table:L
+Blue Plate:O | at:P | the corner of:S | the table:L
+who played:O | at:P | the edge of:S | the table:L
+a purple gym ball:O
+a pink symbol:O
+a green bookshelf:O
+a stool:O
+the plant:O | on:P | the table:L
+the computer:O | under:P | the table:L
+the portrait:O | about:P | the table:L
+the dish:O | in:P | microwave:L
+the green plate:O | near:P | the screwdriver:L
+the purple ball:O | in:P | front of:S | the ball:L
+the blue light:O | in:P | the middle of:S | the table:L
+the big pink ball:O | in:P | the middle of:S | the room:L
+the blue plate:O | in:P | the left corner of:S | the table:L
+the blue plate:O | in:P | front of:S | the table:L
+the pink ball:O | in:P | the middle:S
+the bookshelf:O | in:P | the back of:S | the room:L
+stool:O | on:P | the left of:S | the table:L
+the pot plant:O | on:P | the table:L
+the motherboard:O | underneath:P | the table:L
+the painting of the face:O | above:P | the table:L
+the plate:O | inside:P | the microwave:L
+the green place:O | closest to:P | the screwdriver:L
+the green played:O | closest to:P | the screwdriver:L
+the launch of purple ball:O | towards:P | the right hand edge of:S | the table:L
+the logical ball:O | towards:P | the right hand edge of:S | the table:L
+the blue plate:O | in:P | the middle of:S | the yellow table:L
+Solange Blue Plate:O | to:P | the left of:S | the table:L
+the lodge blue plate:O | to:P | the left of:S | the table:L
+the pink ball:O | in:P | the middle of:S | the room:L
+the lodge green bookshelf:O
+the lodge green bookshelf:O
+the stall:O | closest to:P | the blue drawers:L
+the green plant:O | on:P | the left side of:S | the table:O
+a computer:O | under:P | the table:L  | on:P | the left side:S
+a painting:O | hang:A | on:P | the wall:L
+a painting:O | hang:A | on:P | the wall:L | above:P | the computer:L
+epilate:O | inside:P | the microwave:L
+a green plate:O | on:P | the table:L | beside:P | the screw:L
+the ball:O | on:P | the corner side of:S | the table:L
+it's:A | a plate:O | on:P | the middle of:S | the table:L
+appellate:O | on:P | the left hand side of:S | the table:L
+the poet:O | in:P | front of:S | the table:L
+a pink ball:O | in:P | the middle of:S | the room:L
+big green Bookshop:O | on:P | the middle of:S | the wall:L
+picture:O | on:P | the left hand side of:S | the table:L
+flower pot:O | on:P | the table:L
+the flower pot:O | on:P | the table:L
+the computer:O | under:P | the table:L
+face painting of the woman:O | on:P | the wall:L
+plate:O | in:P | the microwave:L
+the green light:O | next to:P | the blue plate:L
+the green light:O | next to:P | the blue plate:L
+the purple ball:O | on:P | the table:L
+the blue light:O | in:P | the center of:S | the table:L
+the blue light:O | on:P | the left corner of:S | the table:L
+the blue plate:O | in:P | the middle bottom of:S | the table:L
+if:N | pink big ball:O | in:P | the center of:S | the table:L
+a pink big ball:O | in:P | the center of:S | the table:L
+Victorian bookcase:O | next to:P | the Blue Door:L
+the Greens sale:O | in:P | the middle:S | and:N | next to:P | the world:L
+Dubrow chair:O | on:P | the left side up:S | the yellow table:L
+the planter pots:O | in:P | the middle:S | on:P | top of:S | the table:L
+the computer:O | under:P | the table:L
+the picture:O | on:P |  the wall:L
+the red plates:O | in:P | the microwave:O | on:P | the left of:S | the table:L
+the green plates:O | on:P | the back edge of:S | the table:L
+the purple ball:O | on:P | top of:S | the table:L | on:P | the right Edge:S
+the blue plates:O | on:P | top of:S | the table:L | in:P | the middle:S
+the blue plates:O | on:P | the front left Edge:S | on:P | top of:S | the table:L
+the blue plates:O | on:P | the front middle:S | and:P | top of:S | the table:L
+the pink phone:O | in:P | the middle of:S | the room:L | on:P | the floor:L
+the green book case:O | in:P | the middle of:S | the back wall:L
+the Foot Store:O | on:P | the left of:S | the yellow table:L
+indoor plant:O | on:P | table:L
+computer hard drive:O | on:P | floor:L
+framed portrait picture:O | on:P | wall:L
+plate:O | in:P | microwave ovens:L
+green light:O | on:P | table:L
+purple decoration:O | on:P | table:L
+blues place:O | in:P | middle of:S | table:L
+blue light:O | in:P | left hand corner of:S | table:L
+blues place:O | on:P | edge of:S | table:L | in:P | middle:S
+pink old:O | in:P | middle of:S | room:L | on:P | floor:L
+Green bookshelf:O | against:P | wall:L
+mole coffee table:O | next to:P | yellow table:L
+the blonde:O | on:P | the table:L
+the computer:O | under:P| the table:L
+the picture:O | on:P | the wall:L
+the plate:O | inside:P | the oven:L
+the green played:O | close to:P | the blue plate:L
+the purple ball:O | closest to:P | me:L
+the plate:O | at:P | the center of:S | the table:L
+the plate:O | on:P | the bottom left corner of:S | the table:L
+the plate:O | that is:A | closest to:P | me:L
+the pink ball:O | on:P | the floor:L
+the green drawer:O | next to:P | the wall:L
+the chair:O | to:P | the left of:S | the table:L
+a brown spot:O | on:P | the table:L
+a computer:O | under:P | the table:L | on:P | the wall:L
+a ride plate:O | inside:P | the microwave:L
+a green plate:O | on:P | the table:L
+a green plate:O | on:P | the left of:S | a screwdriver:L
+a purple ball:O | on:P | the right of:S | the table:L
+the blue light:O | in:P | the middle area of:S | the table:L
+the blue plate:O | on:P | the nearest left corner of:S | the table:L
+the point:O | on:P | the table:L
+the computer:O | under:P | the table:L
+the picture:O | about:P | the table:L
+the plate:O | in:P | the microwave:L
+the plate:O | on:P | the table:L
+the green plate:O | on:P | the microwave:L
+the green plate:O | on:P | the table:L
+the ball:O | on:P | the table:L
+the plate:O | at:P | the center of:S | the table:L
+the plate:O | on:P | the left side corner of:S | the table:L
+the plate:O | on:P | the edge of:S | the table:L
+the big ball:O | on:P | the floor:L
+the green book rack:O
+the green bookshelf:O
+the sitting stool:O | on:P | the Left:L
+descending store:O | on:P | the left of:S | the yellow table:L
+the part:O | on:P | top of:S | the table:L
+the computer:O | under:P | the table:L
+the painting:O | on:P | the wall:L
+the plate:O | inside:P | the microwave:L	
+the plate:O | on:P | top of:S | the table:L
+the ball:O | on:P | top of:S | the table:L
+the blue plate:O | at:P | the center of:S | the table:L
+the blue plate:O | at:P | the left corner of:S | the table:L
+the blue plate:O | at:P | the front of:S | the table:L
+the pink ball:O | in:P | front of:S | a table:L
+the pink ball:O | at:P | the front of:S | the table:L
+the green cabinet:O | at:P | the end of:S | the table:L
+Brown stool:O | at:P | the left of:S | the table:L
+blonde:O | on:P | top of:S | the table:L
+computer:O | below:P | the table:L
+pizza:O | at:P | the mall:L
+plate:O | in:P | the microwave oven:L
+played:O | next to:P | the screwdriver:L
+ball:O | on:P | top of:S | the table:L
+the played:O | in:P | the middle of:S | the table:L 
+who played:O | in:P | the left corner of:S | the table:L
+the played:O | in:P | the middle:S | in:P | the front of:S | the table:L
+the big pink ball:O | on:P | the floor:L
+the green book shelf:O
+set sail:O | to:P | the left:L | on:P | the timer:L
+define:O | from:P | top of:S | the table:L
+the case:O | underneath:P | the table:L
+the paint:O | on:P | the wall:L
+the plate:O | inside:P | the microwave:L
+the green place:O | next to:P | the screwdriver:L
+the pink ball:O | on:P | top of:S | the table:L
+leave:O | in:P | the middle of:S | the table:L
+the flower:O | on:P | the table:L
+the hardest:O | under:P | the table:L
+the hard disk:O | under:P | the table:L
+the painting:O | on:P | the wall:L | above:P | the table:L
+the plate:O | inside:P | the microwave:L
+the plate:O | on:P | the table:L | next to:P | the screwdriver:L
+the ball:O | further away from:P | the plate:L
+the purple ball:O | further away from:P | the blue plate:L
+the plant:O | in:P | the middle of:S | the table:L
+the plate:O | at:P | the corner of:S | the table:L
+the plate:O | close to:P | the larger side of:S | the table:L
+the pink ball:O | close to:P | the hammer:L
+the green shell:O | behind:P | the table:L
+the store:O | next to:P | the table:L
+the school:O | next to:P | the table:L
+the store:O | next to:P | the table:L
+what plans:O | on:P | the table:L
+what plans:O | on:P | the table:L
+the pot plant:O | on:P | the table:L
+the computer:O | under:P | the table:L
+the picture:O | on:P | the wall:L
+rice:O | in:P | the microwave:L
+the plates:O | in:P | the microwave:L
+the little green light:O
+the little green light:O
+the plates:O | in:p | the middle of:S | the type:L
+the plate:O | in:p | the middle of:S | the table:L
+the plate:O | at:p | the bottom left corner of:S | the table:L
+the place:O | on:P | the bottom edge of:S | the table:L
+the big pink bow:O
+the green book shelf:O 
+the stool:O | to:P | the left of:S | the title:L
+the small pot plant with green leaves and a brown part:O | on:P | the table:L | to the list of:S | the red plant:L
+the small pot plant with green leaves and a brown spot:O | on:P | the table:L | to the left of :S |the red plate:L
+the computer with what casing:O | under:P | the table:L
+the picture of a face:O | on:P | the wall:L | behind:P | the table:L
+the pink plate:O | in:P | the microwave:L
+the pink ball:O | at:P | the right end of:S | the table:L | closer to:P | me:L
+the blue plate:O | in:P | the middle of:S | the table:L
+the blue plates:O | on:P | the edge of:S | the table:L | closest to:P | me:L | near:P | the middle of:S | the table:L
+the pink ball:O | in:P | the middle of:S |the room:L | in:P | front of:S | the hammer:L
+the small green bookcase:O | at:P | the firewall of:S | the room:L
+the small green bookcase:O | at:P | the followers of:S | the room:L
+the small orange stool:O | to:P | the left of :S |the table:L
+dept:N | table:O
+a pink big ball:O |  in:P | the center of:S | the room:L
+the green shell:O | next to:P | the front of:S | wall:L
+the stool:O | next to:P | the yellow table:L
+the small trees:O | on:P | top of:S | the table:L
+the desktop:O | below:P | the table:L
+the picture:O | above:P | the table:L
+app tipping plate:O | inside:P | the microwave:L
+the green LED:O | on:P | the other end of:S | the table:L
+the popemobile:O | close to:P | me:L
+the blue plate:O | at:P | the center of:S | the table:L
+the blue plate:O | on:P | the go the left corner of:S | the table:L
+the blue plate:O | at:P | the center of the front at:S | the table:L
+the lodge bring ball:O | on:P | the floor:L
+the Green Book eyes:O | at:P | the end of:S | the room:L
+the small chat:O | to:P | the left of:S | the title:L
+the planet:O | on:P | the table:L
+the computer case:O | under:P | the table:L
+The Closer portrait:O | on:P | the wall:L
+the plate:O | in:P | the microwave:L
+the green plate:O | on:P | the table:L | in:P | the back:S
+deep purple ball:O | on:P | the table:L | in:P |  front:S
+displayed:O | in:P | the center of :S | other plates:L
+the plate:O | in:P | the far left:S
+dip plate:O | in:P | the far left:S | in:P | front:S
+the left plate:O | in:P | front:S
+the write plate:O | in:P | front:S
+the ball:O | on:P | the floor:L
+dick green couch:O
+did brown chair:O | in:P | the left of :S | the yellow table:L
+did brown chair:O | in:P | front of :S | the blue dollar:L
+what plant:O | on:P | the left hand side of :S | the table:L
+computer:O | under:P | the table:L
+picture:O | on:P | the wall:L | behind:P | the table:L
+the pink plate:O | in:P | the microwave:L
+Green plate:O | on:P | the right hand side of:S | the table:L
+purple ball:O | on:P | the right hand side of:S | the table:L
+blue plate:O | in:P | the center of:S | the table:L
+blue plate:O | in:P | the left hand corner of:S | the table:L
+blue plate:O | at:P | the edge of:S | the table:L
+pink ball:O | near:P | the hammer:L
+Green bookcase:O | against:P | the wall:L
+stool:O | near:P | left hand side of:S | the table:L
+the plant:O | on:P | the table:L
+the tablet case:O | under:P | the table:L
+the picture:O | on:P | the left:S
+who plays:O | in:P | the microwave:L
+the green plate:O | on:P | the southside of:S | the table:L
+distal:O | to:P | the left of the:S | yellow table:L
+the ball:O | closest to:P | me:L
+the place:O | in:P | the middle of:S | the table:L
+the plate:O | in:P | the front left corner:S
+the place:O | closest to:P | me:L
+the Big Bowl:O
+the green book shelf:O
+the chair:O | to:P | the left of:S | the table:L
+the potted plant:O | on:P | the top of:S | the table:L
+the computer case:O | below:P | the deck:L
+the lift painting:O | on:P | the wall:L
+the last painting:O | on:P | the wall:L
+the painting:O | in:P | the middle of:S | the world:L
+the play:O | inside:P | the oven:L
+the plate:O | inside:P | the oven:L
+the green plate:O | on:P | the table:L
+the green plate:O | on:P | the opposite side of:S | the table:L
+the purple ball:O | on:P | top of:S | the table:L
+the plague:O | in:P | the middle of:S | the table:L
+the plate:O | on:P | the left side of:S | the table:L
+the plate:O | on:P | the knee right side of:S | the table:L
+the pink ball:O | in:P | the middle of:S | the floor:L
+the Green Book Case:O | at:P | the opposite wall:L
+the small stool:O | at:P | the left side of:S | the room:L
+blood:O | on:P | the table:L
+computer:O | under:P | the table:L
+Viktor underworld:O
+plate:O | inside:P | the microwave:L
+Halloween blood:O | on:P | the table:L
+Bible:O | on:P | the table:L
+a plot:O | in:P | the middle of:S | the table:L
+applied:O | to:P | the left of:S | the devil:L
+a blade:O | in:P | the rights of:S | the disabled:L
+a bull:O | on:P | the floor:L
+Eileen bookcase:O
+tear:O | on:P | the right side of:S | the table:L
+green plant:O | on:P | the table:L
+computer:O | under:P | the table:L
+picture:O | above:P | the table:L
+the plate:O | inside:P | the microwave:L
+The Clean Plate:O | besides:P | the Blue Plate:L
+the green plate:O | besides:P | the Blue Plate:L
+the purple ball:O | closer to:P | the red plate:L
+the plate:O | close to:P | the middle of:S | the table:L
+the plate:O | on:P | the bottom left corner of:S | the table:L
+the plate:O | in:P | the middle of:S | the bottom edge of:S | the table:L
+the big ball:O
+the green Shelf:O
+replace:O | front left corner of:S | the table:L
+the place:O | on:P | the front page of:S | the paper:L
+the big pink ball:O | in:P | the middle of:S | the room:L
+the bookshelf:O | at:P | the back of:S | the table:L
+the green bookshelf:O | behind: P| the yellow table:L
+the small chair:O | at:P | the left side of:S | the table:L
+the plans:O | on:P | the table:L
+PC:O | left to:S | the ball:L
+the PC:O | left to:S | the ball:L
+the painting:O | on:P | the top of:S | the table:L
+the pink lady:O
+the pink plate:O | inside:P | a microwave:L
+the green page:O | right to:S | the microwave:L
+the green plate:O | right to:S | the microwave:L
+the poem:O | right to:S | the glasses:L
+get laid:O | right:A | on:P | the central of:S | the table:L
+two plane rides:O | under:P | center of:S | the table:L
+get laid:O | right:A| on:P | the center of:S | the table:L
+the plate:O | on:P | the left bottom corner of:S | the table:L
+the big pink ball:O | on:P | the floor:L
+Big green Bookshop:O
+deceit:O | left to:S | the yellow table:L
+it's seat:O | left to:S | the yellow table:L
+green plant:O | on:P | the table:L
+computer desktop:O | under:P | the table:L
+picture frame:O | on:P | the wall:L
+red plate:O | in:P | the microwave:L
+green plate:O | on:P | the table:L
+pinball:O | on:P | the right side corner of:S | the table:L
+blue plate:O | in:P | the center of:S | the table:L
+blue plate:O | in:P | the left corner:S | how to taper:L
+who played:O | in:P | the middle of:S | the table:L | in front of:S | me:L
+big pitbull:O | on:P | the floor:L
+green bookshelf:O | in front of:S | the wall:L
+store:O | on:P | the left of:S | the table:L
+a vice:O | on:P | a table:L
+uppc:O | underneath:P | the table:L
+a black and white picture:O | on:P | the world:L
+a pink blood:O | inside:P | the microwave:L
+a green planet:O | on:P | the table:L
+the purple barn:O | on:P | the table:L
+the blue planet:O | in:P | the center of:S | the table:L
+the blue planet:O | in:P | the left bottom corner of:S | the table:L
+the blue planet:O | in:P | the middle of:S | the longer act of:S | the table:L
+the big pink ball:O | in:P | the middle of:S | the room:L
+the new place exactly:O | on:P | the middle of:S | the table:L
+the flower:O | on:P | the table:L
+the hard disk:O | under:P | the table:L
+and:N | the painting:O | on:P | the wall:L | above:P | the table:L
+the plate:O | inside:P | the microwave:L
+the plate:O | on:P | the table:L | next to:P | the screwdriver:L
+the bullet:O | for their away from:P | the plate:L
+and:N | the purple boat:O | for the wave from:P | the blue plate:L
+the plate:O | in:P | the middle of:S | the table:L
+the plate:O | at:P | the corner of:S | the table:L
+that plate:O | close to:P | the larger side of:S | the tape:L | of:N
+The pink boat:O | close to:P | the hammer:L
+the green shelf:O | behind:P | the table:L
+the storm:O | next to:P | the table:L
+the small car plant with green leaves:O | in:P | a brown caught:L | on:P | the table:L | to:P | the left of:S | the red light:L
+the computer with wide casing:O | under:P | the table:L
+the picture of a face:O | on:P | the wall:L | behind:P | the table:L
+The pink plate:O | in:P | the microwave:L
+the people:O | at:P | the ride into:S | the table:L | closer to:P | me:L
+the blue plate:O | in:P | the middle of:S | the table:L
+the blue plate:O | on:P | the age of:S | the table:L | closest to:P | me:L | near:P | the middle of:S | the table:L
+the pink fold:O | in:P | the middle of:S | the room:L | in:P | front of:S | the hammer:L
+the small green bookcase:O | on:P | the from wolverine:L
+the small Aryan just old:O | to:P | the left of:S | the table:L
+Part:O | on:P | the table:L
+top:O | on:P | that table:L
+data:O | on:P | the table:L
+the computer:O | under:P | the table:L
+the picture:O | above:P | the table:L
+the plate:O | in:P | the microwave:L
+the plate:O | on:P | the table:L
+the green plate:O | on:P | the microwave:L
+the green plate:O | on:P | the table:L
+the babble:O | on:P | the table:L
+the battle:O | on:P | the table:L
+the battle:O | on:P | the table:L
+the plate:O | at:P | the center of:S | the table:L
+the plate:O | on:P | the left side corner of:S | the table:L
+the plate:O | on:P | the edge of:S | the table:L
+the big pat:O | on:P | the flow:L
+the big battle:O | on:P | the floor:L
+did n't green broke rock:O
+the green broker:O | at:N
+the Greenberg shelf:O
+the settings to rule:O | on:P | the left:S
+the siting style:O | on:P | the left of:S | the yellow table:L
+The pot:O | on:P | top of:S | the table:L
+the pot:O | on:P | top of:S | the table:L
+that computer:O | under:P | the table:L
+painting:O | on:P | the wall:L
+that plate:O | inside:P | the microwave:L
+the plate:O | on:P | top of:S | the table:L
+the ball:O | on:P | top of:S | the table:L
+that no plate:O | at:P | the center of:S | the table:L
+that blue plate:O | at:P | the center of:S | the table:L
+the blue plate:O | at:P | the left corner of:S | the table:L
+debate or plate:O | at:P | the left corner of:S | the table:L
+double played:O | at:P | the front of:S | the table:L
+to build played:O | at:P | the front of:S | the table:L
+the paint ball:O | in:P | front of:S | the table:L
+that paint ball:O | at:P | the front of:S | the table:L
+the green cabinet:O | at:P | the end of:S | their own:L
+the Browns tool:O | at:P | the left of:S | the table:L
+to town:O | on:P | top off:S | the table:L
+the computer:O | behind:P | the table:L
+to picture:O | of all:P | the table:L
+That:N | the ship:O | in:P | the microwave:L
+the grand between the issue:O | next to:P | screwdriver:L
+the green beach:O | next to:P | the screwdriver:L
+the bar poll born:O | to:P | the right of:S | the red the SH:L
+the Barbour boiler:O | to:P | the rights of:S | the red beach:L
+the bar full board:O | to:P | the ride of:S | the red the SH:L
+the beach:O | in:P | the center of:S | the table:L
+British:O | in:P | the left corner of:S | the evil:L
+lead the ship:O | in:P | the near the edge of:S | the table:L
+babies being born:O | in:P | front of:S | the table:L
+the green bookcase:O
+this turn:O | to:P | the left of:S | the table:L
+while both:O | on:P | the brown table:L
+the computer:O | under:P | the brown table:L
+picture:O | on:P | the wall:L
+the inside:O | of:P | the microwave:L
+the green played:O | on:P | the brown table:L
+the small local ball:O | on:P | the brown table:L
+to run blue plate:O | on:P | the middle of:S | the loan:L | to:N
+the round blue plate:O | at:P | the middle of:S | the yellow table:L
+the blue plate:O | at:P | that comma of:S | Seattle table:L
+the blue plate:O | that comma of:S | Seattle table:L
+A large bowl:O | near:P | the yellow table:L
+the lunch cream this:O | year:P | the wall:L
+the SMS tool:O | near:P | the year old table:L
+plant:O | on:P | the disk:L
+the computer:O | under:P | the desk:L
+that:N | the chip:O | to:P | the left:S | on:L | the wall:O
+the picture:O | on:P | the wall:L | to:P | the left of:S | the other pitcher:L
+the picture:O | on:P | the wall:L | to:P | the left of:S | the of the picture:L
+The pink plate:O | in:P | the microwave:L
+the smoldering place:O | at:P | the back of:S | the title:L
+For small great place:O | to:P | the opposite side of:S | the title:L
+purple bowl:O | closest to:P | may:L
+the blue plate:O | in:P | the center of:S | the title:L
+the blue plate:O | in:P | the left corner of:S | the title:L
+the blue plate:O | in:P | the left knee a corner of:S | the table:L
+the blue plate:O | years to:P | may:L
+the pig bowl:O | in:P | the middle of:S | the room:L
+the large thing:O | colon:P | the middle of:S | the room:L
+the Greenville place:O | of:P | a far side of:S | the room:L
+the orange tool:O | to:P | the left of:S | the yellow title:L
+up:N | the plant:O | on:P | top of:S | the desk:L
+the computer:O | under:P | the table:L
+the picture:O | on:P | top of:S | the Des:L
+the red light:O | inside:P | the microwave:L
+the green light:O | up:P | the top of:S | the table:L | next to:P | the screwdriver:L
+The plate:O | in:P | the middle of:S | the table:L
+the polite:O | in:P | the bottom left corner:S
+the plate:O | at:P | the bottom:S | to:P | the right:S
+to:N | be pink ball:O | on:P | the floor:L
+of Karen bookcase:O | against:P | the wall:L
+postal:O | next to:P | the Allied table:L | and:A | in:P | front of:S | the blue chest of drawers:L
+the plant:O | on:P | the table:L
+the computer have:O | under:P | the table:L
+the future:O | on:P | the wall:L
+the pink plate:O | in:P | the microwave:L
+the green plate:O | on:P | the table:L
+the meeting to pull:O | on:P | the table:L
+The blue plate:O | in:P | the center of:S | the table:L
+the blue plate:O | on:P | the left hand side of:S | the table:L
+the blue plate:O | to:P | the right of:S | the center of:L | the table:O
+the King bowl:O | on:P | the floor:L
+the green bookcase:O
+the store:O | on:P | the left of:S | the table:L
+the grain plant:O | on:P | top of:S | the table:L
+the computer tower case:O | underneath:P | the table:L
+that picture of the face:O | of all:P | the table:L | on:P | wall:L
+the paint play:O | inside:P | the microwave:L
+the green light:O | at:P | the far side of:S | the table:L | closest to:P | the blue plate:L
+the purple bowl:O | closest to:P | us:L
+The blue plate:O | in:P | the middle of:S | the table:L
+the blue plate:O | in:P | the left corner of:S | the table:L | closest to:P | us:L
+the blue plate:O | and:P | the edge of:S | the table:L | in:P | the middle of:S | the table:L
+the blue table:O | at:P | the closest age two:S | outs:L | in:P | the middle classes edge to:S | us:L | comma:P | table:L
+the blue plate:O | at:P | the time closest age of:S | the table:L | nearest to:P | us:L
+the large round bowl:O | on:P | the floor:L | in:P | the middle of:S | the room:L
+the green bookshelf:O | at:P | the five and also:S | wore off the room:L
+agreed bookshelf:O
+the small table or school:O | next to:P | come:N | to:N | the left of:S | the yellow a large table:L
+the pot plant:O | on:P | the table:L
+the hard drive:O | under:P | of:N | the table:L
+for the peak shell of a face:O
+the kink plate:O | in:P | the:N | the microwave:L
+the green of plate:O | next to:P | the blue plate:L
+the purple or:O | closest to:P | the raid plate:L
+the blue plate:O | in:P | the middle of:S | the table:L
+the blue plate:O | in:P | the corner of:S | the table:L
+the blue plate:O | on:P | the edge of:S | the table:L
+the kinks bowl:O | in:P | the middle of:S | the room:L
+the kinks bowl:O | in:P | the middle of:S | the room:L
+the green:O | at:P | bookcase:L
+the chair:O | to:P | the left of:S | the table:L
+The pot:O | on:P | the table:L
+the computer:O | under:P | the table:L
+the picture:O | on:P | the wall:L
+a plate:O | inside:P | a microwave:L
+the plate:O | to:P | the far side of:S | that table:L
+the ball:O | to:P | the right side of:S | the table:L
+the ball:O | to:P | the right side of:S | the table:L
+the plate:O | in:P | the middle:S | the table:L
+the plate:O | on:P | the left of batch of:S | the table:L
+the plate:O | on:P | the corner of:S | the table:L
+the plate:O | on:P | edge of:S | the table:L
+the ball:O | in:P | the middle of:S | the rule:L
+the ball:O | in:P | the middle of:S | their rule:L
+the ball:O | in:P | the middle of:S | the rule:L
+the book shelf:O | on:P | the far side of:S | the rule:L
+the chair:O | to:P | the left of:S | the table:L
+the chair:O | to:P | the left side of:S | the table:L
+the plant:O | on:P | the table:L
+this CPU:O | under:P | the desk:L
+the picture:O | on:P | the left:S
+the plate:O | in:P | the microwave:L
+the green plate:O | to:P | of:N | them left of:S | the blue plate:L
+the purple battle:O | to:P | the front right of:S | the table:L
+the plate:O | closest to:P | the exec center off:S | to table:L
+the plate:O | to:P | the front left of:S | the table:L
+the plate:O | to:P | the front and center of:S | the table:L
+The large bank ball:O | in:P | the middle:S | the room:L
+the large think ball:O | in:P | the middle of:S | the room:L
+the lodge think ball:O | in:P | the middle of:S | the room:L
+big grain book shelf:O | against:P | the wall:L
+the Brahms stole:O | to:P | the left of:S | the yellow table:L
+the problems stole:O | to:P | the left of:S | the yellow table:L
+The flap:O | on:N | on:P | the left side of:S | the table:L
+the computer:O | underneath:P | the table:L
+that picture frame:O | on:P | the left:S | to:P | lift picture frame:L
+the plate:O | inside:P | the microwave:L | on:P | the left side of:S | the tape:L
+the green played:O | next to:P | the screwdriver:L | at:P | the top of:S | the table:L
+the pink bowl:O | on:P | the right side of:S | the table:L
+the blue plates:O | in:P | the middle of:S | the table:L
+the blue plate:O | at:P | the left corner:S | bracket:N | from:P | corn off:S | the table:L
+and:N | the blue plate:O | in:P | front of:S | me:L | on:P | this side of:S | the table:L
+that lodge been told:O | in:P | front of:S | the hammer:L | in:P | front of:S | the table:L
+the green bookshelf:O | on:P | the firewall:L | be:N
+the stole:O | on:P | the left side of:S | that yellow table:L
+the plant:O | on:P | top of:S | the table:L
+the plant:O | on:P | top of:S | the table:L
+the computer:O | under:P | the table:L
+the computer:O | under:P | the table:L
+the picture:O | of:P | all mobile:L | over:P | the table:L
+but:N | the show:O | over:P | the table:L
+that played:O | inside:P | the microwave:L
+the green played:O | closest to:P | the blue plate:L
+the purple bowl:O | closest to:P | me:L
+The blue plate:O | in:P | the middle of:S | the table:L
+the plate:O | in:P | the middle of:S | the table:L
+bit later:O | on:P | the left button colon:S | a:N
+the plate:O | in:P | the bottom left corner:S
+the plates:O | needed to:P | me:L | in:P | the bottom of:S | the table:L
+the plate:O | that is:A | nearest:P | me:L | in:N | closer to:P | the middle of:S | the table:L
+the plate:O | in:P | the bottom:S | that is:A | closest to:P | me:L | and:A | the middle:S
+that plate:O | in:P | the bottom:S | and is:A | closest to:P | the middle:S
+that think big bowl:O | of:P | its own little:L
+that pink bowl:O | on:P | the floor:L
+big green bookshelf:O | that is:A | at:P | the back of:S | the room:L
+the green bouquets:O
+this tool:O | to:P | the left of:S | the table:L
+this tool:O | that is:A | to:P | the left of:S | the table:L | in:P | front of:S | that you come in to roll:L
+this tool:O | to:P | the left of:S | the year of table:L
+this tool:O | in:P | front of:S | the protest of jurors:L
+the pot plant:O | on:P | the table:L
+the motherboard:O | underneath:P | the table:L
+the painting of the face:O | of love:P | the table:L
+the plate:O | inside:P | the microwave:L
+the green light:O | closest to:P | the screwdriver:L
+the lodge of purple bowl:O | towards:P | the right hand edge of:S | the table:L
+The blue plate:O | in:P | the middle of:S | the yellow table:L
+the lodge believe place:O | to:P | the left of:S | the table:L
+the pink bowl:O | in:P | the middle of:S | the rain:L
+the large grain bookshelf:O
+the store:O | closest to:P | the blue draws:L
+The plant:O | on:P | the table:L
+the computer:O | under:P | the table:L
+or trip:O | above:P | the table:L
+dictation:O | in:P | democracy:L
+a green and plates:O | near:P | the screwdriver:L
+to propel ball:O | in:P | front of:S | the bill:L
+that blue light:O | in:P | the middle of:S | the table:L
+to build a plant:O | in:P | the left corner of:S | table:L
+the blue plate:O | in:P | front of:S | the table:L
+to paint ball:O | into:P | middle:S
+the bookshelf:O | in:P | the back of:S | the room:L
+stole:O | on:P | the left of:S | the table:L
+The planet:O | next to:P | red tape:L | of:N
+the planet:O | next to:P | read the late:L
+the computer:O | under:P | the table:L
+the picture:O | above:P | the table:L
+the plate:O | inside:P | the microwave:L
+the plate:O | next to:P | scholar:L | of:N
+The plate:O | next to:P | a school:L
+that their football:O | in:P | the middle of:S | that table:L
+the plate:O | in:P | the middle of:S | the table:L
+the plate:O | and:P | that if the court and art of:S | the table:L
+the pink battle:O | of:P | the floor:L
+the green cabinet:O | behind:P | the yellow tape:L | will:N
+the plant:O | on:P | the table:L
+the computer box:O | under:P | the table:L
+the photo:O | above:P | the table:L
+The plate:O | in:P | the microwave:L
+the green plate:O | beside:P | the blue plate:L
+the purple ball:O | more in:P | the middle of:S | the table:L
+the plate:O | in:P | the center of:S | the table:L
+the plate:O | on:P | the corner of:S | the table:L
+the plate:O | on:P | the edge:S | in:P | the center:S | on:P | the table:L | closest:P | inning as:L
+the plate:O | on:P | the center and at:S | the table:L | closest to:P | me:L
+the plate:O | on:P | the center page:L | closest to:P | the:L
+the big thing ball:O | on:P | the floor:L
+the big paint ball:O | on:P | the floor:L
+the big pink ball:O | on:P | the floor:L
+the green cabinet:O
+this still:O | to:P | the left of:S | the yellow table:L
+this tool:O | to:P | the left of:S | the yellow table:L
+this tool:O | to:P | the left of:S | the yellow table:L
+flower pot:O | on:P | the table:L
+the flowerpot:O | on:P | the table:L
+the computer:O | on:N | that:N | under:P | the table:L
+the computer:O | and:N | under:P | the table:L
+the computer:O | under:P | the table:L
+flays painting of the woman:O | on:P | the wall:L
+face painting off of all man:O | on:P | the well:L
+face painting off of woman:O | on:P | the well:L
+Plate:O | in:P | the microwave:L
+degree in applied:O | next to:P | him:L | are:N
+the green played:O | next to:P | him:L | are:N
+the green play:O | next to:P | build played:L
+the green play:O | next to:P | a new played:L
+the purple bile:O | on:P | the table:L
+the purple ball:O | on:P | the table:L
+that:N | the new played:O | in:P | the center of:S | the table:L
+debut played:O | in:P | the center of:S | the table:L
+that drew:O | behind:P | in:N | the center off:S | the table:L
+the blue plate:O | on:P | the left corner of:S | the table:L
+that drew a blank:O | in:P | the middle bottom of:S | the table:L
+that:N | the new plight:O | in:P | the middle bottom of:S | the table:L
+that:N | the night:O | in:P | the middle bottom of:S | the table:L
+a think big battle:O | in:P | the center of:S | the table:L
+a pink big battle:O | in:P | the center of:S | the room:L
+up think of battle:O | in:P | the center of:S | the room:L
+the green shelf:O | next to:P | the front of well:L
+the green shelf:O | next to:P | the fund will:L
+the stool:O | next to:P | the yellow table:L
+and:N | the plant:O | on:P | the table:L
+the computer case:O | under:P | the table:L
+and:N | the details a portrait:O | on:P | the wall:L
+that plate:O | in:P | the microwave:L
+victory:O | in:P | plate:L | on:P | the table:L | in:P | the back:S
+the purple bowl:O | on:P | the table:L | in:P | front:S
+and:N | the plate:O | in:P | the center of:S | other traits:L
+the parade:O | in:P | the far left:S
+the plate:O | in:P | the far left:S | in:P | front:S
+the lift plate:O | in:P | front:S
+their rights plate:O | in:P | front:S
+the pocket:O | on:P | the floor:L
+they 've been couch:O
+that brown shared:O | in:P | the next of:S | the utility bill:L
+the brown chair:O | in:P | front of:S | the blue driver:L
+but:N | the land:O | on:P | the left hand side of:S | the table:L
+computer:O | under:P | the table:L
+picture:O | on:P | the war:L | behind:P | the table:L
+Bank plate:O | in:P | the microwave:L
+grain plate:O | on:P | the right hand side of:S | the table:L
+level board:O | on:P | the right hand side of:S | the table:L
+blue plate:O | in:P | the center of:S | the table:L
+blue plate:O | in:P | the left hand corner of:S | the table:L
+blue plate:O | in:P | the left hand corner of:S | the table:L
+until played:O | at:P | the edge of:S | the table:L
+bank board:O | near:P | the Hamill:L
+green bookcase:O | against:P | the wall:L
+stool:O | of:N | near:P | the left hand side of:S | the table:L
+think what planned:O | on:P | that a:L
+big box:O | under:P | that:L
+the picture:O | of:P | the that:L
+the plate:O | inside:P | the microwave oven:L
+in green play:O | to:P | the brought:S | them:L
+the planes:O | and:P | the center of:S | the:L
+that plays:O | at:P | the bottom left corner:S | will:L
+good place:O | at:P | the center for:S
+that paints they 're:O
+the green books show:O
+this tool:O | to:P | them after:S | that I:L
+departed plant:O | on:P | top of:S | the table:L
+the computer case:O | below:P | that this:L
+guy left painting:O | on:P | the wall:L
+that painting:O | in:P | the middle of:S | the wall:L
+the plate:O | inside:P | the oven:L
+and:N | green plate:O | on:P | the table:L
+the green light:O | to:N | on:P | the opposite side of:S | that table:L
+the purple ball:O | on:P | the top of:S | the table:L
+the plate:O | in:P | the middle of:S | the table:L
+the plate:O | on:P | the left side of:S | the table:L
+the plate:O | on:P | the road near the right side of:S | the table:L
+The think bowl:O | in:P | the middle of:S | the floor:L
+and:N | green bookcase:O | at:P | the opposite wall:L
+period:N | The small schools:O | at:P | the left side of:S | the room:L
+the park plant:O | on:P | top of:S | the table:L
+the hot plant:O | on:P | top of:S | the table:L
+the plant:O | on:P | top of:S | the table:L
+the computer:O | under:P | the table:L
+the white computer:O | under:P | the table:L
+the portrait:O | on:P | the wall:L | above:P | the table:L
+The think plight:O | inside:P | the microwave:L
+King plate:O | inside:P | the mine microwave:L
+the pink plight:O | inside:P | the microwave:L
+the green plate:O | at:P | the back of:S | the table:L
+the green light:O | at:P | the back of:S | the table:L
+the green plate:O | at:P | the back of:S | the table:L
+the purple pool:O | at:P | the right into of:S | the table:L
+the purple bowl:O | at:P | the right end of:S | the table:L
+the blue plate:O | in:P | the center of:S | the table:L
+the blue plate:O | in:P | the left front corner of:S | the table:L
+the bloop light:O | at:P | the front of:S | the table:L
+the blue plate:O | at:P | the front of:S | the table:L
+the pink pool:O | in:P | the front of:S | the table:L
+that think bowl:O | in:P | the front of:S | the table:L
+the pink bowl:O | it:N | at:P | the front of:S | the table:L
+that pink bowl:O | at:P | the front of:S | the ten table:L
+the green bullpen ace:O | behind:P | the table:L
+the green bookcase:O | behind:P | the table:L
+the small brown stole:O | at:P | the lift of:S | the table:L
+the small brown stole:O | at:P | the lift of:S | the table:L
+The pattern:O | the table:L
+the computer:O | under:P | the table:L
+the:N | the chill:O | on:P | the wall:L | above:P | the table:L
+the plate:O | in:P | the microwave:L
+this small green bracket eight:O
+to pay a pro bowl:O
+the couple ball:O | near:P | the red three eight:L
+that great:O | in:P | that made all of:S | the desk:L
+and:N | the parade:O | to:N | at:P | the Cornell of:S | the best:L
+in:N | the parade:O | that:P | the ballroom of:S | the best:L
+the big pink about:O
+did during bad case:O
+they still:O | to:P | the left of:S | the table:L
