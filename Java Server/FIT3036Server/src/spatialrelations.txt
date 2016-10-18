@@ -11,6 +11,7 @@ define concept location_on:Location_R
 	called+= on_top_of
 	called+= at_top_of
 	called+= on_top
+	called+= on_the
 
 define concept location_under:Location_R
 	description += e.g. The book is under LOCATION
