@@ -53,9 +53,11 @@ public class Writer {
 		out.println(attributes[11]);
 		out.println(attributes[12]);
 		out.println(attributes[13]);
-		out.println();
-		out.println();
 		out.println(attributes[14]);
+		out.println(attributes[15]);
+		out.println();
+		out.println();
+		out.println(attributes[16]);
 		out.close();
 		} catch (IOException e){
 			e.printStackTrace();
