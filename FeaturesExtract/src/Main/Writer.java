@@ -19,7 +19,7 @@ public class Writer {
 			 "@ATTRIBUTE\tIS_PW\t{no-pw,yes-pw}",
 			 "@ATTRIBUTE\tIS_PP\t{no-pp,yes-pp}",
 			 "@ATTRIBUTE\tIS_STOP\t{no-stop,yes-stop}",
-			 "@ATTRIBUTE\tFIRST_THE\t{0,1}",
+			 "@ATTRIBUTE\tIS_FIRST\t{no-first,yes-first}",
 			 "@ATTRIBUTE\tTHE_PW\t{0,1}",
 			 "@ATTRIBUTE\tRELATIVE_POS\tNUMERIC",
 			 "@ATTRIBUTE\tPWOF\t{no-pwof,yes-pwof}",

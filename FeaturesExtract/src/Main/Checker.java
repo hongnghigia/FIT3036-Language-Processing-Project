@@ -18,6 +18,7 @@ public class Checker {
 	IS_PP isPP = new IS_PP();
 	IS_STOP isStop = new IS_STOP();
 	FIRST_THE firstThe = new FIRST_THE();
+	IS_FIRST isFirst = new IS_FIRST();
 	THE_PW thePw = new THE_PW();
 	RELATIVE_POS relativePos = new RELATIVE_POS();
 	PWOF pwOf = new PWOF();
@@ -35,7 +36,8 @@ public class Checker {
 		features.add(isPP);
 		features.add(isStop);
 		features.add(firstThe);
-		features.add(thePw);
+		features.add(isFirst);
+//		features.add(thePw);
 		features.add(relativePos);
 		features.add(pwOf);
 		features.add(nnp);
