@@ -168,10 +168,14 @@ public class Setup {
 						toCheck[5] = "1,";
 					}
 					
+					toCheck[6] = Integer.toString(ppcounter);
 					if (pplist.contains(line.get(i)) && ppcounter == 0){
 						toCheck[6] = "0,";
 						ppcounter += 1;
-					} else {
+					}
+					else if (ppcounter == 0){
+						toCheck[6] = "0,";
+					} else if (ppcounter > 0){
 						toCheck[6] = "1,";
 					}
 					

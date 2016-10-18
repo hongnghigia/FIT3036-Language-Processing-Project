@@ -10,8 +10,6 @@ public class FIRST_THE extends Feature{
 	
 	@Override
 	public void execute(String[] aWord) {
-		if (aWord[0].equals("the")){
-			this.write(aWord[5]);
-		}
+		this.write(aWord[5]);
 	}
 }
