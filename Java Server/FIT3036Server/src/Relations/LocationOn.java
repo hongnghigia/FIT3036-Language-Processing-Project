@@ -82,6 +82,6 @@ public class LocationOn extends Topological {
 				return overlapRatio;
 			}
 		}
-		return 0.0;
+		return 0.001;
 	}
 }

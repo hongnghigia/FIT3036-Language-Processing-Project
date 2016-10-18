@@ -16,6 +16,8 @@ public class LocationIn extends Topological {
 	double objVolume;
 	double insideVolume;
 	
+	double score;
+	
 	@Override
 	public double evaluate(ICGNode obj, ICGNode lm) {
 		objVolume = obj.getW() * obj.getD() * obj.getH();
@@ -72,6 +74,12 @@ public class LocationIn extends Topological {
 		insideVolume = planeX * planeY * planeZ;
 		
 		// volume of the inside part of the object divide with its full volume
-		return insideVolume / objVolume;
+		score = insideVolume / objVolume;
+		if (score <= 0.0) {
+			return 0.001;
+		}
+		else {
+			return score;
+		}
 	}
 }
