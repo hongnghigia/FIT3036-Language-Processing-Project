@@ -195,7 +195,7 @@ public class ProjectiveBack extends Projective {
 		}
 		
 		// calculate the XY distance using pythagoras
-		D = Math.hypot(Math.abs(centerXO - backX), centerYO - backY);
+		D = Math.hypot(Math.abs(centerXO - backX), Math.abs(centerYO - backY));
 		
 		// calculate score
 		score = Math.pow(Math.E, ((-0.5 + (-0.5 * distZ)) * D));

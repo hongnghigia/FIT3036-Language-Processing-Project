@@ -194,7 +194,7 @@ public class ProjectiveRight extends Projective{
 		}
 		
 		// calculate the XY distance using pythagoras
-		D = Math.hypot(Math.abs(centerXO - rightX), centerYO - rightY);
+		D = Math.hypot(Math.abs(centerXO - rightX), Math.abs(centerYO - rightY));
 		
 		// calculate score
 		score = Math.pow(Math.E, ((-0.5 + (-0.5 * distZ)) * D));
