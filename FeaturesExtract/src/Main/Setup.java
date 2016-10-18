@@ -150,7 +150,7 @@ public class Setup {
 				int counter = 0;
 				int ppcounter = 0;
 				for (int i = 0; i < line.size(); i++) {
-					String[] toCheck = new String[6];
+					String[] toCheck = new String[7];
 					toCheck[0] = line.get(i);
 					if (i == (line.size() - 1)) {
 						toCheck[1] = null;
