@@ -3,10 +3,12 @@ package Relations;
 import UCG.ICGNode;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 public class ProjectiveFront extends Projective{
-	Point point1, point2, point3, point4;
-	Point pointA, pointB, pointC, pointD;
+	Point2D.Double point1, point2, point3, point4;
+	Point2D.Double pointA, pointB, pointC, pointD;
 	double distance;
 	double eval;
 	double multiplier = 1;
@@ -29,16 +31,17 @@ public class ProjectiveFront extends Projective{
 		midEdgeY = 0;
 		
 		// speaker coordinates
-		Point speakerPoint = new Point();
+		Point2D.Double speakerPoint = new Point2D.Double();
 		speakerPoint.setLocation(midSX, midSY);
 		
-		Point objpoint = new Point();
+		Point2D.Double objpoint = new Point2D.Double();
 		objpoint.setLocation(objmidX, objmidY);
 		
-		point1 = new Point();
-		point2 = new Point();
-		point3 = new Point();
-		point4 = new Point();
+		point1 = new Point2D.Double();
+		point2 = new Point2D.Double();
+		point3 = new Point2D.Double();
+		point4 = new Point2D.Double();
+		
 		double angle = toDegree(lm.getAngle());
 		if(lm.hasFace()){
 			if (angle == 0){
@@ -172,16 +175,16 @@ public class ProjectiveFront extends Projective{
 			//        |
 			//        D
 			// ------------------
-			pointA = new Point();
+			pointA = new Point2D.Double();
 			pointA.setLocation(lm.getMinX(), lm.getD()/2 + lm.getMinY());
 			
-			pointB = new Point();
+			pointB = new Point2D.Double();
 			pointB.setLocation(lm.getMaxX(), lm.getD()/2 + lm.getMinY());
 			
-			pointC = new Point();
+			pointC = new Point2D.Double();
 			pointC.setLocation(lm.getW()/2 + lm.getMinX(), lm.getMinY());
 			
-			pointD = new Point();
+			pointD = new Point2D.Double();
 			pointD.setLocation(lm.getW()/2 + lm.getMinX(), lm.getMaxY());
 			
 			double scoreAB = determinantScore(pointA, pointB, objpoint);
@@ -218,7 +221,6 @@ public class ProjectiveFront extends Projective{
 		}
 		distance = Math.sqrt(Math.pow(Math.abs(objmidX - midEdgeX), 2) + Math.pow(Math.abs(objmidY - midEdgeY), 2) + Math.pow(Math.abs(objmidZ - distZ), 2));
 		
-		System.out.println(lm.getValue() + " " + Double.toString(distance) + " " + multiplier);
 		eval = score(Math.abs(distance), multiplier);
 		return eval;
 	}
@@ -228,13 +230,13 @@ public class ProjectiveFront extends Projective{
 		return result;
 	}
 	
-	private double determinantScore(Point a, Point b, Point c){
-		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
+	private double determinantScore(Double pointA, Double pointB, Double objpoint){
+		return Math.signum(((pointB.getX() - pointA.getX()) * (objpoint.getY() - pointA.getY())) - ((pointB.getY() - pointA.getY()) * (objpoint.getX() - pointA.getX())));
 	}
 	
-	private boolean isFront(Point p1, Point p2, Point p3, Point p4, Point ob){
-		double s14 = determinantScore(p1, p4, ob);
-		double s23 = determinantScore(p2, p3, ob);
+	private boolean isFront(Double point12, Double point22, Double point32, Double point42, Double objpoint){
+		double s14 = determinantScore(point12, point42, objpoint);
+		double s23 = determinantScore(point22, point32, objpoint);
 		
 		if (s14 == 1 && s23 == 1){
 			return true;

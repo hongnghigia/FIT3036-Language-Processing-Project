@@ -1,12 +1,14 @@
 package Relations;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 import UCG.ICGNode;
 
 public class ProjectiveLeft extends Projective{
-	Point point1, point2, point3, point4;
-	Point pointA, pointB, pointC, pointD;
+	Point2D.Double point1, point2, point3, point4;
+	Point2D.Double pointA, pointB, pointC, pointD;
 	double distance;
 	double eval;
 	double multiplier;
@@ -26,16 +28,16 @@ public class ProjectiveLeft extends Projective{
 		midEdgeX = 0;
 		midEdgeY = 0;
 		// speaker coordinates
-		Point speakerPoint = new Point();
+		Point2D.Double speakerPoint = new Point2D.Double();
 		speakerPoint.setLocation(midSX, midSY);
 		
-		Point objpoint = new Point();
+		Point2D.Double objpoint = new Point2D.Double();
 		objpoint.setLocation(objmidX, objmidY);
 		
-		point1 = new Point();
-		point2 = new Point();
-		point3 = new Point();
-		point4 = new Point();
+		point1 = new Point2D.Double();
+		point2 = new Point2D.Double();
+		point3 = new Point2D.Double();
+		point4 = new Point2D.Double();
 		double angle = toDegree(lm.getAngle());
 		
 		if(lm.hasFace()){
@@ -182,13 +184,13 @@ public class ProjectiveLeft extends Projective{
 		return result;
 	}
 
-	private double determinantScore(Point a, Point b, Point c){
-		return Math.signum(((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX())));
+	private double determinantScore(Double point1, Double point2, Double objpoint){
+		return Math.signum(((point2.getX() - point1.getX()) * (objpoint.getY() - point1.getY())) - ((point2.getY() - point1.getY()) * (objpoint.getX() - point1.getX())));
 	}
 
-	private boolean isLeft(Point p1, Point p2, Point p3, Point p4, Point ob){
-		double s14 = determinantScore(p1, p4, ob);
-		double s23 = determinantScore(p2, p3, ob);
+	private boolean isLeft(Double point1, Double point2, Double point3, Double point4, Double objpoint){
+		double s14 = determinantScore(point1, point4, objpoint);
+		double s23 = determinantScore(point2, point3, objpoint);
 		
 		if (s14 == 1 && s23 == -1){
 			return true;
