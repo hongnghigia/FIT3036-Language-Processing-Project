@@ -146,7 +146,6 @@ define concept location_inbackof_off:Location_R
 	implementation=check_location(Parent,Child)
 	called+=in_back_of
 	called+=at_back_of
-	called+=behind
 	called+=in_position_of
 	called+=at_position_of
 
@@ -224,3 +223,9 @@ define concept location_far:Location_R
 	called+=farther_away_from
 	called+=further_from
 	called+=further_away_from
+
+define concept location_behind:Location_R
+	description += e.g. The book is behind LOCATION
+	implementation=check_location(Parent,Child)
+	called+=behind
+	called+=beyond
