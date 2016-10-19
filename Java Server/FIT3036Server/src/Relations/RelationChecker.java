@@ -91,11 +91,11 @@ public class RelationChecker {
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_on") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheedgeof_off")){
-			return relations.get(0).evaluate(obj, lm);
+			return relations.get(5).evaluate(obj, lm);
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_off") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_inthecornerof_on")){
-			return relations.get(1).evaluate(obj, lm);
+			return relations.get(6).evaluate(obj, lm);
 		}
 		else if (relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_on") || 
 				relationsDict.getSynonym(arc).equalsIgnoreCase("location_attheendof_off")){

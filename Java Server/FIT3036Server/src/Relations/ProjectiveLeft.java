@@ -97,7 +97,7 @@ public class ProjectiveLeft extends Projective{
 			if (isLeft(point1, point2, point3, point4, objpoint)){
 				multiplier = 1;
 			} else {
-				multiplier = 0.5;
+				multiplier = 0.2;
 			}
 		}
 		else if (!lm.hasFace()){

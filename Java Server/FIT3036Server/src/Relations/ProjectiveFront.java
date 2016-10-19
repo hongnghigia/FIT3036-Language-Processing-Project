@@ -9,7 +9,7 @@ public class ProjectiveFront extends Projective{
 	Point pointA, pointB, pointC, pointD;
 	double distance;
 	double eval;
-	double multiplier;
+	double multiplier = 1;
 	double distZ;
 	double midEdgeX;
 	double midEdgeY;
@@ -146,7 +146,7 @@ public class ProjectiveFront extends Projective{
 			} else if (score14 == -1 && score23 == 1) { // Right quadrant
 				midEdgeX = lm.getMaxX();
 				midEdgeY = lm.getD()/2 + lm.getMinY();
-				if(objscore14 == -1 && objscore23 == -1){ // if the object is also in the same quadrant as speaker
+				if(objscore14 == -1 && objscore23 == 1){ // if the object is also in the same quadrant as speaker
 //					distance = Math.hypot(objmidX - midEdgeX, objmidY - midEdgeY);
 					multiplier = 1;
 				} else {
@@ -218,13 +218,13 @@ public class ProjectiveFront extends Projective{
 		}
 		distance = Math.sqrt(Math.pow(Math.abs(objmidX - midEdgeX), 2) + Math.pow(Math.abs(objmidY - midEdgeY), 2) + Math.pow(Math.abs(objmidZ - distZ), 2));
 		
-		System.out.println(lm.getValue() + " " + Double.toString(distance));
-		eval = score(Math.abs(distance), distZ, multiplier);
+		System.out.println(lm.getValue() + " " + Double.toString(distance) + " " + multiplier);
+		eval = score(Math.abs(distance), multiplier);
 		return eval;
 	}
 	
-	private double score(double D, double Z, double M){
-		double result = Math.pow(Math.E, (-0.5 * D) * M);
+	private double score(double D, double M){
+		double result = Math.pow(Math.E, (-0.5 * D)) * M;
 		return result;
 	}
 	
