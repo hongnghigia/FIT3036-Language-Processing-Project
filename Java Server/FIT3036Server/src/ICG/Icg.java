@@ -31,7 +31,7 @@ public class Icg {
 			branchingGraph();
 			}
 
-		System.out.println("Instantiated Concept Graphs");
+		System.out.println("#INSTANTIATED CONCEPT GRAPHS");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(icgs));
 		return icgs;
@@ -97,6 +97,10 @@ public class Icg {
 	}
 	
 	public void straightGraph(){
+		if (objects.size() == 0) {
+			return;
+		}
+		
 		if(relations.size() > 1){
 			for (Node o : objects){
 				for (Node l : landmarks1){

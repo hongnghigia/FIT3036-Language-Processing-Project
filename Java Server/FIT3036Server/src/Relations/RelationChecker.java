@@ -42,22 +42,35 @@ public class RelationChecker {
 	}
 	
 	public String getBestIcg(ArrayList<Node> icgs, ICGNode speaker) {
+		if (icgs.size() == 0) {
+			System.out.println("\nCould not generate any ICGs for the given sentence...");
+			return "warning1_Cannot find that object...";
+		}
+		
 		ArrayList<Double> scores = new ArrayList<Double>();
 		double score;
-		for (Node o : icgs) {
-			score = 0.0;
-			if (o.hasChild()) {
-				for (Node a : o.getChildren()) {
-					score += getRelationScore((ICGNode) o, (ICGNode) a.getFirstChild(), a.getValue(), speaker);
-					if (a.getFirstChild().hasChild()) {
-						Node a2 = a.getFirstChild().getFirstChild();
-						score += getRelationScore((ICGNode) a.getFirstChild(), (ICGNode) a2.getFirstChild(), a2.getValue(), speaker);
-					}
-				}
-			}
-			System.out.println("\nScore for " + o.getValue() + ":");
+		if (icgs.size() == 1 && icgs.get(0).getChildren().size() == 0) {
+			score = 1.0;
+			System.out.println("\nScore for " + icgs.get(0).getValue() + ":");
 			System.out.println(score);
 			scores.add(score);
+		}
+		else {
+			for (Node o : icgs) {
+				score = 0.0;
+				if (o.hasChild()) {
+					for (Node a : o.getChildren()) {
+						score += getRelationScore((ICGNode) o, (ICGNode) a.getFirstChild(), a.getValue(), speaker);
+						if (a.getFirstChild().hasChild()) {
+							Node a2 = a.getFirstChild().getFirstChild();
+							score += getRelationScore((ICGNode) a.getFirstChild(), (ICGNode) a2.getFirstChild(), a2.getValue(), speaker);
+						}
+					}
+				}
+				System.out.println("\nScore for " + o.getValue() + ":");
+				System.out.println(score);
+				scores.add(score);
+			}
 		}
 		
 		double bestScore = 0;

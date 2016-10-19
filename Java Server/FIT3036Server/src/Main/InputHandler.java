@@ -12,7 +12,6 @@ import weka.core.Instances;
 import ICG.*;
 import Relations.RelationChecker;
 
-import UCG.*;
 public class InputHandler {
 	
 	private Setup su;
@@ -53,14 +52,14 @@ public class InputHandler {
 					allSentences.add(s);
 				}
 				chosenString = allSentences.get(0);
-				System.out.println("\nReceived: " + received);
-				System.out.println("Chosen: " + chosenString);
+				System.out.println("\nReceived: " + received[1]);
+				System.out.println("Chosen: " + chosenString + "\n");
 			}
 			
 			// received sentence via text
 			else {
 				chosenString = received[1];
-				System.out.println("\nReceived: " + chosenString);
+				System.out.println("\nReceived: " + chosenString + "\n");
 			}
 			
 			// put words of chosenString into array list
@@ -104,9 +103,11 @@ public class InputHandler {
 				tags.add(unlabelled.classAttribute().value((int) clsLabel));
 			}
 			
+			System.out.println("#TAGS");
 			for (String t : tags) {
 				System.out.println(t);
 			}
+			System.out.println();
 			
 			// clear the arff file
 			PrintWriter pw = new PrintWriter("unlabelled.arff");

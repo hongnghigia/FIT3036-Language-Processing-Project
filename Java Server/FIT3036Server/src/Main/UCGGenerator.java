@@ -62,9 +62,10 @@ public class UCGGenerator {
 				}
 			}
 		}
-		System.out.println("Uninstantiated Concept Graphs");
+		System.out.println("#UNINSTANTIATED CONCEPT GRAPHS");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(graphs));
+		System.out.println();
 		
 		return graphs;
 	}
