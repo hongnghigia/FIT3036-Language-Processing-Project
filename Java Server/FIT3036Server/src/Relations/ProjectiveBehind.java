@@ -1,12 +1,12 @@
 package Relations;
 
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 import UCG.ICGNode;
 
 public class ProjectiveBehind extends Projective{
 	private double centerXS, centerYS, centerXO, centerYO, centerXL, centerYL;
-	private Point point1, point2, point3, point4;
+	private Point2D.Double point1, point2, point3, point4;
 	private double aX, aY, bX, bY, cX, cY, dX, dY;
 	private double determinant1, determinant2, determinant3, determinant4;
 	private String locationSpeaker;
@@ -32,17 +32,17 @@ public class ProjectiveBehind extends Projective{
 		centerYL = lm.getMinY() + (lm.getD() * 0.5);
 		
 		// speaker coordinates
-		Point speakerPoint = new Point();
+		Point2D.Double speakerPoint = new Point2D.Double();
 		speakerPoint.setLocation(centerXS, centerYS);
 		
 		// object coordinates
-		Point objpoint = new Point();
+		Point2D.Double objpoint = new Point2D.Double();
 		objpoint.setLocation(centerXO, centerYO);
 		
-		point1 = new Point();
-		point2 = new Point();
-		point3 = new Point();
-		point4 = new Point();
+		point1 = new Point2D.Double();
+		point2 = new Point2D.Double();
+		point3 = new Point2D.Double();
+		point4 = new Point2D.Double();
 		double angle = toDegree(lm.getAngle());
 		if(lm.hasFace()){
 			if (angle == 0){
@@ -259,11 +259,11 @@ public class ProjectiveBehind extends Projective{
 		return false;
 	}
 	
-	private double determinantScore(Point a, Point b, Point c){
+	private double determinantScore(Point2D.Double a, Point2D.Double b, Point2D.Double c){
 		return ((b.getX() - a.getX()) * (c.getY() - a.getY())) - ((b.getY() - a.getY()) * (c.getX() - a.getX()));
 	}
 	
-	private boolean isBackFace(Point p1, Point p2, Point p3, Point p4, Point ob){
+	private boolean isBackFace(Point2D.Double p1, Point2D.Double p2, Point2D.Double p3, Point2D.Double p4, Point2D.Double ob){
 		double s14 = determinantScore(p1, p4, ob);
 		double s23 = determinantScore(p2, p3, ob);
 		
