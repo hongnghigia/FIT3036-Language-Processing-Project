@@ -62,8 +62,9 @@ public class UCGGenerator {
 				}
 			}
 		}
-//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//		System.out.println(gson.toJson(graphs));
+		System.out.println("Uninstantiated Concept Graphs");
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		System.out.println(gson.toJson(graphs));
 		
 		return graphs;
 	}

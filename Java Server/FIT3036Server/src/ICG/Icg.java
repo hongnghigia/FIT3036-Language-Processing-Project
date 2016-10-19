@@ -31,6 +31,7 @@ public class Icg {
 			branchingGraph();
 			}
 
+		System.out.println("Instantiated Concept Graphs");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		System.out.println(gson.toJson(icgs));
 		return icgs;
@@ -92,8 +93,6 @@ public class Icg {
 					landmarks2.add(i);
 				}
 			}
-			
-			System.out.println(landmarks1.toString());
 		}
 	}
 	

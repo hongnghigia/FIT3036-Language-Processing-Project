@@ -217,12 +217,14 @@ public class ProjectiveFront extends Projective{
 			distZ = 0;
 		}
 		distance = Math.sqrt(Math.pow(Math.abs(objmidX - midEdgeX), 2) + Math.pow(Math.abs(objmidY - midEdgeY), 2) + Math.pow(Math.abs(objmidZ - distZ), 2));
+		
+		System.out.println(lm.getValue() + " " + Double.toString(distance));
 		eval = score(Math.abs(distance), distZ, multiplier);
 		return eval;
 	}
 	
 	private double score(double D, double Z, double M){
-		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
+		double result = Math.pow(Math.E, (-0.5 * D) * M);
 		return result;
 	}
 	

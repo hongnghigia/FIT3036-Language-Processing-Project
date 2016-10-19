@@ -178,7 +178,7 @@ public class ProjectiveLeft extends Projective{
 	}
 	
 	private double score(double D, double Z, double M){
-		double result = Math.pow(Math.E, (-0.5 + (-0.5 * Z)) * D) * M;
+		double result = Math.pow(Math.E, (-0.5 * D)) * M;
 		return result;
 	}
 
