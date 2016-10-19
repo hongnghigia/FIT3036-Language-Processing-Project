@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -258,6 +259,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean highlightObject() {
+        if (item.contains("warning1_")) {
+            String[] warning = item.split("_");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(warning[1]);
+            AlertDialog alert = builder.create();
+            alert.show();
+            return true;
+        }
         switch(currentImage) {
             case "image1.kb":
                 switch(item) {
