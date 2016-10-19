@@ -82,12 +82,19 @@ public class Icg {
 			}
 		// putting each landmarks to its respected list, i.e table1, table2 go to "table" list.
 		if (tmpLM.size() != 0) {
+			String l;
 			String str = tmpLM.get(0).getValue();
 			String[] testStr = str.split("\\_");
-			testStr[1] = testStr[1].replaceAll("[^A-Za-z]", "");
+			if (testStr.length > 1) {
+				testStr[1] = testStr[1].replaceAll("[^A-Za-z]", "");
+				l = testStr[1];
+			}
+			else {
+				l = testStr[0];
+			}
 			for (Node i : tmpLM){
 				String tmp = i.getValue();
-				if (tmp.toLowerCase().contains(testStr[1])){
+				if (tmp.toLowerCase().contains(l)){
 					landmarks1.add(i);
 				} else {
 					landmarks2.add(i);
