@@ -82,7 +82,6 @@ public class LocationIn extends Topological {
 		
 		
 		insideVolume = planeX * planeY * planeZ;
-		System.out.println(insideVolume);
 		// volume of the inside part of the object divide with its full volume
 		score = insideVolume / objVolume;
 		if (score <= 0.0) {
