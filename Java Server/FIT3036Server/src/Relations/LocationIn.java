@@ -28,7 +28,7 @@ public class LocationIn extends Topological {
 		if (obj.getMinX() >= lm.getMinX() && obj.getMaxX() <= lm.getMaxX()){
 			planeX = obj.getW();
 			// checking Y plane
-			// if object is inside the Y plane of lm 
+			// if object is inside the Y plane of lmz
 			if (obj.getMinY() >= lm.getMinY() && obj.getMaxY() <= lm.getMaxY()){
 				planeY = obj.getD();
 				// checking Z plane
@@ -70,9 +70,19 @@ public class LocationIn extends Topological {
 
 		}
 		
+		if (obj.getMinX() < lm.getMinX() || obj.getMaxX() > lm.getMaxX()){
+			if (obj.getMinY() <lm.getMinY() || obj.getMaxY() > lm.getMaxY()){
+				if (obj.getMinZ() < lm.getMinZ() || obj.getMaxZ() > lm.getMaxZ()) {
+					planeX = 0;
+					planeY = 0;
+					planeZ = 0;
+				}
+			}
+		}
+		
 		
 		insideVolume = planeX * planeY * planeZ;
-		
+		System.out.println(insideVolume);
 		// volume of the inside part of the object divide with its full volume
 		score = insideVolume / objVolume;
 		if (score <= 0.0) {
